@@ -1,0 +1,47 @@
+# IDE files
+.idea/
+lib/
+mysql/
+
+# SFML Files
+SFML-2.3.2/
+include/SFML/
+
+# OpenSSL Files
+openssl/
+
+# Compiled Object files 
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Installer
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
