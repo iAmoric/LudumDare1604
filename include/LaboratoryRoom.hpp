@@ -39,6 +39,8 @@ class LaboratoryRoom : public BasicInterface
 		NPanel m_equipment20;
 
 	AnimatableObject m_loading;
+	AnimatableObject m_bulle;
+	AnimatableObject m_ordi;
 
 	bool m_bool;
 

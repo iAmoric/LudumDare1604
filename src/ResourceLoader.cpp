@@ -98,6 +98,8 @@ void ResourceLoader::load() {
 
 	/* animation */
 	a_tm.addTexture("loading", pathAnimation + "loading.png");
+	a_tm.addTexture("bulle", pathAnimation + "sprite_bulle.png");
+	a_tm.addTexture("ordi", pathAnimation + "sprite_ordi.png");
 
 	a_mm.setState(true);
 	a_tm.setState(true);

@@ -64,6 +64,14 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment16"));
     getContentPane()->addComponent(&m_equipment16);
 
+    m_bulle.create("bulle", 150, 200,
+                   ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
+    getContentPane()->addComponent(&m_bulle);
+
+    m_ordi.create("ordi", 377, 443,
+                   ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
+    getContentPane()->addComponent(&m_ordi);
+
 
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);
