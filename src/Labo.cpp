@@ -100,7 +100,6 @@ void Labo::restart() {
     updateCPS();
     m_YPS, m_CPS = 0;
     m_evolutionLevel = 1;
-
 }
 
 void Labo::evolution() {
@@ -125,4 +124,8 @@ void Labo::grant(){
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBuyable()) moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
     }
+}
+
+void Labo::click() {
+    m_money += m_CPS;
 }

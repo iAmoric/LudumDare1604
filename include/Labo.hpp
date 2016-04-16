@@ -37,6 +37,7 @@ public:
     void evolution();
     void restart();
     void grant();
+    void click();
 };
 
 #endif //CLIENT_LABO_HPP
