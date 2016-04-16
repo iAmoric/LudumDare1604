@@ -52,69 +52,52 @@ void ResourceLoader::load() {
     GameManager& a_gm = *m_managerGroup.ptr_gameManager;
 
 
-	// Path
+	/* Path */
 	const std::string pathLogin = "../res/texture/menu/login/";
 	const std::string pathAnimation = "../res/animation/";
 	const std::string pathView = "../res/vues/";
 	const std::string pathSprite = "../res/sprites/";
 	const std::string pathMonster = "../res/monster/";
 	const std::string pathEquipment = "../res/equipment/";
+	const std::string pathButton = "../res/buttons/";
+	const std::string pathCharacter ="../res/buttons/";
 
 	// Loading ...
 	//Les textures sont chargés en mémoire ici
 	//On peut y accéder grace à leur ID (1er parametres)
-	a_tm.addTexture("topBarLogMenu", pathLogin + "topBarLogMenu.png");
-	a_tm.addTexture("topBarOptButton_1", pathLogin + "topBarOptionButton_1.png");
-	a_tm.addTexture("topBarOptButton_2", pathLogin + "topBarOptionButton_2.png");
 
-	a_tm.addTexture("topBarOptButton_3", pathLogin + "topBarOptionButton_1.png");
-	a_tm.addTexture("topBarOptButton_4", pathLogin + "topBarOptionButton_2.png");
-	a_tm.addTexture("exitPanel", pathLogin + "exitPanel.png");
 
-	a_tm.addTexture("topBarExitButton_1", pathLogin + "topBarExitButton_1.png");
-	a_tm.addTexture("topBarExitButton_2", pathLogin + "topBarExitButton_2.png");
-	a_tm.addTexture("loginBackground", pathLogin + "background.png");
-	a_tm.addTexture("optionPane", pathLogin + "optionPane.png");
-	a_tm.addTexture("optionPanel", pathLogin + "optionPanel.png");
-	a_tm.addTexture("simplePanel", pathLogin + "simplePanel.png");
-	a_tm.addTexture("connectButton1", pathLogin + "connect_1.png");
-	a_tm.addTexture("connectButton2", pathLogin + "connect_2.png");
-	a_tm.addTexture("volume_1", pathLogin + "volume_1.png");
-	a_tm.addTexture("volume_2", pathLogin + "volume_2.png");
-	a_tm.addTexture("volumeOff_1", pathLogin + "volumeOff_1.png");
-	a_tm.addTexture("volumeOff_2", pathLogin + "volumeOff_2.png");
-	a_tm.addTexture("textBox", pathLogin + "textBox.png");
-    a_tm.addTexture("textBoxCursor", pathLogin + "curseurTextBox.png");
-	a_tm.addTexture("nemesis", pathLogin + "background_login.png");
-	a_tm.addTexture("errorPanel", pathLogin + "ErrorPanel.png");
-	a_tm.addTexture("bibouPanel", pathLogin + "bibouPanel.png");
-	a_tm.addTexture("paperSwordTitlePanel", pathLogin + "paperSwordTitleFull.png");
-	a_tm.addTexture("logoSmall", pathLogin + "paperSwordTitleSmall.png");
+	/* Buttons */
+	a_tm.addTexture("close_1", pathButton + "close.png");
+	a_tm.addTexture("close_2", pathButton + "closePress.png");
+
+	/* background */
+	a_tm.addTexture("background", pathView + "background.png");
 
 	/* Equipments to buy */
-	a_tm.addTexture("equipment1", pathLogin + "1test_tube.png"); //
-	a_tm.addTexture("equipment2", pathLogin + "2test_tubes.png"); // à mettre à la place du 1
-	a_tm.addTexture("equipment3", pathLogin + "coffee.png"); //
-	a_tm.addTexture("equipment4", pathLogin + "3test_tubes.png"); // à mettre à la place du 2
-	a_tm.addTexture("equipment5", pathLogin + "4test_tubes.png"); // à mettre à la place du 4
-	a_tm.addTexture("equipment6", pathLogin + "purple_balloon.png"); //
-	a_tm.addTexture("equipment7", pathLogin + "heanting_mantle.png"); // à mettre à la place du 6
-	a_tm.addTexture("equipment8", pathLogin + "1flask.png"); //
-	a_tm.addTexture("equipment9", pathLogin + "2flasks.png"); // à mettre à la place du 8
-	a_tm.addTexture("equipment10", pathLogin + "cool_mantle_balloon.png");//
-	a_tm.addTexture("equipment11", pathLogin + "pink_flask.png"); //
-	a_tm.addTexture("equipment12", pathLogin + "heanting_mantle_balloon.png.png"); // à mettre à la place du 10
-	a_tm.addTexture("equipment13", pathLogin + "5test_tube.png"); // à mettre à la place du 5
-	a_tm.addTexture("equipment14", pathLogin + "6test_tube.png"); // à mettre à la place du 13
-	a_tm.addTexture("equipment15", pathLogin + "7test_tube.png"); // à mettre à la place du 14
-	a_tm.addTexture("equipment16", pathLogin + "8test_tube.png"); // à mettre à la place du 15
-	a_tm.addTexture("equipment17", pathLogin + "pink_burette.png"); //
-	a_tm.addTexture("equipment18", pathLogin + "1test_tube.png");
-	a_tm.addTexture("equipment19", pathLogin + "microscope.png"); //
-	a_tm.addTexture("equipment20", pathLogin + "1test_tube.png");
+	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png"); //
+	a_tm.addTexture("equipment2", pathEquipment + "2test_tubes.png"); // à mettre à la place du 1
+	a_tm.addTexture("equipment3", pathEquipment + "coffee.png"); //
+	a_tm.addTexture("equipment4", pathEquipment + "3test_tubes.png"); // à mettre à la place du 2
+	a_tm.addTexture("equipment5", pathEquipment + "4test_tubes.png"); // à mettre à la place du 4
+	a_tm.addTexture("equipment6", pathEquipment + "purple_balloon.png"); //
+	a_tm.addTexture("equipment7", pathEquipment + "heanting_mantle.png"); // à mettre à la place du 6
+	a_tm.addTexture("equipment8", pathEquipment + "1flask.png"); //
+	a_tm.addTexture("equipment9", pathEquipment + "2flasks.png"); // à mettre à la place du 8
+	a_tm.addTexture("equipment10", pathEquipment + "cool_mantle_balloon.png");//
+	a_tm.addTexture("equipment11", pathEquipment + "pink_flask.png"); //
+	a_tm.addTexture("equipment12", pathEquipment + "heanting_mantle_balloon.png"); // à mettre à la place du 10
+	a_tm.addTexture("equipment13", pathEquipment + "5test_tubes.png"); // à mettre à la place du 5
+	a_tm.addTexture("equipment14", pathEquipment + "6test_tubes.png"); // à mettre à la place du 13
+	a_tm.addTexture("equipment15", pathEquipment + "7test_tubes.png"); // à mettre à la place du 14
+	a_tm.addTexture("equipment16", pathEquipment + "8test_tubes.png"); // à mettre à la place du 15
+	a_tm.addTexture("equipment17", pathEquipment + "pink_burette.png"); //
+	a_tm.addTexture("equipment18", pathEquipment + "1test_tube.png");
+	a_tm.addTexture("equipment19", pathEquipment + "microscope.png"); //
+	a_tm.addTexture("equipment20", pathEquipment + "beer.png");	//
 
+	/* animation */
 	a_tm.addTexture("loading", pathAnimation + "loading.png");
-
 
 	a_mm.setState(true);
 	a_tm.setState(true);

@@ -31,42 +31,14 @@ BasicInterface::BasicInterface(bool debug,
 		std::cout << "Probleme dans le chargement des textures" << std::endl;
 	}
 
-	m_smallTitleLogo.create("smallTitleLogo", 15, 5,
-							 a_tm.getTexture("logoSmall"));
+
 	// Creating m_contentPane
 	m_contentPane.create("mainPanel", 0, 0,
-						 a_tm.getTexture("loginBackground"));
+						 a_tm.getTexture("background"));
 
-	// Adding buttons
-	m_optButton.create("optButton", 780, 5,
-					   a_tm.getTexture("topBarOptButton_1"),
-					   a_tm.getTexture("topBarOptButton_2"));
-
-	m_musicButton.create("volumeButton", 905,92,
-						 a_tm.getTexture("volume_1"),
-						 a_tm.getTexture("volume_2"));
-
-	m_soundButton.create("soundButton", 905,167,
-						 a_tm.getTexture("volume_1"),
-						 a_tm.getTexture("volume_2"));
-
-
-	m_exitButton.create("exitButton", 900, 5,
-						a_tm.getTexture("topBarExitButton_1"),
-						a_tm.getTexture("topBarExitButton_2"));
-
-	//Adding labels
-	m_volumeLabel.create("volumeLabel", 730, 100, 16, &m_fontLabel,
-						 L"Volume de la musique",
-						 sf::Color::White);
-
-	m_soundLabel.create("soundLabel", 730, 175, 16, &m_fontLabel,
-						 L"Volume des effets",
-						 sf::Color::White);
-
-	//m_titleLabel.create("monSuperLabel", 10, 10, 20, &m_fontLabel,
-	//					L"Paper Sword : Online",
-	//					sf::Color(232,200,20));
+	m_exitButton.create("exitButton", 940, 5,
+						a_tm.getTexture("close_1"),
+						a_tm.getTexture("close_2"));
 
 	m_errorPanel.create("ErrorPanel", 332, 685,
 						ptr_managerGroup->ptr_textureManager->getTexture("errorPanel"));
@@ -80,12 +52,6 @@ BasicInterface::BasicInterface(bool debug,
 	m_loading.create("loading", 487, 700,
 					 ptr_managerGroup->ptr_textureManager->getTexture("loading"), true, 0.1, 49, 49, 8);
 	m_loading.setVisible(false);
-
-
-	// Creating optionPanel
-	m_optionPanel.create("optionPanel", 710, 55,
-						 a_tm.getTexture("optionPanel"));
-
 
 
 	m_errorPanel.addComponent(&m_connectionErrorLabel);
