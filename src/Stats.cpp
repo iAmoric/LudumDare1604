@@ -5,9 +5,10 @@
 #include "Stats.hpp"
 
 Stats::Stats() {
-    m_nbClick, m_nbReset, m_nbEvoMax, m_spentTime,
+    m_nbClick, m_nbReset, m_spentTime,
             m_actualMoney, m_totalMoney, m_spentMoney,
             m_actualReputation, m_totalReputation, m_spentReputation = 0;
+    m_nbEvoMax = 1;
 }
 
 Stats::~Stats() {
