@@ -127,6 +127,8 @@ void ResourceLoader::load() {
 	a_tm.addTexture("arrowRightPress", pathButton + "arrowRightPress.png");
 	a_tm.addTexture("arrowRight", pathButton + "arrowRight.png");
 
+	a_tm.addTexture("sergePanel", pathButton + "sergeButton.png");
+	a_tm.addTexture("jeannePanel", pathButton + "jeanneButton.png");
 
 	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_5.png");
 

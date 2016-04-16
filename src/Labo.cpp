@@ -193,3 +193,6 @@ void Labo::isPurchasablePiece(){
         }
     }
 }
+std::vector<LaboPiece *> Labo::getM_LaboPieceVector() {
+    return m_LaboPieceVector;
+}

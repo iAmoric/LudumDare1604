@@ -48,9 +48,9 @@ sf::Texture * texture_1, sf::Texture * texture_2) {
 	m_secondSprite.setTexture(*texture_2);
 	m_secondSprite.setPosition(m_position);
 
-	m_surrounder.init(m_mainSprite.getPosition(),
-	m_mainSprite.getTexture()->getSize(),
-	sf::Color(196,130,56));
+	//m_surrounder.init(m_mainSprite.getPosition(),
+	//m_mainSprite.getTexture()->getSize(),
+	//sf::Color(196,130,56));
 }
 
 /*!
@@ -65,7 +65,7 @@ void NButton::draw(sf::RenderWindow * window) {
 		window->draw(m_secondSprite);
 	} else if (m_isOver) {
 		window->draw(m_mainSprite);
-		window->draw(*m_surrounder.getShape());
+		//window->draw(*m_surrounder.getShape());
 	} else {
 		window->draw(m_mainSprite);
 	}

@@ -59,6 +59,9 @@ public:
     unsigned long long getEvolutionLevel();
 
     unsigned long long int getMoneyGain();
+    std::vector<LaboPiece *> getM_LaboPieceVector();
+
+
 };
 
 #endif //CLIENT_LABO_HPP
