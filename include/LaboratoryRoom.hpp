@@ -46,6 +46,7 @@ class LaboratoryRoom : public BasicInterface
 		AnimatableObject m_flamme1;
 		AnimatableObject m_flamme2;
 		AnimatableObject m_ordi;
+		AnimatableObject m_coffeeSmoke;
 
 		NButton m_tabStatsButton;
 		NButton m_tabScientistButton;

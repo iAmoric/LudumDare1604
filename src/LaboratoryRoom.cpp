@@ -25,7 +25,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     /* Monster */
     m_monster.create("monster", 140, 140,
-                     ptr_managerGroup->ptr_textureManager->getTexture("monster"));
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"));
     getContentPane()->addComponent(&m_monster);
 
     /* Background */
@@ -147,10 +147,15 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                    ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
     getContentPane()->addComponent(&m_ordi);
 
+    m_coffeeSmoke.create("coffeeSmoke", 195, 475,
+                  ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.1, 60, 50, 20);
+    getContentPane()->addComponent(&m_coffeeSmoke);
+
+
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);
-    m_equipment3.setVisible(false);
+    m_equipment3.setVisible(true);
     m_equipment4.setVisible(false);
     m_equipment5.setVisible(false);
     m_equipment6.setVisible(false);
@@ -166,7 +171,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_equipment16.setVisible(true);
     m_equipment17.setVisible(true);
     m_equipment19.setVisible(true);
-    m_equipment20.setVisible(true);
+    m_equipment20.setVisible(false);
 
 }
 

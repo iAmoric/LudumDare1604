@@ -62,11 +62,7 @@ void ResourceLoader::load() {
 	const std::string pathButton = "../res/buttons/";
 	const std::string pathCharacter ="../res/buttons/";
 
-	// Loading ...
-	//Les textures sont chargés en mémoire ici
-	//On peut y accéder grace à leur ID (1er parametres)
-
-	/* Buttons */ //Todo : change sprite
+	/* Buttons */
 	a_tm.addTexture("close_1", pathButton + "close.png");
 	a_tm.addTexture("close_2", pathButton + "closePress.png");
 	a_tm.addTexture("tabStatsButton", pathButton + "tabStatsButton.png");
@@ -98,7 +94,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("equipment19", pathEquipment + "microscope.png"); //
 	a_tm.addTexture("equipment20", pathEquipment + "beer.png"); // à mettre à la place du 3
 
-	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_1.png");
+	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_5.png");
 
 	a_tm.addTexture("monster", pathMonster + "espace/espace_5.png");
 	a_tm.addTexture("background", pathView + "background.png");
@@ -109,6 +105,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("flamme1", pathAnimation + "animationFlamme_test.png");
 	a_tm.addTexture("flamme2", pathAnimation + "animationFlamme_test.png");
 	a_tm.addTexture("ordi", pathAnimation + "sprite_ordi.png");
+	a_tm.addTexture("coffeeSmoke", pathAnimation + "sprite_coffeeSmook.png");
 
 	a_mm.setState(true);
 	a_tm.setState(true);
