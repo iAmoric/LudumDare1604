@@ -19,6 +19,6 @@ GameManager::~GameManager() {
 
 }
 
-Player* GameManager::getPlayer() {
-    return m_player;
+Labo* GameManager::getLabo() {
+    return m_labo;
 }
