@@ -92,6 +92,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment17"));
     getContentPane()->addComponent(&m_equipment17);
 
+    m_equipment18.create("equipement_18", 510, 10,
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment18"));
+    getContentPane()->addComponent(&m_equipment18);
+
     m_equipment19.create("equipement_19", 610, 450,
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment19"));
     getContentPane()->addComponent(&m_equipment19);
