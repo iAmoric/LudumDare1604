@@ -57,7 +57,7 @@ void ResourceLoader::load() {
 	const std::string pathAnimation = "../res/animation/";
 	const std::string pathView = "../res/vues/";
 	const std::string pathSprite = "../res/sprites/";
-	const std::string pathMonster = "../res/monster/";
+	const std::string pathMonster = "../res/monstres/";
 	const std::string pathEquipment = "../res/equipment/";
 	const std::string pathButton = "../res/buttons/";
 	const std::string pathCharacter ="../res/buttons/";
@@ -95,6 +95,10 @@ void ResourceLoader::load() {
 	a_tm.addTexture("equipment18", pathEquipment + "medal.png"); //
 	a_tm.addTexture("equipment19", pathEquipment + "microscope.png"); //
 	a_tm.addTexture("equipment20", pathEquipment + "beer.png"); // à mettre à la place du 3
+
+
+	a_tm.addTexture("monster", pathMonster + "espace/espace_5.png");
+	a_tm.addTexture("background", pathView + "background.png");
 
 	/* animation */
 	a_tm.addTexture("loading", pathAnimation + "loading.png");

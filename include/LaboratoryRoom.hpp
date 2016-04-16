@@ -38,6 +38,9 @@ class LaboratoryRoom : public BasicInterface
 		NPanel m_equipment19;
 		NPanel m_equipment20;
 
+		NPanel m_monster;
+		NPanel m_background;
+
 	AnimatableObject m_loading;
 	AnimatableObject m_bulle;
 	AnimatableObject m_flamme1;

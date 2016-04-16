@@ -24,6 +24,14 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
             getPlaylist("playlistMenu")->play();
 
 
+    m_monster.create("monster", 140, 140,
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster"));
+    getContentPane()->addComponent(&m_monster);
+
+    m_background.create("background", 0, 0,
+                     ptr_managerGroup->ptr_textureManager->getTexture("background"));
+    getContentPane()->addComponent(&m_background);
+
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
     getContentPane()->addComponent(&m_equipment1);
