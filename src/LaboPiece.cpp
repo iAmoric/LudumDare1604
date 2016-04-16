@@ -26,3 +26,7 @@ void LaboPiece::nextLvl() {
     m_level++;
     m_price = (long) (1.5 * m_price);
 }
+
+long LaboPiece::getYPS(){
+    return m_YPS;
+}

@@ -17,9 +17,16 @@ private:
     Stats* m_ptr_stats;
     long m_YPS;
     float m_clickBonus;
+    float m_YPSBonus;
+
+    void initLaboPieceVector();
 public:
     Labo();
     ~Labo();
+
+    void lvlUpScientific(unsigned int type);
+    void lvlUpLaboPiece(unsigned int id);
+    void updateYPS();
 };
 
 #endif //CLIENT_LABO_HPP

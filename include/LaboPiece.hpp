@@ -22,7 +22,9 @@ public:
     LaboPiece(std::string name, int nbLaboPiece,
               float coef, long price, bool isClickPiece);
     ~LaboPiece();
+
     void nextLvl();
+    long getYPS();
 };
 
 
