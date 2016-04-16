@@ -7,9 +7,20 @@
 
 class Stats{
 protected:
-    long DPS;
-    float clickBonus;
-    float argentBonus;
+    int m_nbClick;
+    int m_nbReset;
+    int m_nbEvoMax;
+    long spentTime;
+
+    //Money
+    long actualMoney;
+    long totalMoney;
+    long spentMoney;
+
+    //Reputation
+    long actualReputation;
+    long totalReputation;
+    long spentReputation;
 public:
     Stats();
     ~Stats();

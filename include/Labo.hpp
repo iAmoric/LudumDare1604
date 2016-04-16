@@ -12,11 +12,11 @@
 
 class Labo{
 private:
-    std::vector<LaboPiece> m_LaboPieceVector;
-    std::vector<Scientific> m_ScientificVector;
-    long DPS;
-    float clickBonus;
-    float argentBonus;
+    std::vector<LaboPiece *> m_LaboPieceVector;
+    std::vector<Scientific *> m_ScientificVector;
+    Stats* m_ptr_stats;
+    long m_YPS;
+    float m_clickBonus;
 public:
     Labo();
     ~Labo();
