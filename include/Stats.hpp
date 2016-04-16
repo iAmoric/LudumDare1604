@@ -9,6 +9,7 @@
 
 class Stats{
 protected:
+    //Other stats
     unsigned long long m_nbClick;
     int m_nbReset;
     int m_nbEvoMax;
@@ -32,7 +33,7 @@ public:
     void incrementActualMoney(unsigned long long money);
     void incrementTotalMoney(unsigned long long money);
     void incrementSpentMoney(unsigned long long money);
-    //Autre stats
+    //Other stats
     void incrementNbClick();
     void incrementSpentTime(sf::Time time);
     void incrementNbReset();
@@ -47,7 +48,7 @@ public:
     unsigned long long getM_actualMoney();
     unsigned long long getM_totalMoney();
     unsigned long long getM_spentMoney();
-    //Autre stats
+    //Other stats
     unsigned long long getM_nbClick();
     sf::Time getM_spentTime();
     int getM_nbReset();
