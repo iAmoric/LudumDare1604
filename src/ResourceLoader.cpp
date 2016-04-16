@@ -94,6 +94,24 @@ void ResourceLoader::load() {
 	a_tm.addTexture("equipment19", pathEquipment + "microscope.png"); //
 	a_tm.addTexture("equipment20", pathEquipment + "beer.png"); // à mettre à la place du 3
 
+	/* Color Buttons */
+	a_tm.addTexture("button1", pathButton + "yellow_button.png");
+	a_tm.addTexture("button1Press", pathButton + "yellow_button_assombri.png");
+	a_tm.addTexture("button2", pathButton + "orange_button.png");
+	a_tm.addTexture("button2Press", pathButton + "orange_button_assombri.png");
+	a_tm.addTexture("button3", pathButton + "red_button.png");
+	a_tm.addTexture("button3Press", pathButton + "red_button_assombri.png");
+	a_tm.addTexture("button4", pathButton + "purple_button.png");
+	a_tm.addTexture("button4Press", pathButton + "purple_button_assombri.png");
+	a_tm.addTexture("button5", pathButton + "blue_button.png");
+	a_tm.addTexture("button5Press", pathButton + "blue_button_assombri.png");
+	a_tm.addTexture("button6", pathButton + "lightGreen_button.png");
+	a_tm.addTexture("button6Press", pathButton + "lightGreen_button_assombri.png");
+	a_tm.addTexture("button7", pathButton + "darkGreen_button.png");
+	a_tm.addTexture("button7Press", pathButton + "darkGreen_button_assombri.png");
+	a_tm.addTexture("button8", pathButton + "black_button.png");
+	a_tm.addTexture("button8Press", pathButton + "black_button_assombri.png");
+
 	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_5.png");
 
 	a_tm.addTexture("monster", pathMonster + "espace/espace_5.png");
