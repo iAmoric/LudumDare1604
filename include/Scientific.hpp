@@ -12,11 +12,11 @@ protected:
     std::string m_name;
     bool m_isBuy;
     bool m_isBuyable;
-    long m_price;
+    unsigned long long m_price;
     int m_level;
     int m_type;
 public:
-    Scientific(std::string name, long price, int type);
+    Scientific(std::string name, unsigned long long price, int type);
     ~Scientific();
     void nextLvl();
 };
