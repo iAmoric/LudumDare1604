@@ -33,24 +33,42 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_screen.create("screen", 186, 378,
                     ptr_managerGroup->ptr_textureManager->getTexture("screen"));
     getContentPane()->addComponent(&m_screen);
+
     m_iconBank.create("bank-icon", 188, 410,
                     ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
     getContentPane()->addComponent(&m_iconBank);
+    m_labelBank.create("labelBank", 212, 405, 20, &m_fontLabel, L"0", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelBank);
+
     m_iconClick.create("click-icon", 188, 462,
                     ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
     getContentPane()->addComponent(&m_iconClick);
+    m_labelClick.create("labelBank", 212, 457, 20, &m_fontLabel, L"0", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelClick);
+
     m_iconMoney.create("money-icon", 188, 436,
                     ptr_managerGroup->ptr_textureManager->getTexture("money-icon"));
     getContentPane()->addComponent(&m_iconMoney);
+    m_labelMoney.create("labelMoney", 212, 431, 20, &m_fontLabel, L"0", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelMoney);
+
     m_iconReputation.create("reputation-icon", 295, 410,
                     ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
     getContentPane()->addComponent(&m_iconReputation);
+    m_labelReputation.create("labelReputation", 319, 405, 20, &m_fontLabel, L"0", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelReputation);
+
     m_iconResearch.create("research-icon", 295, 384,
                     ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
     getContentPane()->addComponent(&m_iconResearch);
+    m_labelResearch.create("labelResearch", 319, 379, 20, &m_fontLabel, L"0", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelResearch);
+
     m_iconTime.create("time-icon",  188, 384,
                     ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
     getContentPane()->addComponent(&m_iconTime);
+    m_labelTime.create("labelTime", 212, 379, 20, &m_fontLabel, L"0", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelTime);
 
 
     /*Timer */
@@ -390,8 +408,24 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
     }
-    // YPC, YPS, MPS, MPC, years, reputation
 
+    Units unit = Units(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
+    m_labelTime.setText(unit.toWString());
+
+    unit = Units(m_ptr_managerGroup->ptr_gameManager->getLabo()->getYPS());
+    m_labelResearch.setText(unit.toWString());
+
+    unit = Units(m_ptr_managerGroup->ptr_gameManager->getLabo()->getCPS());
+    m_labelClick.setText(unit.toWString());
+
+    unit = Units(m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoney());
+    m_labelBank.setText(unit.toWString());
+
+    unit = Units(m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoneyGain());
+    m_labelMoney.setText(unit.toWString());
+
+    unit = Units(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
+    m_labelReputation.setText(unit.toWString());
 
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
