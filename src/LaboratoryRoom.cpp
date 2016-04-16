@@ -15,7 +15,7 @@
 LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
         BasicInterface(debug, ptr_managerGroup) {
 
-    //Création de la musique pour la 'fenetre'
+    /* Musique */
     ptr_managerGroup->ptr_musicManager->
             createPlaylist("playlistMenu", true, 1.2);
     ptr_managerGroup->ptr_musicManager->
@@ -23,7 +23,17 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
+    /* Monster */
+    m_monster.create("monster", 120,120,
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"));
+    getContentPane()->addComponent(&m_monster);
 
+    /* background */
+    m_background.create("background", 0, 0,
+                        ptr_managerGroup->ptr_textureManager->getTexture("background"));
+    getContentPane()->addComponent(&m_background);
+
+    /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
     getContentPane()->addComponent(&m_equipment1);
@@ -105,8 +115,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_equipment20);
 
 
-
-    m_bulle.create("bulle", 150, 200,
+    /* Animation */
+    m_bulle.create("bulle", 440, 650,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
     getContentPane()->addComponent(&m_bulle);
 
@@ -115,6 +125,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_ordi);
 
 
+    /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);
     m_equipment3.setVisible(false);

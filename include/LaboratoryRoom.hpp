@@ -17,6 +17,7 @@
 class LaboratoryRoom : public BasicInterface
 {
 	private:
+		NPanel m_background;
 		NPanel m_equipment1;
 		NPanel m_equipment2;
 		NPanel m_equipment3;
@@ -38,9 +39,11 @@ class LaboratoryRoom : public BasicInterface
 		NPanel m_equipment19;
 		NPanel m_equipment20;
 
-	AnimatableObject m_loading;
-	AnimatableObject m_bulle;
-	AnimatableObject m_ordi;
+		NPanel m_monster;
+
+		AnimatableObject m_loading;
+		AnimatableObject m_bulle;
+		AnimatableObject m_ordi;
 
 	bool m_bool;
 
