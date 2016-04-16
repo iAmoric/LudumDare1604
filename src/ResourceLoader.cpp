@@ -13,21 +13,21 @@
  * \param debug the debug mode
  */
 ResourceLoader::ResourceLoader(bool debug) : m_managerGroup(),
-											 m_thread(&ResourceLoader::load, this) {
-	m_debug = debug;
+                                             m_thread(&ResourceLoader::load, this) {
+    m_debug = debug;
 
 
-	//Instancie les différents manager
-	m_managerGroup.ptr_musicManager = new MusicManager(m_debug); //The default volume
-	m_managerGroup.ptr_textureManager = new TextureManager(m_debug);
-	m_managerGroup.ptr_targetManager = new TargetManager(m_debug);
-	m_managerGroup.ptr_optionManager = new OptionManager(m_debug);
+    //Instancie les différents manager
+    m_managerGroup.ptr_musicManager = new MusicManager(m_debug); //The default volume
+    m_managerGroup.ptr_textureManager = new TextureManager(m_debug);
+    m_managerGroup.ptr_targetManager = new TargetManager(m_debug);
+    m_managerGroup.ptr_optionManager = new OptionManager(m_debug);
     m_managerGroup.ptr_gameManager = new GameManager(m_debug);
 
-	m_managerGroup.ptr_musicManager->setState(false);
-	m_managerGroup.ptr_textureManager->setState(false);
-	m_managerGroup.ptr_targetManager->setState(false);
-	m_managerGroup.ptr_optionManager->setState(false);
+    m_managerGroup.ptr_musicManager->setState(false);
+    m_managerGroup.ptr_textureManager->setState(false);
+    m_managerGroup.ptr_targetManager->setState(false);
+    m_managerGroup.ptr_optionManager->setState(false);
     m_managerGroup.ptr_gameManager->setState(false);
 }
 
@@ -35,7 +35,7 @@ ResourceLoader::ResourceLoader(bool debug) : m_managerGroup(),
  * \brief Destructor
  */
 ResourceLoader::~ResourceLoader() {
-	// None
+    // None
 }
 
 /*!
@@ -43,8 +43,7 @@ ResourceLoader::~ResourceLoader() {
  * \brief to not lock the main thread
  */
 void ResourceLoader::load() {
-
-	// Aliases
+    // Aliases
 	MusicManager& a_mm = *m_managerGroup.ptr_musicManager;
 	TextureManager& a_tm = *m_managerGroup.ptr_textureManager;
 	TargetManager& a_tarm = *m_managerGroup.ptr_targetManager;
@@ -61,6 +60,7 @@ void ResourceLoader::load() {
 	const std::string pathEquipment = "../res/equipment/";
 	const std::string pathButton = "../res/buttons/";
 	const std::string pathCharacter ="../res/buttons/";
+    const std::string pathComputer ="../res/sprites/ordi/";
 
 	/* Buttons */
 	a_tm.addTexture("close_1", pathButton + "close.png");
@@ -68,6 +68,16 @@ void ResourceLoader::load() {
 	a_tm.addTexture("tabStatsButton", pathButton + "tabStatsButton.png");
 	a_tm.addTexture("tabScientistButton", pathButton + "tabScientistButton.png");
 	a_tm.addTexture("tabEquipmentButton", pathButton + "tabEquipmentButton.png");
+
+    /* Computer */
+    a_tm.addTexture("background", pathView + "background.png");
+    a_tm.addTexture("screen", pathComputer + "screen.png");
+    a_tm.addTexture("bank-icon", pathComputer + "bank-icon.png");
+    a_tm.addTexture("click-icon", pathComputer + "click-icon.png");
+    a_tm.addTexture("money-icon", pathComputer + "money-icon.png");
+    a_tm.addTexture("reputation-icon", pathComputer + "reputation-icon.jpg");
+    a_tm.addTexture("research-icon", pathComputer + "research-icon.png");
+    a_tm.addTexture("time-icon", pathComputer + "time-icon.png");
 
 	/* background */
 	a_tm.addTexture("background", pathView + "background.png");
@@ -140,19 +150,19 @@ void ResourceLoader::load() {
     a_gm.setState(true);
 
 
-	if(m_debug) {
-		std::cout << "- Texture Manager successfully loaded" << std::endl;
-		std::cout << "- Target Manager successfully loaded" << std::endl;
-		std::cout << "- Option Manager successfully loaded" << std::endl;
+    if (m_debug) {
+        std::cout << "- Texture Manager successfully loaded" << std::endl;
+        std::cout << "- Target Manager successfully loaded" << std::endl;
+        std::cout << "- Option Manager successfully loaded" << std::endl;
         std::cout << "- Game Manager successfully loaded" << std::endl;
-	}
+    }
 }
 
 /*!
  * \brief Launch the loading thread
  */
 void ResourceLoader::start() {
-	m_thread.launch();
+    m_thread.launch();
 }
 
 /*!
@@ -160,7 +170,7 @@ void ResourceLoader::start() {
  * \deprecated Please do not use this function
  */
 void ResourceLoader::stop() {
-	m_thread.terminate();
+    m_thread.terminate();
 }
 
 /*!
@@ -168,18 +178,18 @@ void ResourceLoader::stop() {
  * \return True if all resources are loaded
  */
 bool ResourceLoader::getLoadState() {
-	return (
-			m_managerGroup.ptr_musicManager->getState() &&
-			m_managerGroup.ptr_textureManager->getState() &&
-			m_managerGroup.ptr_targetManager->getState() &&
-			m_managerGroup.ptr_optionManager->getState() &&
-			m_managerGroup.ptr_gameManager->getState());
+    return (
+            m_managerGroup.ptr_musicManager->getState() &&
+            m_managerGroup.ptr_textureManager->getState() &&
+            m_managerGroup.ptr_targetManager->getState() &&
+            m_managerGroup.ptr_optionManager->getState() &&
+            m_managerGroup.ptr_gameManager->getState());
 }
 
 /*!
  * \brief Return all loaded resources
  * \return m_manager a pointer on all managers
  */
-ManagerGroup * ResourceLoader::getManager() {
-	return &m_managerGroup;
+ManagerGroup *ResourceLoader::getManager() {
+    return &m_managerGroup;
 }

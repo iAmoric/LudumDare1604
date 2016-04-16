@@ -76,12 +76,21 @@ class LaboratoryRoom : public BasicInterface
 		NButton m_buyButtonSerge;
 
 
-		AnimatableObject m_loading;
-		AnimatableObject m_bulle;
-		AnimatableObject m_flamme1;
-		AnimatableObject m_flamme2;
-		AnimatableObject m_ordi;
-		AnimatableObject m_coffeeSmoke;
+    NPanel m_screen;
+    NPanel m_iconBank;
+    NPanel m_iconClick;
+    NPanel m_iconMoney;
+    NPanel m_iconReputation;
+    NPanel m_iconResearch;
+    NPanel m_iconTime;
+
+    AnimatableObject m_loading;
+    AnimatableObject m_bulle;
+    AnimatableObject m_flamme1;
+    AnimatableObject m_flamme2;
+    AnimatableObject m_ordi;
+
+	AnimatableObject m_coffeeSmoke;
 
     double m_timeElapsed;
 
