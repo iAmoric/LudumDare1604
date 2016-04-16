@@ -31,7 +31,6 @@ BasicInterface::BasicInterface(bool debug,
 		std::cout << "Probleme dans le chargement des textures" << std::endl;
 	}
 
-
 	// Creating m_contentPane
 	m_contentPane.create("mainPanel", 0, 0,
 						 a_tm.getTexture("background"));
