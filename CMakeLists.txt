@@ -63,7 +63,11 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         src/VisualObject.cpp
         src/LaboPiece.cpp
         src/Scientific.cpp
-        src/Labo.cpp src/Stats.cpp include/Stats.hpp)
+        src/Labo.cpp
+        src/Stats.cpp
+        src/Units.cpp
+        include/Units.hpp
+        include/Stats.hpp)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 message(WARNING "CMake runtime output Directory : ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")

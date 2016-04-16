@@ -101,6 +101,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_equipment20);
 
 
+
+    m_bulle.create("bulle", 150, 200,
+                   ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
+    getContentPane()->addComponent(&m_bulle);
+
+    m_ordi.create("ordi", 377, 443,
+                   ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
+    getContentPane()->addComponent(&m_ordi);
+
+
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);
     m_equipment3.setVisible(false);

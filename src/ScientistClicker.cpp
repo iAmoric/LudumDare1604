@@ -6,7 +6,6 @@
 
 int main(int argc, char ** argv)
 {
-
     // Checking args
     if(argc > 1) return FAILURE;
     std::cout << "\nRunning program : " << argv[0] << "\n" << std::endl;
