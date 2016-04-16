@@ -110,6 +110,14 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
     getContentPane()->addComponent(&m_bulle);
 
+    m_flamme1.create("flamme1", 902, 520,
+                    ptr_managerGroup->ptr_textureManager->getTexture("flamme1"),true, 0.1, 12, 5, 5);
+    getContentPane()->addComponent(&m_flamme1);
+
+    m_flamme2.create("flamme2", 804, 555,
+                    ptr_managerGroup->ptr_textureManager->getTexture("flamme2"),true, 0.1, 12, 5, 5);
+    getContentPane()->addComponent(&m_flamme2);
+
     m_ordi.create("ordi", 377, 443,
                    ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
     getContentPane()->addComponent(&m_ordi);

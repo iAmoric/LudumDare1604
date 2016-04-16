@@ -40,6 +40,8 @@ class LaboratoryRoom : public BasicInterface
 
 	AnimatableObject m_loading;
 	AnimatableObject m_bulle;
+	AnimatableObject m_flamme1;
+	AnimatableObject m_flamme2;
 	AnimatableObject m_ordi;
 
 	bool m_bool;
