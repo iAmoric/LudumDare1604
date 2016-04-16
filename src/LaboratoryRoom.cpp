@@ -28,10 +28,28 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                      ptr_managerGroup->ptr_textureManager->getTexture("monster"));
     getContentPane()->addComponent(&m_monster);
 
+    /* Background */
     m_background.create("background", 0, 0,
                      ptr_managerGroup->ptr_textureManager->getTexture("background"));
     getContentPane()->addComponent(&m_background);
 
+    /* Button */
+    m_tabStatsButton.create("tabStatsButton", 845, 400,
+                            ptr_managerGroup->ptr_textureManager->getTexture("tabStatsButton"),
+                            ptr_managerGroup->ptr_textureManager->getTexture("tabStatsButton"));
+    getContentPane()->addComponent(&m_tabStatsButton);
+
+    m_tabScientistButton.create("tabScientistButton", 792, 400,
+                            ptr_managerGroup->ptr_textureManager->getTexture("tabScientistButton"),
+                            ptr_managerGroup->ptr_textureManager->getTexture("tabScientistButton"));
+    getContentPane()->addComponent(&m_tabScientistButton);
+
+    m_tabEquipmentButton.create("tabEquipmentButton", 740, 400,
+                            ptr_managerGroup->ptr_textureManager->getTexture("tabEquipmentButton"),
+                            ptr_managerGroup->ptr_textureManager->getTexture("tabEquipmentButton"));
+    getContentPane()->addComponent(&m_tabEquipmentButton);
+
+    /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
     getContentPane()->addComponent(&m_equipment1);
@@ -112,9 +130,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment20"));
     getContentPane()->addComponent(&m_equipment20);
 
-
     /* Animation */
-    m_bulle.create("bulle", 440, 650,
+    m_bulle.create("bulle", 27, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
     getContentPane()->addComponent(&m_bulle);
 
@@ -129,7 +146,6 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_ordi.create("ordi", 377, 443,
                    ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
     getContentPane()->addComponent(&m_ordi);
-
 
     /* Init visible*/
     m_equipment1.setVisible(false);

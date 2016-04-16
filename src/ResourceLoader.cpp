@@ -67,9 +67,12 @@ void ResourceLoader::load() {
 	//On peut y accéder grace à leur ID (1er parametres)
 
 
-	/* Buttons */
+	/* Buttons */ //Todo : change sprite
 	a_tm.addTexture("close_1", pathButton + "close.png");
 	a_tm.addTexture("close_2", pathButton + "closePress.png");
+	a_tm.addTexture("tabStatsButton", pathButton + "tabStats.png");
+	a_tm.addTexture("tabScientistButton", pathButton + "tabStats.png");
+	a_tm.addTexture("tabEquipmentButton", pathButton + "tabStats.png");
 
 	/* background */
 	a_tm.addTexture("background", pathView + "background.png");
