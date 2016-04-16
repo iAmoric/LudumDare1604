@@ -33,6 +33,9 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         include/VideoParam.hpp
         include/VideoPlayer.hpp
         include/VisualObject.hpp
+        include/LaboPiece.hpp
+        include/Scientific.hpp
+        include/Labo.hpp
         src/AnimatableObject.cpp
         src/BasicInterface.cpp
         src/GameManager.cpp
@@ -57,7 +60,10 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         src/Updatable.cpp
         src/VideoParam.cpp
         src/VideoPlayer.cpp
-        src/VisualObject.cpp)
+        src/VisualObject.cpp
+        src/LaboPiece.cpp
+        src/Scientific.cpp
+        src/Labo.cpp src/Stats.cpp include/Stats.hpp)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 message(WARNING "CMake runtime output Directory : ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
