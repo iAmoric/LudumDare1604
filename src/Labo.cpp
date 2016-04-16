@@ -118,14 +118,16 @@ void Labo::evolution() {
 
 /**
  * Grant (YPS of the last item) / 10 money each sec
+ * Upload also the time
  */
 void Labo::grant(){
     unsigned long long moneyGain = 0;
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBuyable()) moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
     }
+    m_time += m_YPS;
 }
 
 void Labo::click() {
-    m_money += m_CPS;
+    m_time += m_CPS;
 }

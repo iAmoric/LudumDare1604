@@ -27,7 +27,7 @@ void Stats::incrementTotalMoney(unsigned long long money) {
 void Stats::incrementSpentMoney(unsigned long long money) {
     m_spentMoney += money;
 }
-//Autres stats
+
 void Stats::incrementNbClick() {
     m_nbClick++;
 }
