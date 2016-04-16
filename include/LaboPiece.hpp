@@ -15,16 +15,16 @@ protected:
     bool m_isClickPiece;
     bool m_isBuy;
     bool m_isBuyable;
-    long m_price;
-    long m_YPS;
+    unsigned long long m_price;
+    unsigned long long m_YPS;
     int m_level;
 public:
     LaboPiece(std::string name, int nbLaboPiece,
-              float coef, long price, bool isClickPiece);
+              float coef, unsigned long long price, bool isClickPiece);
     ~LaboPiece();
 
     void nextLvl();
-    long getYPS();
+    unsigned long long getYPS();
 };
 
 

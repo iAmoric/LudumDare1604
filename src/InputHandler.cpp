@@ -64,9 +64,9 @@ void InputHandler::handleInput(sf::Event * e,
 			}
                 break;
 
-            case sf::Event::KeyReleased:
-				testBug = 2;
-                break;
+		case sf::Event::KeyReleased:
+			testBug = 2;
+			break;
 
 		default:
 			m_overId = "NULL";

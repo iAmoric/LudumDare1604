@@ -21,14 +21,26 @@ Labo::~Labo() {
 
 //TODO Complete LaboPieceList
 void Labo::initLaboPieceVector() {
-    m_LaboPieceVector.push_back(new LaboPiece("Clicker", 1, 1, 1, true));
-    m_LaboPieceVector.push_back(new LaboPiece("YPSBoost", 2, 1, 5, false));
-    m_LaboPieceVector.push_back(new LaboPiece("YPSBoost2", 3, 2, 10, false));
-    m_LaboPieceVector.push_back(new LaboPiece("YPSBoost3", 4, 2, 20, false));
-    m_LaboPieceVector.push_back(new LaboPiece("YPSBoost4", 5, 3, 60, false));
-    m_LaboPieceVector.push_back(new LaboPiece("YPSBoost5", 6, 3, 180, false));
-    m_LaboPieceVector.push_back(new LaboPiece("YPSBoost6", 7, 3, 540, false));
-    m_LaboPieceVector.push_back(new LaboPiece("YPSBoost6", 8, 4, 2160, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Clicker", 1, 1, 5, true));
+    m_LaboPieceVector.push_back(new LaboPiece("2Flasks", 2, 2, 10, false));
+    m_LaboPieceVector.push_back(new LaboPiece("2TestTubes", 3, 2, 20, false));
+    m_LaboPieceVector.push_back(new LaboPiece("4TestTubes", 4, 3, 60, false));
+    m_LaboPieceVector.push_back(new LaboPiece("HeatingMantle", 5, 3, 180, false));
+    m_LaboPieceVector.push_back(new LaboPiece("HeatingMantleBalloon", 6, 3, 540, false));
+    m_LaboPieceVector.push_back(new LaboPiece("MagnifyingGlass", 7, 4, 2160, false));
+    m_LaboPieceVector.push_back(new LaboPiece("microscope", 8, 4, 8640, false));
+    m_LaboPieceVector.push_back(new LaboPiece("PinkBurette", 9, 4, 34560, false));
+    m_LaboPieceVector.push_back(new LaboPiece("PinkFlaks", 10, 4, 138240, false));
+    m_LaboPieceVector.push_back(new LaboPiece("PurpleBallon", 11, 5, 691200, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment12", 12, 5, 345600, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment13", 13, 5, 17280000, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment14", 14, 5, 86400000, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment15", 15, 6, 432000000, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment16", 16, 6, 2592000000, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment17", 17, 6, 15552000000, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment18", 18, 6, 93312000000, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment19", 19, 6, 559872000000, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment20", 20, 6, 3359232000000, false));
 }
 
 void Labo::lvlUpLaboPiece(unsigned int id) {

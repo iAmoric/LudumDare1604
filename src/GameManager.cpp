@@ -10,7 +10,6 @@
  */
 GameManager::GameManager(bool debug) : Manager(){
     m_debug = debug;
-    m_labo = new Labo();
 }
 
 /**
@@ -21,6 +20,6 @@ GameManager::~GameManager() {
 }
 
 
-Labo* GameManager::getLabo() {
-    return m_labo;
+Player* GameManager::getPlayer() {
+    return m_player;
 }
