@@ -41,11 +41,15 @@ class LaboratoryRoom : public BasicInterface
 		NPanel m_monster;
 		NPanel m_background;
 
-	AnimatableObject m_loading;
-	AnimatableObject m_bulle;
-	AnimatableObject m_flamme1;
-	AnimatableObject m_flamme2;
-	AnimatableObject m_ordi;
+		AnimatableObject m_loading;
+		AnimatableObject m_bulle;
+		AnimatableObject m_flamme1;
+		AnimatableObject m_flamme2;
+		AnimatableObject m_ordi;
+
+		NButton m_tabStatsButton;
+		NButton m_tabScientistButton;
+		NButton m_tabEquipmentButton;
 
 	bool m_bool;
 
