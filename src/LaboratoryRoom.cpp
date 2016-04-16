@@ -6,13 +6,13 @@
  * \date 2015-12-26
  */
 
-#include "LoginMenu.hpp"
+#include "LaboratoryRoom.hpp"
 
 /*!
  * \brief Constructor
  */
 //Login menu hérite de BasicInterface
-LoginMenu::LoginMenu(bool debug, ManagerGroup *ptr_managerGroup) :
+LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
         BasicInterface(debug, ptr_managerGroup) {
 
     //Création de la musique pour la 'fenetre'
@@ -23,12 +23,18 @@ LoginMenu::LoginMenu(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
+
+    m_equipment1.create("equipement_1", 25, 470,
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
+    getContentPane()->addComponent(&m_equipment1);
+
+
 }
 
 /*!
  * \brief Constructor
  */
-LoginMenu::~LoginMenu() {
+LaboratoryRoom::~LaboratoryRoom() {
     // TODO
 }
 
@@ -38,7 +44,7 @@ LoginMenu::~LoginMenu() {
  * \param frameTime The elpased time
  */
 //Méthode appellé à chaque tour de boucle, elle gère les évènements
-void LoginMenu::update(sf::RenderWindow *window,
+void LaboratoryRoom::update(sf::RenderWindow *window,
                        sf::Event *e, double frameTime) {
 
     //Si on est pas sur la fenetre, on return

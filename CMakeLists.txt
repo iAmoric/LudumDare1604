@@ -12,7 +12,7 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         include/Constant.hpp
         include/GameManager.hpp
         include/InputHandler.hpp
-        include/LoginMenu.hpp
+        include/LaboratoryRoom.hpp
         include/Manager.hpp
         include/ManagerGroup.hpp
         include/MusicManager.hpp
@@ -40,7 +40,7 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         src/BasicInterface.cpp
         src/GameManager.cpp
         src/InputHandler.cpp
-        src/LoginMenu.cpp
+        src/LaboratoryRoom.cpp
         src/Manager.cpp
         src/ManagerGroup.cpp
         src/MusicManager.cpp
