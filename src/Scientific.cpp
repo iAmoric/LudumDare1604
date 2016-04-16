@@ -4,7 +4,7 @@
 
 #include "Scientific.hpp"
 
-Scientific::Scientific(std::string name, long price, int type) {
+Scientific::Scientific(std::string name, unsigned long long price, int type) {
     m_name = name;
     m_price = price;
     m_type = type;
@@ -19,4 +19,5 @@ Scientific::~Scientific() {
 
 void Scientific::nextLvl() {
     m_level++;
+    m_price *= 1.5;
 }

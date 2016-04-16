@@ -20,11 +20,15 @@ protected:
     int m_level;
 public:
     LaboPiece(std::string name, int nbLaboPiece,
-              float coef, unsigned long long price, bool isClickPiece);
+              unsigned long long price, bool isClickPiece);
     ~LaboPiece();
 
     void nextLvl();
     unsigned long long getYPS();
+    void setBuyable();
+    bool isBuyable();
+
+    unsigned long long int getPrice();
 };
 
 

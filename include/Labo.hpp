@@ -16,8 +16,14 @@ private:
     std::vector<Scientific *> m_ScientificVector;
     Stats* m_ptr_stats;
     unsigned long long m_YPS;
-    float m_clickBonus;
-    float m_YPSBonus;
+    unsigned long long m_CPS;
+    unsigned long long m_money;
+    long m_reputationPointWaiting;
+    long m_reputationPointOwned;
+    double m_restartBonus;
+    double m_CPSBonus;
+    double m_YPSBonus;
+    int m_evolutionLevel;
 
     void initLaboPieceVector();
 public:
@@ -27,6 +33,10 @@ public:
     void lvlUpScientific(unsigned int type);
     void lvlUpLaboPiece(unsigned int id);
     void updateYPS();
+    void updateCPS();
+    void evolution();
+    void restart();
+    void grant();
 };
 
 #endif //CLIENT_LABO_HPP
