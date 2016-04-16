@@ -41,6 +41,8 @@ class LaboratoryRoom : public BasicInterface
 		NPanel m_tabScientistPanel;
 		NPanel m_tabEquipmentPanel;
 		NPanel m_tabStatsPanel;
+		NPanel m_subTabEquipmentPanel1;
+		NPanel m_subTabEquipmentPanel2;
 
 		NButton m_monster;
 		NButton m_tabStatsButton;
