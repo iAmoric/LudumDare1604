@@ -45,7 +45,7 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         src/ManagerGroup.cpp
         src/MusicManager.cpp
         src/NButton.cpp
-        src/Nemesis.cpp
+        src/ScientistClicker.cpp
         src/NLabel.cpp
         src/NPanel.cpp
         src/OptionManager.cpp

@@ -55,6 +55,10 @@ void ResourceLoader::load() {
 	// Path
 	const std::string pathLogin = "../res/texture/menu/login/";
 	const std::string pathAnimation = "../res/animation/";
+	const std::string pathView = "../res/vues/";
+	const std::string pathSprite = "../res/sprites/";
+	const std::string pathMonster = "../res/monster/";
+	const std::string pathEquipment = "../res/equipment/";
 
 	// Loading ...
 	//Les textures sont chargés en mémoire ici
