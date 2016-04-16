@@ -18,6 +18,7 @@ private:
     unsigned long long m_YPS;
     unsigned long long m_CPS;
     unsigned long long m_money;
+    unsigned long long m_time;
     long m_reputationPointWaiting;
     long m_reputationPointOwned;
     double m_restartBonus;
@@ -37,6 +38,7 @@ public:
     void evolution();
     void restart();
     void grant();
+    void click();
 };
 
 #endif //CLIENT_LABO_HPP

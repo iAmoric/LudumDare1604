@@ -75,17 +75,21 @@ class LaboratoryRoom : public BasicInterface
 		AnimatableObject m_ordi;
 		AnimatableObject m_coffeeSmoke;
 
+    NButton m_tabStatsButton;
+    NButton m_tabScientistButton;
+    NButton m_tabEquipmentButton;
+
+    double m_timeElapsed;
+
+    bool m_bool;
 
 
-	bool m_bool;
+public:
+    // Constructor
+    LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup);
 
-
-	public:
-		// Constructor
-		LaboratoryRoom(bool debug, ManagerGroup * ptr_managerGroup);
-
-		// Destructor
-		~LaboratoryRoom();
+    // Destructor
+    ~LaboratoryRoom();
 
 		// Methods
 		//Cette méthode doit être présente dans chaque 'fenetre'

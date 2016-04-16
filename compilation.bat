@@ -6,7 +6,7 @@ REM Add to link editor -mwindows -O2 for release mode
 
 SET FLAGS=-std=gnu++0x
 
-SET EXENAME=Client.exe
+SET EXENAME=LudumDare1604.exe
 SET DIRBIN=..\bin
 SET DIRINC=..\include
 SET DIRLIB=..\lib

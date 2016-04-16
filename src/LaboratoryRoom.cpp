@@ -23,6 +23,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
+    /*Timer */
+    m_timeElapsed = 0;
+
     /* Monster */
     m_monster.create("monster", 140, 140,
                      ptr_managerGroup->ptr_textureManager->getTexture("monster_1"),
@@ -266,6 +269,11 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     //Si on est pas sur la fenetre, on return
     if (!m_ptr_managerGroup->ptr_targetManager->isLoginMenu())
         return;
+    m_timeElapsed += frameTime;
+    if(m_timeElapsed >= frameTime){
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
+        m_timeElapsed = 0;
+    }
 
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){

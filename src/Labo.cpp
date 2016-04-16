@@ -2,6 +2,7 @@
 // Created by Jehan on 16/04/2016.
 //
 
+#include <iostream>
 #include "Labo.hpp"
 
 Labo::Labo() {
@@ -70,6 +71,7 @@ void Labo::lvlUpScientific(unsigned int type) {
     }
 }
 
+//TODO Rajouter bonus scientific
 void Labo::updateYPS() {
     m_YPS = 0;
     for(unsigned int i = 0; i < m_LaboPieceVector.size(); i++ ){
@@ -77,6 +79,62 @@ void Labo::updateYPS() {
     }
     m_YPS *= m_YPSBonus;
     m_YPS *= m_restartBonus;
+}
+
+void Labo::updateCPS() {
+    double percentage = 100;
+    m_CPS = (unsigned long long) (percentage * m_LaboPieceVector.at(0)->getYPS());
+    for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
+        percentage = percentage - i/2;
+        m_CPS = (unsigned long long) (percentage * m_LaboPieceVector.at(i)->getYPS());
+    }
+    m_CPS *= m_CPSBonus;
+    m_CPS *= m_restartBonus;
+}
+
+
+void Labo::restart() {
+    m_restartBonus *= 1.1;
+    m_reputationPointOwned += m_reputationPointWaiting;
+    m_reputationPointWaiting;
+    initLaboPieceVector();
+    updateYPS();
+    updateCPS();
+    m_YPS, m_CPS = 0;
+    m_evolutionLevel = 1;
+}
+
+void Labo::evolution() {
+    unsigned long long moneyGain = 0;
+    if(m_evolutionLevel == 5 || m_evolutionLevel == 10 ||
+            m_evolutionLevel == 15 || m_evolutionLevel == 20){
+        m_reputationPointWaiting += 5 * m_evolutionLevel;
+    }
+    m_evolutionLevel ++;
+
+    for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
+        if(m_LaboPieceVector.at(i)->isBuyable()) moneyGain = m_LaboPieceVector.at(i)->getPrice();
+    }
+    m_money += moneyGain * 3;
+}
+
+/**
+ * Grant (YPS of the last item) / 10 money each sec
+ * Upload also the time
+ */
+void Labo::grant(){
+
+    unsigned long long moneyGain = 0;
+    for(unsigned int i = 1; i < m_LaboPieceVector.size()-2; i++ ){
+        if(m_LaboPieceVector.at(i)->isBuyable()) moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
+    }
+    m_time += m_YPS;
+
+    m_ptr_stats->incrementSpentTime();
+}
+
+void Labo::click() {
+    m_time += m_CPS;
 }
 
 void Labo::updateCPS() {

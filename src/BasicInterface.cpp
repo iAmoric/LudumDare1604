@@ -33,17 +33,39 @@ BasicInterface::BasicInterface(bool debug,
 
 	// Creating m_contentPane
 	m_contentPane.create("mainPanel", 0, 0,
-						 a_tm.getTexture("loginBackground"));
+						 a_tm.getTexture("background"));
 
 	m_exitButton.create("exitButton", 940, 5,
 						a_tm.getTexture("close_1"),
 						a_tm.getTexture("close_2"));
 
+	m_errorPanel.create("ErrorPanel", 332, 685,
+						ptr_managerGroup->ptr_textureManager->getTexture("errorPanel"));
+
+	m_connectionErrorLabel.create("connectionErrorLabel", 410, 705, 12, &m_fontLabel,
+								  L"Un problème de connexion est survenue.\n"
+										  "  Vérifiez votre connnexion et réessayez.",
+								  sf::Color::White);
+
+
 	m_loading.create("loading", 487, 700,
 					 ptr_managerGroup->ptr_textureManager->getTexture("loading"), true, 0.1, 49, 49, 8);
 	m_loading.setVisible(false);
 
+
+	m_errorPanel.addComponent(&m_connectionErrorLabel);
+	m_errorPanel.setVisible(false);
+	//getContentPane()->addComponent(&m_exitPanel);
+	getContentPane()->addComponent(&m_errorPanel);
+	getContentPane()->addComponent(&m_smallTitleLogo);
+    getContentPane()->addComponent(&m_titleLabel);
 	getContentPane()->addComponent(&m_loading);
+	m_optionPanel.addComponent(&m_volumeLabel);
+	m_optionPanel.addComponent(&m_soundLabel);
+	m_optionPanel.addComponent(&m_musicButton);
+	m_optionPanel.addComponent(&m_soundButton);
+
+	m_topBar.addComponent(&m_optButton);
 	m_topBar.addComponent(&m_exitButton);
 
 	m_interface.push_back(&m_contentPane);

@@ -6,13 +6,13 @@
 #define DEF_GAME_MANAGER_HPP
 
 #include "Manager.hpp"
-#include "Player.hpp"
+#include "Labo.hpp"
 
 class GameManager : public Manager {
 
 private:
     bool m_debug;
-    Player* m_player;
+    Labo* m_labo;
 
 public:
     // Constructor
@@ -21,7 +21,7 @@ public:
     // Destructor
     ~GameManager();
 
-    Player* getPlayer();
+    Labo* getLabo();
 
 };
 

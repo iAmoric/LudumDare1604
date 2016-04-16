@@ -8,9 +8,12 @@
 
 class Monster {
 private:
-
+    unsigned long long m_annee;
 public:
-
+    Monster(unsigned long long annee);
+    ~Monster();
+    void setAnnee(unsigned long long annee);
+    unsigned long long getAnnee();
 };
 
 

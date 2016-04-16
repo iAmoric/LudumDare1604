@@ -4,10 +4,17 @@
 
 #include "Monster.hpp"
 
-Monster::Monster(){
+Monster::Monster(unsigned long long annee) {
+    m_annee = annee;
+}
+
+Monster::~Monster() {
 
 }
 
-Monster::~Monster(){
-
+void Monster::setAnnee(unsigned long long annee) {
+    m_annee = annee;
+}
+unsigned long long Monster::getAnnee() {
+    return m_annee;
 }
