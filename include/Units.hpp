@@ -17,7 +17,9 @@ public:
     Units(unsigned long long chiffre);
     ~Units();
     void longToUnits();
-    std::string toString();
+    std::wstring toWString();
+
+    std::wstring utf8toUtf16(const std::string &str);
 };
 
 

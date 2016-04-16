@@ -22,6 +22,7 @@ Labo::Labo() {
     m_reputationPointWaiting = 0;
     m_reputationPointOwned = 0;
     m_evolutionLevel = 1;
+    moneyGain = 0;
 
 
 }
@@ -136,12 +137,13 @@ void Labo::evolution() {
  */
 void Labo::grant(){
 
-    unsigned long long moneyGain = 0;
+
     for(unsigned int i = 1; i < m_LaboPieceVector.size()-2; i++ ){
         if(m_LaboPieceVector.at(i)->isBought()){
             moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
         }
     }
+    m_money += moneyGain;
     m_year += m_YPS;
     m_ptr_stats->incrementSpentTime();
     if(m_year == m_ptr_monster->getAnnee()){
@@ -162,6 +164,28 @@ void Labo::click() {
 unsigned long long Labo::getM_year(){
     return m_year;
 }
+unsigned long long Labo::getMoney(){
+    return m_money;
+}
+unsigned long long Labo::getCPS(){
+    return m_CPS;
+}
+unsigned long long Labo::getYPS(){
+    return m_YPS;
+}
+unsigned long long Labo::getReputationPointWaiting(){
+    return m_reputationPointWaiting;
+}
+unsigned long long Labo::getReputationPointOwned(){
+    return m_reputationPointOwned;
+}
+unsigned long long Labo::getEvolutionLevel(){
+    return m_evolutionLevel;
+}
+unsigned long long Labo::getMoneyGain(){
+    return moneyGain;
+}
+
 void Labo::isPurchasablePiece(){
     for (int i = 0; i < m_LaboPieceVector.size(); ++i) {
         if(m_money >= m_LaboPieceVector.at(i)->getPrice()){

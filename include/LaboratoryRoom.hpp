@@ -10,6 +10,7 @@
 #define DEF_LABORATORY_ROOM_HPP
 
 #include "BasicInterface.hpp"
+#include "Units.hpp"
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 #include "patch.hpp"
@@ -46,6 +47,8 @@ private:
 	NPanel m_tabStatsPanel;
 	NPanel m_subTabEquipmentPanel1;
 	NPanel m_subTabEquipmentPanel2;
+	NPanel m_scientistJeannePanel;
+	NPanel m_scientistSergePanel;
 
 	NButton m_monster;
 	NButton m_tabStatsButton;
@@ -73,6 +76,8 @@ private:
 	NButton m_buttonEquipment18;
 	NButton m_buttonEquipment19;
 	NButton m_buttonEquipment20;
+	NButton m_buyButtonJeanne;
+	NButton m_buyButtonSerge;
 
 	NLabel m_labelEquipment1;
 	NLabel m_labelEquipment2;
@@ -160,11 +165,17 @@ private:
 
 
     NPanel m_screen;
+    NLabel m_labelBank;
     NPanel m_iconBank;
+    NLabel m_labelClick;
     NPanel m_iconClick;
+    NLabel m_labelMoney;
     NPanel m_iconMoney;
+    NLabel m_labelReputation;
     NPanel m_iconReputation;
+    NLabel m_labelResearch;
     NPanel m_iconResearch;
+    NLabel m_labelTime;
     NPanel m_iconTime;
 
     AnimatableObject m_loading;
@@ -173,7 +184,7 @@ private:
     AnimatableObject m_flamme2;
     AnimatableObject m_ordi;
 
-	AnimatableObject m_coffeeSmoke;
+    AnimatableObject m_coffeeSmoke;
 
     double m_timeElapsed;
 
@@ -187,14 +198,18 @@ public:
     // Destructor
     ~LaboratoryRoom();
 
-		// Methods
-		//Cette méthode doit être présente dans chaque 'fenetre'
-		virtual void update(sf::RenderWindow * window, 
-							sf::Event * e, double frameTime);
-		void undisplayAllTabs();
-		void displayStatsPanel();
-		void displayEquipmentPanel();
-		void displayScientistPanel();
+    // Methods
+    //Cette méthode doit être présente dans chaque 'fenetre'
+    virtual void update(sf::RenderWindow *window,
+                        sf::Event *e, double frameTime);
+
+    void undisplayAllTabs();
+
+    void displayStatsPanel();
+
+    void displayEquipmentPanel();
+
+    void displayScientistPanel();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP
