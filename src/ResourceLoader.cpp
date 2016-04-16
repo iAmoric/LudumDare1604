@@ -104,7 +104,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("equipment14", pathLogin + "6test_tube.png"); // à mettre à la place du 13
 	a_tm.addTexture("equipment15", pathLogin + "7test_tube.png"); // à mettre à la place du 14
 	a_tm.addTexture("equipment16", pathLogin + "8test_tube.png"); // à mettre à la place du 15
-	a_tm.addTexture("equipment17", pathLogin + "1test_tube.png");
+	a_tm.addTexture("equipment17", pathLogin + "pink_burette.png"); //
 	a_tm.addTexture("equipment18", pathLogin + "1test_tube.png");
 	a_tm.addTexture("equipment19", pathLogin + "microscope.png"); //
 	a_tm.addTexture("equipment20", pathLogin + "1test_tube.png");
