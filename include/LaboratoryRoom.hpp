@@ -43,6 +43,8 @@ class LaboratoryRoom : public BasicInterface
 		NPanel m_tabStatsPanel;
 		NPanel m_subTabEquipmentPanel1;
 		NPanel m_subTabEquipmentPanel2;
+		NPanel m_scientistJeannePanel;
+		NPanel m_scientistSergePanel;
 
 		NButton m_monster;
 		NButton m_tabStatsButton;
@@ -70,6 +72,8 @@ class LaboratoryRoom : public BasicInterface
 		NButton m_buttonEquipment18;
 		NButton m_buttonEquipment19;
 		NButton m_buttonEquipment20;
+		NButton m_buyButtonJeanne;
+		NButton m_buyButtonSerge;
 
 
 		AnimatableObject m_loading;

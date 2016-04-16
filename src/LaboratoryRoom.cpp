@@ -207,6 +207,26 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment20);
 
+    //Boutons scientists
+    m_scientistJeannePanel.create("jeannePanel", 500, 83,
+                              ptr_managerGroup->ptr_textureManager->getTexture("jeannePanel"));
+    m_tabScientistPanel.addComponent(&m_scientistJeannePanel);
+
+    m_scientistSergePanel.create("sergePanel", 750, 83,
+                              ptr_managerGroup->ptr_textureManager->getTexture("sergePanel"));
+    m_tabScientistPanel.addComponent(&m_scientistSergePanel);
+
+    m_buyButtonJeanne.create("buyButtonJeanne", 560,350,
+                             ptr_managerGroup->ptr_textureManager->getTexture("button2"),
+                             ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
+    m_tabScientistPanel.addComponent(&m_buyButtonJeanne);
+
+    m_buyButtonSerge.create("buyButtonSerge", 800,350,
+                             ptr_managerGroup->ptr_textureManager->getTexture("button4"),
+                             ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
+    m_tabScientistPanel.addComponent(&m_buyButtonSerge);
+
+
 
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
