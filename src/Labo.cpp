@@ -13,7 +13,6 @@ Labo::Labo() {
     m_ScientificVector.push_back(new Scientific("Yvonne", 5, 2));
 
     m_ptr_stats = new Stats();
-    // Year of the first monster at 50
     m_ptr_monster = new Monster(50);
     m_YPS, m_CPS = 0;
     m_YPSBonus, m_CPSBonus = 1;
