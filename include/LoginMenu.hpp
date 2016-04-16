@@ -17,7 +17,7 @@
 class LoginMenu : public BasicInterface
 {
 	private:
-		NButton m_connectButton;
+		//NButton m_connectButton;
 		NLabel m_titleLabel;
 		NTextField m_textFieldLogin;
 		NPanel m_nemesisLogo;
