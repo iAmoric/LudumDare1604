@@ -2,7 +2,7 @@
 //Les includes nécessaires
 #include "ResourceLoader.hpp"
 #include "SplashScreen.hpp"
-#include "LoginMenu.hpp"
+#include "LaboratoryRoom.hpp"
 
 int main(int argc, char ** argv)
 {
@@ -33,9 +33,8 @@ int main(int argc, char ** argv)
     ManagerGroup * managerGroup = rLoader.getManager();
 
     // Creating menu
-    LoginMenu loginMenu(DEBUG, managerGroup);
+    LaboratoryRoom laboratoryRoom(DEBUG, managerGroup);
     //Les autres fenetres du jeu sont instanciées ici aussi
-
 
     // Setting main target
     managerGroup->ptr_targetManager->isOnLoginMenu();
@@ -66,7 +65,7 @@ int main(int argc, char ** argv)
         }
 
         // Updating game logic
-        loginMenu.update(&window, &event, elapsedTime);
+        laboratoryRoom.update(&window, &event, elapsedTime);
        //Les autres 'fenetres' sont actualisées à ce moment aussi
         managerGroup->ptr_musicManager->update();
 

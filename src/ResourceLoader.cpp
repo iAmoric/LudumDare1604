@@ -65,7 +65,8 @@ void ResourceLoader::load() {
 	// Loading ...
 	//Les textures sont chargés en mémoire ici
 	//On peut y accéder grace à leur ID (1er parametres)
-	
+
+
 	/* Buttons */
 	a_tm.addTexture("close_1", pathButton + "close.png");
 	a_tm.addTexture("close_2", pathButton + "closePress.png");
@@ -74,7 +75,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("background", pathView + "background.png");
 
 	/* Equipments to buy */
-	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png"); //
+	a_tm.addTexture("equipment1", pathEquipment + "1test_tube_test.png"); //
 	a_tm.addTexture("equipment2", pathEquipment + "2test_tubes.png"); // à mettre à la place du 1
 	a_tm.addTexture("equipment3", pathEquipment + "coffee.png"); //
 	a_tm.addTexture("equipment4", pathEquipment + "3test_tubes.png"); // à mettre à la place du 2
@@ -85,7 +86,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("equipment9", pathEquipment + "2flasks.png"); // à mettre à la place du 8
 	a_tm.addTexture("equipment10", pathEquipment + "cool_mantle_balloon.png");//
 	a_tm.addTexture("equipment11", pathEquipment + "pink_flask.png"); //
-	a_tm.addTexture("equipment12", pathEquipment + "heanting_mantle_balloon.png"); // à mettre à la place du 10
+	a_tm.addTexture("equipment12", pathEquipment + "heanting_mantle_balloon.png.png"); // à mettre à la place du 10
 	a_tm.addTexture("equipment13", pathEquipment + "5test_tubes.png"); // à mettre à la place du 5
 	a_tm.addTexture("equipment14", pathEquipment + "6test_tubes.png"); // à mettre à la place du 13
 	a_tm.addTexture("equipment15", pathEquipment + "7test_tubes.png"); // à mettre à la place du 14
