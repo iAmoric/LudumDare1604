@@ -40,6 +40,14 @@ private:
     NPanel m_monster;
     NPanel m_background;
 
+    NPanel m_screen;
+    NPanel m_iconBank;
+    NPanel m_iconClick;
+    NPanel m_iconMoney;
+    NPanel m_iconReputation;
+    NPanel m_iconResearch;
+    NPanel m_iconTime;
+
     AnimatableObject m_loading;
     AnimatableObject m_bulle;
     AnimatableObject m_flamme1;
