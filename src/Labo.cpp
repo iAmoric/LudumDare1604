@@ -44,7 +44,7 @@ void Labo::initLaboPieceVector() {
     m_LaboPieceVector.push_back(new LaboPiece("PinkBurette", 9, 34560, false, false));
     m_LaboPieceVector.push_back(new LaboPiece("PinkFlaks", 10, 138240, false, false));
     m_LaboPieceVector.push_back(new LaboPiece("PurpleBallon", 11, 691200, false, false));
-    m_LaboPieceVector.push_back(new LaboPiece("Equipment12", 12, 345600, false, false));
+    m_LaboPieceVector.push_back(new LaboPiece("Equipment12", 12, 3456000, false, false));
     m_LaboPieceVector.push_back(new LaboPiece("Equipment13", 13, 17280000, false, false));
     m_LaboPieceVector.push_back(new LaboPiece("Equipment14", 14, 86400000, false, false));
     m_LaboPieceVector.push_back(new LaboPiece("Equipment15", 15, 432000000, false, false));

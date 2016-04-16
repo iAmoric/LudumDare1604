@@ -49,3 +49,6 @@ bool LaboPiece::isBought(){
     return m_isBought;
 }
 
+int LaboPiece::getLevel(){
+    return m_level;
+}
