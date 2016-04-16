@@ -10,6 +10,7 @@
  */
 GameManager::GameManager(bool debug) : Manager(){
     m_debug = debug;
+    m_labo = new Labo();
 }
 
 /**

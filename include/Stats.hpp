@@ -35,7 +35,7 @@ public:
     void incrementSpentMoney(unsigned long long money);
     //Other stats
     void incrementNbClick();
-    void incrementSpentTime(sf::Time time);
+    void incrementSpentTime();
     void incrementNbReset();
     void setNbEvoMax(int nbEvoMax);
     //Reputation

@@ -32,8 +32,8 @@ void Stats::incrementSpentMoney(unsigned long long money) {
 void Stats::incrementNbClick() {
     m_nbClick++;
 }
-void Stats::incrementSpentTime(sf::Time time){
-    m_spentTime += time;
+void Stats::incrementSpentTime(){
+    m_spentTime += sf::seconds(1);
 }
 void Stats::incrementNbReset(){
     m_nbReset++;

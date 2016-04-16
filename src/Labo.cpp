@@ -2,6 +2,7 @@
 // Created by Jehan on 16/04/2016.
 //
 
+#include <iostream>
 #include "Labo.hpp"
 
 Labo::Labo() {
@@ -123,12 +124,12 @@ void Labo::evolution() {
 void Labo::grant(){
 
     unsigned long long moneyGain = 0;
-    for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
+    for(unsigned int i = 1; i < m_LaboPieceVector.size()-2; i++ ){
         if(m_LaboPieceVector.at(i)->isBuyable()) moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
     }
     m_time += m_YPS;
 
-    m_ptr_stats->incrementSpentTime(sf::Time::seconds(1));
+    m_ptr_stats->incrementSpentTime();
 }
 
 void Labo::click() {
