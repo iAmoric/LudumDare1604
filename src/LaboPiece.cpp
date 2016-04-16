@@ -4,10 +4,10 @@
 
 #include "LaboPiece.hpp"
 
-LaboPiece::LaboPiece(std::string name, int nbLaboPiece, unsigned long long price, bool isBuyable) {
+LaboPiece::LaboPiece(std::string name, int nbLaboPiece, unsigned long long price, bool isBuyable,bool isBought) {
     m_name = name;
     m_nbLaboPiece = nbLaboPiece;
-    m_isBuy = false;
+    m_isBought = false;
     m_isBuyable = false;
     m_price = price;
     m_YPS = (unsigned long long) (price * 0.2); //TODO To define
@@ -41,3 +41,11 @@ bool LaboPiece::isBuyable(){
 unsigned long long LaboPiece::getPrice(){
     return m_price;
 }
+
+void LaboPiece::setBought() {
+    m_isBought = true;
+}
+bool LaboPiece::isBought(){
+    return m_isBought;
+}
+

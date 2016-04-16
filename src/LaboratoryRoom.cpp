@@ -29,6 +29,31 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
         std::cerr << "Issue with font downloading" << std::endl;
     }
 
+
+
+    /* Screen */
+    m_screen.create("screen", 186, 378,
+                    ptr_managerGroup->ptr_textureManager->getTexture("screen"));
+    getContentPane()->addComponent(&m_screen);
+    m_iconBank.create("bank-icon", 188, 410,
+                    ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
+    getContentPane()->addComponent(&m_iconBank);
+    m_iconClick.create("click-icon", 188, 462,
+                    ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
+    getContentPane()->addComponent(&m_iconClick);
+    m_iconMoney.create("money-icon", 188, 436,
+                    ptr_managerGroup->ptr_textureManager->getTexture("money-icon"));
+    getContentPane()->addComponent(&m_iconMoney);
+    m_iconReputation.create("reputation-icon", 295, 410,
+                    ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    getContentPane()->addComponent(&m_iconReputation);
+    m_iconResearch.create("research-icon", 295, 384,
+                    ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
+    getContentPane()->addComponent(&m_iconResearch);
+    m_iconTime.create("time-icon",  188, 384,
+                    ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
+    getContentPane()->addComponent(&m_iconTime);
+
     /*Timer */
     m_timeElapsed = 0;
 
@@ -377,6 +402,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
     }
+    // YPC, YPS, MPS, MPC, years, reputation
+
 
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
