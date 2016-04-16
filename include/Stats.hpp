@@ -40,9 +40,9 @@ public:
     void setNbEvoMax(int nbEvoMax);
     //Reputation
     void setActualReputation(long actualReputation);
-    void incrementActualReputation();
-    void incrementTotalReputation();
-    void incrementSpentReputation();
+    void incrementActualReputation(unsigned long long reputation);
+    void incrementTotalReputation(unsigned long long reputation);
+    void incrementSpentReputation(unsigned long long reputation);
     /* Getter */
     //Money
     unsigned long long getM_actualMoney();

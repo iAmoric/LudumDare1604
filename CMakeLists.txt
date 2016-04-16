@@ -67,6 +67,8 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         src/Stats.cpp
         src/Units.cpp
         include/Units.hpp
+        src/Monster.cpp
+        include/Monster.hpp
         include/Stats.hpp)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 

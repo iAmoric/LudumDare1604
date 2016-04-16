@@ -58,7 +58,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     /* Monster */
     m_monster.create("monster", 140, 140,
-                     ptr_managerGroup->ptr_textureManager->getTexture("monster"));
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"),
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"));
     getContentPane()->addComponent(&m_monster);
 
     /* Background */
@@ -66,7 +67,30 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                      ptr_managerGroup->ptr_textureManager->getTexture("background"));
     getContentPane()->addComponent(&m_background);
 
+    /* Panels */
+    m_tabStatsPanel.create("tabStatsPanel", 2000, 2000,
+                           ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
+    getContentPane()->addComponent(&m_tabStatsPanel);
+
+    m_tabScientistPanel.create("tabScientistPanel", 2000, 2000,
+                               ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
+    getContentPane()->addComponent(&m_tabScientistPanel);
+
+    m_tabEquipmentPanel.create("tabEquipmentPanel", 2000, 2000,
+                               ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
+    getContentPane()->addComponent(&m_tabEquipmentPanel);
+
+    m_subTabEquipmentPanel1.create("subTabEquipmentPanel1", 2000, 2000,
+                                   ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
+    m_tabEquipmentPanel.addComponent(&m_subTabEquipmentPanel1);
+
+    m_subTabEquipmentPanel2.create("subTabEquipmentPanel2", 2000, 2000,
+                                   ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
+    m_tabEquipmentPanel.addComponent(&m_subTabEquipmentPanel2);
+
+
     /* Button */
+    //onglets
     m_tabStatsButton.create("tabStatsButton", 845, 400,
                             ptr_managerGroup->ptr_textureManager->getTexture("tabStatsButton"),
                             ptr_managerGroup->ptr_textureManager->getTexture("tabStatsButton"));
@@ -81,6 +105,138 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                             ptr_managerGroup->ptr_textureManager->getTexture("tabEquipmentButton"),
                             ptr_managerGroup->ptr_textureManager->getTexture("tabEquipmentButton"));
     getContentPane()->addComponent(&m_tabEquipmentButton);
+
+    //fleches
+    m_arrowRightButton.create("arrowRightButton", 920, 400,
+                             ptr_managerGroup->ptr_textureManager->getTexture("arrowRight"),
+                             ptr_managerGroup->ptr_textureManager->getTexture("arrowRightPress"));
+    m_subTabEquipmentPanel1.addComponent(&m_arrowRightButton);
+
+    m_arrowLeftButton.create("arrowLeftButton", 920, 400,
+                             ptr_managerGroup->ptr_textureManager->getTexture("arrowLeft"),
+                             ptr_managerGroup->ptr_textureManager->getTexture("arrowLeftPress"));
+    m_subTabEquipmentPanel2.addComponent(&m_arrowLeftButton);
+
+    //Boutons sousPanels 1
+    int down = 0;
+    m_buttonEquipment1.create("buttonEquipment1", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button1"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment1);
+    down++;
+
+    m_buttonEquipment2.create("buttonEquipment2", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button2"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment2);
+    down++;
+
+    m_buttonEquipment3.create("buttonEquipment3", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment3);
+    down++;
+
+    m_buttonEquipment4.create("buttonEquipment4", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button4"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment4);
+    down++;
+    m_buttonEquipment5.create("buttonEquipment5", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button5"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button5Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment5);
+    down=0;
+
+    m_buttonEquipment6.create("buttonEquipment6", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button6"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button6Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment6);
+    down++;
+
+    m_buttonEquipment7.create("buttonEquipment7", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button7"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button7Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment7);
+    down++;
+
+    m_buttonEquipment8.create("buttonEquipment8", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button8"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button8Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment8);
+    down++;
+
+    m_buttonEquipment9.create("buttonEquipment9", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button1"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment9);
+    down++;
+
+    m_buttonEquipment10.create("buttonEquipment10", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button2"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
+    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment10);
+
+    //Boutons sousPanels 2
+    down = 0;
+    m_buttonEquipment11.create("buttonEquipment11", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment11);
+    down++;
+
+    m_buttonEquipment12.create("buttonEquipment12", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button4"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment12);
+    down++;
+
+    m_buttonEquipment13.create("buttonEquipment13", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button5"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button5Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment13);
+    down++;
+
+    m_buttonEquipment14.create("buttonEquipment14", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button6"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button6Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment14);
+    down++;
+    m_buttonEquipment15.create("buttonEquipment15", 500, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button7"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button7Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment15);
+    down=0;
+
+    m_buttonEquipment16.create("buttonEquipment16", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button8"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button8Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment16);
+    down++;
+
+    m_buttonEquipment17.create("buttonEquipment17", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button1"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment17);
+    down++;
+
+    m_buttonEquipment18.create("buttonEquipment18", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button2"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment18);
+    down++;
+
+    m_buttonEquipment19.create("buttonEquipment19", 740, 90+60*down,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment19);
+    down++;
+
+    m_buttonEquipment20.create("buttonEquipment20", 740, 90+60*down,
+                               ptr_managerGroup->ptr_textureManager->getTexture("button4"),
+                               ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
+    m_subTabEquipmentPanel2.addComponent(&m_buttonEquipment20);
+
 
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
@@ -180,10 +336,15 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                    ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
     getContentPane()->addComponent(&m_ordi);
 
+    m_coffeeSmoke.create("coffeeSmoke", 195, 475,
+                  ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.1, 60, 50, 20);
+    getContentPane()->addComponent(&m_coffeeSmoke);
+
+
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);
-    m_equipment3.setVisible(false);
+    m_equipment3.setVisible(true);
     m_equipment4.setVisible(false);
     m_equipment5.setVisible(false);
     m_equipment6.setVisible(false);
@@ -199,8 +360,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_equipment16.setVisible(true);
     m_equipment17.setVisible(true);
     m_equipment19.setVisible(true);
-    m_equipment20.setVisible(true);
-
+    m_equipment20.setVisible(false);
+    m_subTabEquipmentPanel2.setVisible(false);
+    m_tabStatsPanel.setVisible(false);
+    m_tabScientistPanel.setVisible(false);
 }
 
 /*!
@@ -230,6 +393,29 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     // YPC, YPS, MPS, MPC, years, reputation
 
 
+
+    if (m_inputHandler.getComponentId() == "tabStatsButton"){
+        displayStatsPanel();
+    }
+
+    if (m_inputHandler.getComponentId() == "tabEquipmentButton"){
+        displayEquipmentPanel();
+    }
+
+    if (m_inputHandler.getComponentId() == "tabScientistButton"){
+        displayScientistPanel();
+    }
+
+    if (m_inputHandler.getComponentId() == "arrowLeftButton"){
+        m_subTabEquipmentPanel2.setVisible(false);
+        m_subTabEquipmentPanel1.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "arrowRightButton"){
+        m_subTabEquipmentPanel1.setVisible(false);
+        m_subTabEquipmentPanel2.setVisible(true);
+    }
+
     // Basic Interface updating
     basicInput(e, frameTime);
 
@@ -238,6 +424,26 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     basicDraw(window);
 }
 
+void LaboratoryRoom::undisplayAllTabs(){
+    m_tabEquipmentPanel.setVisible(false);
+    m_tabScientistPanel.setVisible(false);
+    m_tabStatsPanel.setVisible(false);
+}
+
+void LaboratoryRoom::displayStatsPanel(){
+    undisplayAllTabs();
+    m_tabStatsPanel.setVisible(true);
+}
+
+void LaboratoryRoom::displayEquipmentPanel(){
+    undisplayAllTabs();
+    m_tabEquipmentPanel.setVisible(true);
+}
+
+void LaboratoryRoom::displayScientistPanel(){
+    undisplayAllTabs();
+    m_tabScientistPanel.setVisible(true);
+}
 
 
 

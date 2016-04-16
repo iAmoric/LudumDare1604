@@ -6,13 +6,13 @@
  * \date 2016-01-02
  */
 
-#include "Surrounder.hpp" 
+#include "Surrounder.hpp"
 
 /*!
  * \brief Constructor
  * \return None
  */
-Surrounder::Surrounder() : 
+Surrounder::Surrounder() :
 m_position(sf::Vector2f(0, 0)),
 m_size(sf::Vector2u(0, 0)),
 m_rectShape(m_size)

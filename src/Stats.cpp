@@ -45,14 +45,14 @@ void Stats::setNbEvoMax(int nbEvoMax) {
 void Stats::setActualReputation(long actualReputation) {
     m_actualReputation = actualReputation;
 }
-void Stats::incrementActualReputation() {
-    m_actualReputation++;
+void Stats::incrementActualReputation(unsigned long long reputation) {
+    m_actualReputation+=reputation;
 }
-void Stats::incrementTotalReputation() {
-    m_totalReputation++;
+void Stats::incrementTotalReputation(unsigned long long reputation) {
+    m_totalReputation+=reputation;
 }
-void Stats::incrementSpentReputation() {
-    m_spentReputation++;
+void Stats::incrementSpentReputation(unsigned long long reputation) {
+    m_spentReputation+=reputation;
 }
 /* Getter */
 unsigned long long Stats::getM_nbClick() {
