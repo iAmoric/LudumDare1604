@@ -131,9 +131,6 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_equipment20);
 
     /* Animation */
-    m_bulle.create("bulle", 27, 400,
-
-
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
     getContentPane()->addComponent(&m_bulle);
