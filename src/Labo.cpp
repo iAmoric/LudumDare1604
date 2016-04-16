@@ -46,6 +46,7 @@ void Labo::lvlUpScientific(unsigned int type) {
     }
 }
 
+//TODO Rajouter bonus scientific
 void Labo::updateYPS() {
     m_YPS = 0;
     for(unsigned int i = 1; i <= m_LaboPieceVector.size(); i++ ){
