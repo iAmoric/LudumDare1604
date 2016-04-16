@@ -15,7 +15,7 @@ private:
     std::vector<LaboPiece *> m_LaboPieceVector;
     std::vector<Scientific *> m_ScientificVector;
     Stats* m_ptr_stats;
-    long m_YPS;
+    unsigned long long m_YPS;
     float m_clickBonus;
     float m_YPSBonus;
 
