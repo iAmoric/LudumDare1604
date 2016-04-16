@@ -97,9 +97,15 @@ void ResourceLoader::load() {
 	a_tm.addTexture("equipment20", pathEquipment + "beer.png"); // à mettre à la place du 3
 
 	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_1.png");
+
+	a_tm.addTexture("monster", pathMonster + "espace/espace_5.png");
+	a_tm.addTexture("background", pathView + "background.png");
+
 	/* animation */
 	a_tm.addTexture("loading", pathAnimation + "loading.png");
 	a_tm.addTexture("bulle", pathAnimation + "sprite_bulle.png");
+	a_tm.addTexture("flamme1", pathAnimation + "animationFlamme_test.png");
+	a_tm.addTexture("flamme2", pathAnimation + "animationFlamme_test.png");
 	a_tm.addTexture("ordi", pathAnimation + "sprite_ordi.png");
 
 	a_mm.setState(true);

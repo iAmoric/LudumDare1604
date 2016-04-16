@@ -24,16 +24,14 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
             getPlaylist("playlistMenu")->play();
 
     /* Monster */
-    m_monster.create("monster", 120,120,
-                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"));
+    m_monster.create("monster", 140, 140,
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster"));
     getContentPane()->addComponent(&m_monster);
 
-    /* background */
     m_background.create("background", 0, 0,
-                        ptr_managerGroup->ptr_textureManager->getTexture("background"));
+                     ptr_managerGroup->ptr_textureManager->getTexture("background"));
     getContentPane()->addComponent(&m_background);
 
-    /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
     getContentPane()->addComponent(&m_equipment1);
@@ -119,6 +117,14 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_bulle.create("bulle", 440, 650,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
     getContentPane()->addComponent(&m_bulle);
+
+    m_flamme1.create("flamme1", 902, 520,
+                    ptr_managerGroup->ptr_textureManager->getTexture("flamme1"),true, 0.1, 12, 5, 5);
+    getContentPane()->addComponent(&m_flamme1);
+
+    m_flamme2.create("flamme2", 804, 555,
+                    ptr_managerGroup->ptr_textureManager->getTexture("flamme2"),true, 0.1, 12, 5, 5);
+    getContentPane()->addComponent(&m_flamme2);
 
     m_ordi.create("ordi", 377, 443,
                    ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
