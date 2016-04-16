@@ -65,8 +65,7 @@ void ResourceLoader::load() {
 	// Loading ...
 	//Les textures sont chargés en mémoire ici
 	//On peut y accéder grace à leur ID (1er parametres)
-
-
+	
 	/* Buttons */
 	a_tm.addTexture("close_1", pathButton + "close.png");
 	a_tm.addTexture("close_2", pathButton + "closePress.png");
