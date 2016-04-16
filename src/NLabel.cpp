@@ -42,6 +42,7 @@ sf::Font * ptr_font, std::wstring text, sf::Color color) {
 	m_text.setFont(*ptr_font);
 	m_text.setString(text);
 	m_text.setCharacterSize(size);
+	m_text.setStyle(sf::Text::Bold);
 	m_text.setPosition(m_position);
 	m_color = color;
 	m_text.setColor(color);

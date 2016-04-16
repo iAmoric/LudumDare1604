@@ -12,11 +12,14 @@
 #include "BasicInterface.hpp"
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
+#include "patch.hpp"
 
 //LoginMenu hérite de BasicInterface
 class LaboratoryRoom : public BasicInterface
 {
 	private:
+		sf::Font m_fontLabel;
+
 		NPanel m_background;
 		NPanel m_equipment1;
 		NPanel m_equipment2;
@@ -70,6 +73,69 @@ class LaboratoryRoom : public BasicInterface
 		NButton m_buttonEquipment18;
 		NButton m_buttonEquipment19;
 		NButton m_buttonEquipment20;
+
+		NLabel m_labelEquipment1;
+		NLabel m_labelEquipment2;
+		NLabel m_labelEquipment3;
+		NLabel m_labelEquipment4;
+		NLabel m_labelEquipment5;
+		NLabel m_labelEquipment6;
+		NLabel m_labelEquipment7;
+		NLabel m_labelEquipment8;
+		NLabel m_labelEquipment9;
+		NLabel m_labelEquipment10;
+		NLabel m_labelEquipment11;
+		NLabel m_labelEquipment12;
+		NLabel m_labelEquipment13;
+		NLabel m_labelEquipment14;
+		NLabel m_labelEquipment15;
+		NLabel m_labelEquipment16;
+		NLabel m_labelEquipment17;
+		NLabel m_labelEquipment18;
+		NLabel m_labelEquipment19;
+		NLabel m_labelEquipment20;
+
+		NLabel m_labelEquipment1Price;
+		NLabel m_labelEquipment2Price;
+		NLabel m_labelEquipment3Price;
+		NLabel m_labelEquipment4Price;
+		NLabel m_labelEquipment5Price;
+		NLabel m_labelEquipment6Price;
+		NLabel m_labelEquipment7Price;
+		NLabel m_labelEquipment8Price;
+		NLabel m_labelEquipment9Price;
+		NLabel m_labelEquipment10Price;
+		NLabel m_labelEquipment11Price;
+		NLabel m_labelEquipment12Price;
+		NLabel m_labelEquipment13Price;
+		NLabel m_labelEquipment14Price;
+		NLabel m_labelEquipment15Price;
+		NLabel m_labelEquipment16Price;
+		NLabel m_labelEquipment17Price;
+		NLabel m_labelEquipment18Price;
+		NLabel m_labelEquipment19Price;
+		NLabel m_labelEquipment20Price;
+
+		NLabel m_labelEquipment1Name;
+		NLabel m_labelEquipment2Name;
+		NLabel m_labelEquipment3Name;
+		NLabel m_labelEquipment4Name;
+		NLabel m_labelEquipment5Name;
+		NLabel m_labelEquipment6Name;
+		NLabel m_labelEquipment7Name;
+		NLabel m_labelEquipment8Name;
+		NLabel m_labelEquipment9Name;
+		NLabel m_labelEquipment10Name;
+		NLabel m_labelEquipment11Name;
+		NLabel m_labelEquipment12Name;
+		NLabel m_labelEquipment13Name;
+		NLabel m_labelEquipment14Name;
+		NLabel m_labelEquipment15Name;
+		NLabel m_labelEquipment16Name;
+		NLabel m_labelEquipment17Name;
+		NLabel m_labelEquipment18Name;
+		NLabel m_labelEquipment19Name;
+		NLabel m_labelEquipment20Name;
 
 
 		AnimatableObject m_loading;

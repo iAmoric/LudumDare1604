@@ -6,6 +6,7 @@
  * \date 2015-12-26
  */
 
+#include <Patch.hpp>
 #include "LaboratoryRoom.hpp"
 
 /*!
@@ -22,6 +23,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
             getPlaylist("playlistMenu")->addMusic("../res/music/menu/Epipath.ogg");
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
+
+    /* Font */
+    if (!m_fontLabel.loadFromFile("../res/font/IndieFlower.ttf")) {
+        std::cerr << "Issue with font downloading" << std::endl;
+    }
 
     /*Timer */
     m_timeElapsed = 0;
@@ -93,6 +99,17 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment1);
+    m_labelEquipment1Price.create("labelEquipment1Price", 508, 88+60*down, 22,
+                             &m_fontLabel, L"Price", sf::Color::White);
+    m_labelEquipment1Name.create("labelEquipment1Name", 585, 91+60*down, 18,
+                                 &m_fontLabel, L"First Amelioration", sf::Color::Black);
+    std::wstring informationsEquipment1 = L"level " + cast::toWstring(5) + L"      "
+                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->m_LaboPieceVector.at(0)->getYPS()) + L" YPS ";
+    m_labelEquipment1.create("labelEquipment1Name", 508, 118+60*down, 20,
+                                 &m_fontLabel, informationsEquipment1, sf::Color::Black);
+    m_subTabEquipmentPanel1.addComponent(&m_labelEquipment1Price);
+    m_subTabEquipmentPanel1.addComponent(&m_labelEquipment1Name);
+    m_subTabEquipmentPanel1.addComponent(&m_labelEquipment1);
     down++;
 
     m_buttonEquipment2.create("buttonEquipment2", 500, 90+60*down,
