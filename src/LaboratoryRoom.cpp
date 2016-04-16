@@ -28,6 +28,52 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
     getContentPane()->addComponent(&m_equipment1);
 
+    m_equipment2.create("equipement_2", 25, 470,
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment2"));
+    getContentPane()->addComponent(&m_equipment2);
+
+    m_equipment3.create("equipement_3", 500, 500,
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment3"));
+    getContentPane()->addComponent(&m_equipment3);
+
+    m_equipment4.create("equipement_4", 25, 470,
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment4"));
+    getContentPane()->addComponent(&m_equipment4);
+
+    m_equipment5.create("equipement_5", 25, 470,
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment5"));
+    getContentPane()->addComponent(&m_equipment5);
+
+    m_equipment13.create("equipement_13", 25, 470,
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment13"));
+    getContentPane()->addComponent(&m_equipment13);
+
+    m_equipment14.create("equipement_14", 25, 470,
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment14"));
+    getContentPane()->addComponent(&m_equipment14);
+
+    m_equipment14.create("equipement_14", 25, 470,
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment14"));
+    getContentPane()->addComponent(&m_equipment14);
+
+    m_equipment15.create("equipement_15", 25, 470,
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment15"));
+    getContentPane()->addComponent(&m_equipment15);
+
+    m_equipment16.create("equipement_16", 25, 470,
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment16"));
+    getContentPane()->addComponent(&m_equipment16);
+
+
+    m_equipment1.setVisible(false);
+    m_equipment2.setVisible(false);
+    m_equipment3.setVisible(true);
+    m_equipment4.setVisible(false);
+    m_equipment5.setVisible(false);
+    m_equipment13.setVisible(false);
+    m_equipment14.setVisible(false);
+    m_equipment15.setVisible(false);
+    m_equipment16.setVisible(true);
 
 }
 

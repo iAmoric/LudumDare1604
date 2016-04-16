@@ -75,7 +75,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("background", pathView + "background.png");
 
 	/* Equipments to buy */
-	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png"); //
+	a_tm.addTexture("equipment1", pathEquipment + "1test_tube_test.png"); //
 	a_tm.addTexture("equipment2", pathEquipment + "2test_tubes.png"); // à mettre à la place du 1
 	a_tm.addTexture("equipment3", pathEquipment + "coffee.png"); //
 	a_tm.addTexture("equipment4", pathEquipment + "3test_tubes.png"); // à mettre à la place du 2
