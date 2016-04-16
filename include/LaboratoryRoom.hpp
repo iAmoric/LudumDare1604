@@ -48,6 +48,8 @@ class LaboratoryRoom : public BasicInterface
 		NButton m_tabStatsButton;
 		NButton m_tabScientistButton;
 		NButton m_tabEquipmentButton;
+		NButton m_arrowLeftButton;
+		NButton m_arrowRightButton;
 		NButton m_buttonEquipment1;
 		NButton m_buttonEquipment2;
 		NButton m_buttonEquipment3;
