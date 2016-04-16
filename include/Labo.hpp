@@ -44,6 +44,9 @@ public:
     void click();
     unsigned long long getM_year();
     void isPurchasablePiece();
+    std::vector<LaboPiece *> getM_LaboPieceVector();
+
+
 };
 
 #endif //CLIENT_LABO_HPP
