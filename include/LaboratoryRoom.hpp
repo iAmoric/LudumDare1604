@@ -75,10 +75,6 @@ class LaboratoryRoom : public BasicInterface
 		AnimatableObject m_ordi;
 		AnimatableObject m_coffeeSmoke;
 
-    NButton m_tabStatsButton;
-    NButton m_tabScientistButton;
-    NButton m_tabEquipmentButton;
-
     double m_timeElapsed;
 
     bool m_bool;
