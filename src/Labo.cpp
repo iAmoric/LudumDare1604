@@ -24,7 +24,7 @@ Labo::Labo() {
     m_reputationPointWaiting = 0;
     m_reputationPointOwned = 0;
     m_evolutionLevel = 1;
-    moneyGain = 1;
+    moneyGain = 5;
 
 
 }
@@ -59,7 +59,8 @@ void Labo::initLaboPieceVector() {
 }
 
 void Labo::lvlUpLaboPiece(unsigned int id) {
-    m_YPS = m_YPS - m_LaboPieceVector.at(id)->getYPS();
+    if(m_YPS >= 1)
+        m_YPS = m_YPS - m_LaboPieceVector.at(id)->getYPS();
     m_LaboPieceVector.at(id)->nextLvl();
     m_YPS = m_YPS + m_LaboPieceVector.at(id)->getYPS();
 }
