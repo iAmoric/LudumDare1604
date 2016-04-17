@@ -61,7 +61,7 @@ public:
     unsigned long long int getMoneyGain();
     std::vector<LaboPiece *> getM_LaboPieceVector();
 
-
+    void setMoney(unsigned long long int money);
 };
 
 #endif //CLIENT_LABO_HPP

@@ -190,6 +190,7 @@ private:
     double m_timeElapsed;
 
     bool m_bool;
+	Labo* getLabo();
 
 
 public:
@@ -211,6 +212,8 @@ public:
     void displayEquipmentPanel();
 
     void displayScientistPanel();
+
+
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP

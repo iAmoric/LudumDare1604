@@ -149,15 +149,18 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_panelEquipment1Global.addComponent(&m_buttonEquipment1);
-    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+            ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
     std::wstring informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
-    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+            ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
     std::wstring informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment1Price.create("labelEquipment1Price", 508, 88+60*down, 22,
                              &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment1Name.create("labelEquipment1Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Orange Juice", sf::Color::Black);
-    std::wstring informationsEquipment1 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
+    std::wstring informationsEquipment1 = L"level " + cast::toWstring(
+            ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
                                           + informationEquipmentYPS;
     m_labelEquipment1.create("labelEquipment1Name", 508, 118+60*down, 20,
                                  &m_fontLabel, informationsEquipment1, sf::Color::Black);
@@ -790,9 +793,33 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         return;
 
     m_timeElapsed += frameTime;
-    if(m_timeElapsed >= frameTime){
+    if(m_timeElapsed >= 1){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
+    }
+
+
+    Units unit = Units();
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
+        m_labelTime.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getYPS());
+       m_labelResearch.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getCPS());
+        m_labelClick.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoney());
+        m_labelBank.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoneyGain());
+        m_labelMoney.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
+        m_labelReputation.setText(unit.toWString());
+
+    if (m_inputHandler.getComponentId() == "monster"){
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
@@ -818,31 +845,40 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
-        std::cout << "click bouton " << 1 << std::endl;
+        std::cout << m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoney() << std::endl;
+        std::cout << "YPS : " + m_ptr_managerGroup->ptr_gameManager->getLabo()->getYPS() << std::endl;
+        /*if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()){
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
+            getLabo()->lvlUpLaboPiece(0);
+        }*/
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment2"){
-        std::cout << "click bouton " << 2 << std::endl;
+        std::cout << "click bouton 2" << 2 << std::endl;
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment3"){
-        std::cout << "click bouton " << 3 << std::endl;
+        std::cout << "click bouton 3" << 3 << std::endl;
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment4"){
-        std::cout << "click bouton " << 4 << std::endl;
+        std::cout << "click bouton 4" << 4 << std::endl;
     }
     if (m_inputHandler.getComponentId() == "buttonEquipment5"){
-        std::cout << "click bouton " << 5 << std::endl;
+        std::cout << "click bouton 5" << 5 << std::endl;
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment6"){
-        std::cout << "click bouton " << 6 << std::endl;
+        std::cout << "click bouton 6" << 6 << std::endl;
     }
 
 
     basicInput(e, frameTime);
     basicDraw(window);
+}
+
+Labo* LaboratoryRoom::getLabo(){
+    return m_ptr_managerGroup->ptr_gameManager->getLabo();
 }
 
 void LaboratoryRoom::undisplayAllTabs(){
