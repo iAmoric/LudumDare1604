@@ -62,6 +62,19 @@ private:
 	NLabel m_totalReputation;
 	NLabel m_spentReputation;
 
+	//Second part of the stats
+	NPanel m_panelYear;
+	NLabel m_year;
+	NPanel m_panelMoney;
+	NLabel m_money;
+	NPanel m_panelMoneyPS;
+	NLabel m_moneyPS;
+	NPanel m_panelClickPS;
+	NLabel m_clickPS;
+	NPanel m_panelYearPS;
+	NLabel m_yearPS;
+	NPanel m_panelReputation;
+	NLabel m_reputation;
 	NLabel m_labelLevel;
 
 	NPanel m_panelGoldEquipment1;
