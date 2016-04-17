@@ -817,11 +817,29 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel2.setVisible(true);
     }
 
-    /*for (int i = 1; i< 21 ; i++){
-        if (m_inputHandler.getComponentId() == "buttonEquipment"+i){
-            std::cout << "click bouton " << i << std::endl;
-        }
-    }*/
+    if (m_inputHandler.getComponentId() == "buttonEquipment1"){
+        std::cout << "click bouton " << 1 << std::endl;
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment2"){
+        std::cout << "click bouton " << 2 << std::endl;
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment3"){
+        std::cout << "click bouton " << 3 << std::endl;
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment4"){
+        std::cout << "click bouton " << 4 << std::endl;
+    }
+    if (m_inputHandler.getComponentId() == "buttonEquipment5"){
+        std::cout << "click bouton " << 5 << std::endl;
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment6"){
+        std::cout << "click bouton " << 6 << std::endl;
+    }
+
 
     basicInput(e, frameTime);
     basicDraw(window);
