@@ -316,7 +316,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_buttonEquipment7.create("buttonEquipment7", 730, 90+60*down,
                               ptr_managerGroup->ptr_textureManager->getTexture("button7"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button7Press"));
-    m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment7);
+    m_panelEquipment7Global.addComponent(&m_buttonEquipment7);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getPrice());
     informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getYPS());
@@ -916,7 +916,17 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "monster") {
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
-    
+
+    if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
+        m_NbMonster++;
+        if (m_NbMonster<=25) {
+            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
+                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
+        }
+    }
+
+
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
         if (m_targetPanel!="tabStatsPanel") {
             m_targetPanel = "tabStatsPanel";
@@ -954,8 +964,130 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel1.setVisible(false);
         m_subTabEquipmentPanel2.setVisible(true);
     }
+    /* put the arrow only when the playerhave enought money to purchase the 11th equipment */
+    if (!m_panelEquipment11Global.isVisible()) {
+        m_arrowRightButton.setVisible(false);
+    }
+        /*if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()){
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
+            getLabo()->lvlUpLaboPiece(0);
+        }*/
 
 
+    /* verifying money to buy equipment */
+    m_panelEquipment2Global.setVisible(false);
+    m_panelEquipment3Global.setVisible(false);
+    m_panelEquipment4Global.setVisible(false);
+    m_panelEquipment5Global.setVisible(false);
+    m_panelEquipment6Global.setVisible(false);
+    m_panelEquipment7Global.setVisible(false);
+    m_panelEquipment8Global.setVisible(false);
+    m_panelEquipment9Global.setVisible(false);
+    m_panelEquipment10Global.setVisible(false);
+    m_panelEquipment11Global.setVisible(false);
+
+    if (getLabo()->getM_LaboPieceVector().at(0)->getPrice() > getLabo()->getMoney()) {
+        m_buttonEquipment1.setEnabled(false);
+    } else {
+        m_buttonEquipment1.setEnabled(true);
+    }
+    if (getLabo()->getM_LaboPieceVector().at(0)->getLevel()!=0) {
+        m_panelEquipment2Global.setVisible(true);
+    }
+    m_buttonEquipment2.setEnabled(getLabo()->getM_LaboPieceVector().at(1)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(1)->getLevel()!=0) {
+        m_panelEquipment3Global.setVisible(true);
+    }
+    m_buttonEquipment3.setEnabled(getLabo()->getM_LaboPieceVector().at(2)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(2)->getLevel()!=0) {
+        m_panelEquipment4Global.setVisible(true);
+    }
+    m_buttonEquipment4.setEnabled(getLabo()->getM_LaboPieceVector().at(3)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(3)->getLevel()!=0) {
+        m_panelEquipment5Global.setVisible(true);
+    }
+    m_buttonEquipment5.setEnabled(getLabo()->getM_LaboPieceVector().at(4)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(4)->getLevel()!=0) {
+        m_panelEquipment6Global.setVisible(true);
+    }
+    m_buttonEquipment6.setEnabled(getLabo()->getM_LaboPieceVector().at(5)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(5)->getLevel()!=0) {
+        m_panelEquipment7Global.setVisible(true);
+    }
+    m_buttonEquipment7.setEnabled(getLabo()->getM_LaboPieceVector().at(6)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(6)->getLevel()!=0) {
+        m_panelEquipment8Global.setVisible(true);
+    }
+    m_buttonEquipment8.setEnabled(getLabo()->getM_LaboPieceVector().at(7)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(7)->getLevel()!=0) {
+        m_panelEquipment9Global.setVisible(true);
+    }
+    m_buttonEquipment9.setEnabled(getLabo()->getM_LaboPieceVector().at(8)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(8)->getLevel()!=0) {
+        m_panelEquipment10Global.setVisible(true);
+    }
+    m_buttonEquipment10.setEnabled(getLabo()->getM_LaboPieceVector().at(9)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(9)->getLevel()!=0) {
+        m_panelEquipment11Global.setVisible(true);
+    }
+    m_buttonEquipment11.setEnabled(getLabo()->getM_LaboPieceVector().at(10)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(10)->getLevel()!=0) {
+        m_panelEquipment12Global.setVisible(true);
+    }
+    m_buttonEquipment12.setEnabled(getLabo()->getM_LaboPieceVector().at(11)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(11)->getLevel()!=0) {
+        m_panelEquipment13Global.setVisible(true);
+    }
+    m_buttonEquipment13.setEnabled(getLabo()->getM_LaboPieceVector().at(12)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(12)->getLevel()!=0) {
+        m_panelEquipment14Global.setVisible(true);
+    }
+    m_buttonEquipment14.setEnabled(getLabo()->getM_LaboPieceVector().at(13)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(13)->getLevel()!=0) {
+        m_panelEquipment15Global.setVisible(true);
+    }
+    m_buttonEquipment15.setEnabled(getLabo()->getM_LaboPieceVector().at(14)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(14)->getLevel()!=0) {
+        m_panelEquipment16Global.setVisible(true);
+    }
+    m_buttonEquipment16.setEnabled(getLabo()->getM_LaboPieceVector().at(15)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(15)->getLevel()!=0) {
+        m_panelEquipment17Global.setVisible(true);
+    }
+    m_buttonEquipment17.setEnabled(getLabo()->getM_LaboPieceVector().at(16)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(16)->getLevel()!=0) {
+        m_panelEquipment18Global.setVisible(true);
+    }
+    m_buttonEquipment18.setEnabled(getLabo()->getM_LaboPieceVector().at(17)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(17)->getLevel()!=0) {
+        m_panelEquipment19Global.setVisible(true);
+    }
+    m_buttonEquipment19.setEnabled(getLabo()->getM_LaboPieceVector().at(18)->getPrice() < getLabo()->getMoney());
+
+    if (getLabo()->getM_LaboPieceVector().at(18)->getLevel()!=0) {
+        m_panelEquipment20Global.setVisible(true);
+    }
+    m_buttonEquipment20.setEnabled(getLabo()->getM_LaboPieceVector().at(19)->getPrice() < getLabo()->getMoney());
+
+
+    //TODO : Update des stats (argent, yps etc..)
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
         if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice() &&
                 getLabo()->getM_LaboPieceVector().at(0)->getLevel() < 21) {
