@@ -207,6 +207,7 @@ private:
 	AnimatableObject m_clickAnimation2;
 	AnimatableObject m_clickAnimation3;
 
+	int m_NbMonster;
     double m_timeElapsed;
 
     bool m_bool;
