@@ -130,7 +130,7 @@ void Labo::evolution() {
     if(m_year >= m_ptr_monster->getAnnee()){
         // TODO : create function to auto-generate year of a monster
         m_evolutionLevel++;
-        m_ptr_monster->setAnnee(m_year + 10 * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
+        m_ptr_monster->setAnnee(m_year + 10 * m_YPS * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
     }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
