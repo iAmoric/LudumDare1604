@@ -879,8 +879,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
     checkStateWhiteBoardAnimation();
 
-
-
     Units unit = Units();
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
         m_labelTime.setText(unit.toWString());

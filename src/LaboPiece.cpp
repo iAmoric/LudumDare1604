@@ -21,6 +21,7 @@ LaboPiece::~LaboPiece() {
 
 //TODO To define
 void LaboPiece::nextLvl() {
+    m_isBought = true;
     if(m_level <= 20){
         m_level++;
         m_price = (unsigned long long) (1.3 * m_price);

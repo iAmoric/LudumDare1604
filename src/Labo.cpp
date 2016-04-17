@@ -24,7 +24,7 @@ Labo::Labo() {
     m_reputationPointWaiting = 0;
     m_reputationPointOwned = 0;
     m_evolutionLevel = 1;
-    moneyGain = 5;
+    moneyGain = 1;
 
 
 }
@@ -59,7 +59,7 @@ void Labo::initLaboPieceVector() {
 }
 
 void Labo::lvlUpLaboPiece(unsigned int id) {
-    if(m_YPS >= 1)
+    if(m_LaboPieceVector.at(id)->getLevel() > 0)
         m_YPS = m_YPS - m_LaboPieceVector.at(id)->getYPS();
     m_LaboPieceVector.at(id)->nextLvl();
     m_YPS = m_YPS + m_LaboPieceVector.at(id)->getYPS();
@@ -144,6 +144,7 @@ void Labo::grant(){
         if(m_LaboPieceVector.at(i)->isBought()){
             moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
         }
+        if(moneyGain == 0) moneyGain += 1;
     }
     m_money = m_money + moneyGain;
     m_year += m_YPS;
