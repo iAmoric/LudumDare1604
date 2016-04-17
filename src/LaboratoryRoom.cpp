@@ -1117,6 +1117,15 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_panelEquipment9Global.setVisible(false);
     m_panelEquipment10Global.setVisible(false);
     m_panelEquipment11Global.setVisible(false);
+    m_panelEquipment12Global.setVisible(false);
+    m_panelEquipment13Global.setVisible(false);
+    m_panelEquipment14Global.setVisible(false);
+    m_panelEquipment15Global.setVisible(false);
+    m_panelEquipment16Global.setVisible(false);
+    m_panelEquipment17Global.setVisible(false);
+    m_panelEquipment18Global.setVisible(false);
+    m_panelEquipment19Global.setVisible(false);
+    m_panelEquipment20Global.setVisible(false);
 
     if (getLabo()->getM_LaboPieceVector().at(0)->getPrice() > getLabo()->getMoney()) {
         m_buttonEquipment1.setEnabled(false);
