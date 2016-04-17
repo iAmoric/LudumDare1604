@@ -135,9 +135,38 @@ void ResourceLoader::load() {
 	a_tm.addTexture("sergePanel", pathButton + "sergeButton.png");
 	a_tm.addTexture("jeannePanel", pathButton + "jeanneButton.png");
 
-	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_5.png");
+	/* Monster */
+	//Cellule
+	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_1.png");
+	a_tm.addTexture("monster_2", pathMonster + "cellule/cellule_2.png");
+	a_tm.addTexture("monster_3", pathMonster + "cellule/cellule_3.png");
+	a_tm.addTexture("monster_4", pathMonster + "cellule/cellule_4.png");
+	a_tm.addTexture("monster_5", pathMonster + "cellule/cellule_5.png");
+	//Eau
+	a_tm.addTexture("monster_6", pathMonster + "eau/eau_1.png");
+	a_tm.addTexture("monster_7", pathMonster + "eau/eau_2.png");
+	a_tm.addTexture("monster_8", pathMonster + "eau/eau_3.png");
+	a_tm.addTexture("monster_9", pathMonster + "eau/eau_4.png");
+	a_tm.addTexture("monster_10", pathMonster + "eau/eau_5.png");
+	//Terre
+	a_tm.addTexture("monster_11", pathMonster + "terre/terre_1.png");
+	a_tm.addTexture("monster_12", pathMonster + "terre/terre_2.png");
+	a_tm.addTexture("monster_13", pathMonster + "terre/terre_3.png");
+	a_tm.addTexture("monster_14", pathMonster + "terre/terre_4.png");
+	a_tm.addTexture("monster_15", pathMonster + "terre/terre_5.png");
+	//Air
+	a_tm.addTexture("monster_16", pathMonster + "air/air_1.png");
+	a_tm.addTexture("monster_17", pathMonster + "air/air_2.png");
+	a_tm.addTexture("monster_18", pathMonster + "air/air_3.png");
+	a_tm.addTexture("monster_19", pathMonster + "air/air_4.png");
+	a_tm.addTexture("monster_20", pathMonster + "air/air_5.png");
+	//Espace
+	a_tm.addTexture("monster_21", pathMonster + "espace/espace_1.png");
+	a_tm.addTexture("monster_22", pathMonster + "espace/espace_2.png");
+	a_tm.addTexture("monster_23", pathMonster + "espace/espace_3.png");
+	a_tm.addTexture("monster_24", pathMonster + "espace/espace_4.png");
+	a_tm.addTexture("monster_25", pathMonster + "espace/espace_5.png");
 
-	a_tm.addTexture("monster", pathMonster + "espace/espace_5.png");
 	a_tm.addTexture("background", pathView + "background.png");
 
 	/* animation */

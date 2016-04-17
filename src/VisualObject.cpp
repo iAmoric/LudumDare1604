@@ -124,4 +124,8 @@ void VisualObject::setVisible(bool state) {
 	m_hidden = !state;
 }
 
+bool VisualObject::isVisible() {
+	return !m_hidden;
+}
+
 

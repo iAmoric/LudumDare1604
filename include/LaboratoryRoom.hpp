@@ -209,6 +209,7 @@ private:
 	AnimatableObject m_clickAnimation3;
 	AnimatableObject m_whiteBoardAnimation;
 
+	int m_NbMonster;
     double m_timeElapsed;
 
     bool m_bool;

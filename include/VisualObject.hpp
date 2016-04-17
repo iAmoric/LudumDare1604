@@ -56,6 +56,7 @@ class VisualObject
 		void setSprite(sf::Texture * texture);
 		void setPosition(float x, float y);
 		void setVisible(bool state);
+		bool isVisible();
 };
 
 #endif // DEF_VISUAL_OBJECT_HPP
