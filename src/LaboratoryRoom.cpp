@@ -1088,11 +1088,11 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buyButtonJeanne"){
-        getLabo()->lvlUpScientific(1);
+        getLabo()->lvlUpScientific(0);
     }
 
     if (m_inputHandler.getComponentId() == "buyButtonSerge"){
-
+        getLabo()->lvlUpScientific(1);
     }
 
 
