@@ -14,11 +14,9 @@
 class TargetManager : public Manager
 {
 	private:
-		bool m_onLoginMenu;
-		bool m_onMainMenu;
-		bool m_onLobby;
-		bool m_onWarmUp;
-        bool m_onGame;
+		bool m_onLaboratoryRoom;
+		bool m_onHomePage;
+
 
 		// Method
 		void handleTarget();
@@ -35,18 +33,13 @@ class TargetManager : public Manager
 
 		// Getters
 		bool isExit();
-		bool isLoginMenu();
-		bool isLobby();
-		bool isMainMenu();
-		bool isWarmUp();
-	    bool isGame();
+		bool isLaboratoryRoom();
+		bool isHomePage();
+
 
 		// Setters
-		void isOnLoginMenu();
-		void isOnLobby();
-		void isOnMainMenu();
-		void isOnWarmUp();
-        void isOnGame();
+		void isOnLaboratoryRoom();
+		void isOnHomePage();
 };
 
 #endif // DEF_TARGER_MANAGER_HPP

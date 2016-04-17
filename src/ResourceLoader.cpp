@@ -68,8 +68,13 @@ void ResourceLoader::load() {
 	a_tm.addTexture("tabStatsButton", pathButton + "tabStatsButton.png");
 	a_tm.addTexture("tabScientistButton", pathButton + "tabScientistButton.png");
 	a_tm.addTexture("tabEquipmentButton", pathButton + "tabEquipmentButton.png");
+	a_tm.addTexture("playButton", pathButton + "arrowIsSelected.png");
+	a_tm.addTexture("playButtonPress", pathButton + "arrowIsNotSelected.png");
+	a_tm.addTexture("helpButton", pathButton + "helpButton.png");
+	a_tm.addTexture("helpButtonPress", pathButton + "helpButtonPress.png");
 
     /* Computer */
+	a_tm.addTexture("HomePagebackground", pathView + "HomePagebackground.png");
     a_tm.addTexture("background", pathView + "background.png");
     a_tm.addTexture("screen", pathComputer + "screen.png");
     a_tm.addTexture("bank-icon", pathComputer + "bank-icon.png");
@@ -142,6 +147,9 @@ void ResourceLoader::load() {
 	a_tm.addTexture("flamme2", pathAnimation + "animationFlamme_test.png");
 	a_tm.addTexture("ordi", pathAnimation + "sprite_ordi.png");
 	a_tm.addTexture("coffeeSmoke", pathAnimation + "sprite_coffeeSmook.png");
+	a_tm.addTexture("animatedPlay", pathAnimation + "animatedPlay.png");
+	a_tm.addTexture("searchBar", pathAnimation + "searchBar.png");
+
 
 	a_mm.setState(true);
 	a_tm.setState(true);

@@ -3,6 +3,7 @@
 #include "ResourceLoader.hpp"
 #include "SplashScreen.hpp"
 #include "LaboratoryRoom.hpp"
+#include "HomePage.hpp"
 
 int main(int argc, char ** argv)
 {
@@ -33,11 +34,12 @@ int main(int argc, char ** argv)
 
     // Creating menu
     LaboratoryRoom laboratoryRoom(DEBUG, managerGroup);
+    HomePage homePage(DEBUG, managerGroup);
     //Les autres fenetres du jeu sont instanciées ici aussi
 
     // Setting main target
-    managerGroup->ptr_targetManager->isOnLoginMenu();
-
+    //managerGroup->ptr_targetManager->isOnLaboratoryRoom();
+    managerGroup->ptr_targetManager->isOnHomePage();
     //Boucle de jeu
     sf::Clock clock;
     while (window.isOpen())
@@ -65,6 +67,7 @@ int main(int argc, char ** argv)
 
         // Updating game logic
         laboratoryRoom.update(&window, &event, elapsedTime);
+        homePage.update(&window, &event, elapsedTime);
        //Les autres 'fenetres' sont actualisées à ce moment aussi
         managerGroup->ptr_musicManager->update();
 

@@ -13,6 +13,7 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         include/GameManager.hpp
         include/InputHandler.hpp
         include/LaboratoryRoom.hpp
+        include/HomePage.hpp
         include/Manager.hpp
         include/ManagerGroup.hpp
         include/MusicManager.hpp
@@ -41,6 +42,7 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         src/GameManager.cpp
         src/InputHandler.cpp
         src/LaboratoryRoom.cpp
+        src/HomePage.cpp
         src/Manager.cpp
         src/ManagerGroup.cpp
         src/MusicManager.cpp

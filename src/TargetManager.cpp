@@ -14,10 +14,9 @@
 TargetManager::TargetManager(bool debug) : Manager() {
 	m_debug = debug;
 
-	m_onLoginMenu = false;
-	m_onMainMenu = false;
-	m_onLobby = false;
-	m_onWarmUp = false;
+	m_onLaboratoryRoom = false;
+	m_onHomePage = false;
+
 }
 
 /*!
@@ -38,63 +37,38 @@ void TargetManager::exit() {
  * \brief Set all target to false
  */
 void TargetManager::handleTarget() {
-	m_onLoginMenu = false;
-	m_onMainMenu = false;
-	m_onLobby = false;
-	m_onWarmUp = false;
-	m_onGame = false;
+	m_onLaboratoryRoom = false;
+	m_onHomePage = false;
 }
 
 /*!
  * \return true if all target are on false
  */
 bool TargetManager::isExit() {
-	return (m_onLoginMenu || m_onMainMenu
-			|| m_onLobby || m_onWarmUp || m_onGame);
+	return (m_onLaboratoryRoom || m_onHomePage);
 }
 
 /*!
  * \return m_onLoginMenu target state
  */
-bool TargetManager::isLoginMenu() {
-	return m_onLoginMenu;
+bool TargetManager::isHomePage(){
+	return m_onHomePage;
 }
 
 /*!
  * \return m_onLobby target state
  */
-bool TargetManager::isLobby() {
-	return m_onLobby;
-}
-
-/*!
- * \return m_onMainMenu target state
- */
-bool TargetManager::isMainMenu() {
-	return m_onMainMenu;
-}
-
-/*!
- * \return m_onWarmUp target state
- */
-bool TargetManager::isWarmUp() {
-	return m_onWarmUp;
-}
-
-/*!
- * \return m_game target state
- */
-bool TargetManager::isGame() {
-	return m_onGame;
+bool TargetManager::isLaboratoryRoom(){
+	return m_onLaboratoryRoom;
 }
 
 
 /*!
  * \set m_onLobby target state to true
  */
-void TargetManager::isOnLobby() {
+void TargetManager::isOnLaboratoryRoom(){
 	handleTarget();
-	m_onLobby = true;
+	m_onLaboratoryRoom = true;
 }
 
 
@@ -102,33 +76,7 @@ void TargetManager::isOnLobby() {
 /*!
  * \return m_onLoginMenu target state
  */
-void TargetManager::isOnLoginMenu() {
+void TargetManager::isOnHomePage(){
 	handleTarget();
-	m_onLoginMenu = true;
-}
-
-
-
-/*!
- * \return m_onMainMenu target state
- */
-void TargetManager::isOnMainMenu() {
-	handleTarget();
-	m_onMainMenu = true;
-}
-
-/*!
- * \return m_onWarmUp target state
- */
-void TargetManager::isOnWarmUp() {
-	handleTarget();
-	m_onWarmUp = true;
-}
-
-/*!
- * \return m_onGame target state
- */
-void TargetManager::isOnGame() {
-	handleTarget();
-	m_onGame = true;
+	m_onHomePage = true;
 }

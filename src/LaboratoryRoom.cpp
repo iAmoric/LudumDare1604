@@ -28,7 +28,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     {
         std::cout << "Probleme dans le chargement des textures" << std::endl;
     }
-
+    m_contentPane.setSprite(ptr_managerGroup->ptr_textureManager->getTexture("background"));
     /* Screen */
     m_screen.create("screen", 186, 378,
                     ptr_managerGroup->ptr_textureManager->getTexture("screen"));
@@ -87,6 +87,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_subTabEquipmentPanel2.create("subTabEquipmentPanel2", 2000, 2000,
                                    ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
     m_tabEquipmentPanel.addComponent(&m_subTabEquipmentPanel2);
+
+    m_equipment3Panel.create("equipment3Panel", 2000, 2000,
+                             ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
+    getContentPane()->addComponent(&m_equipment3Panel);
 
 
     /* Button */
@@ -256,7 +260,26 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                              ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_tabScientistPanel.addComponent(&m_buyButtonSerge);
 
+/* Animation */
+    m_bulle.create("bulle", 28, 400,
+                   ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
+    getContentPane()->addComponent(&m_bulle);
 
+    m_flamme1.create("flamme1", 902, 520,
+                     ptr_managerGroup->ptr_textureManager->getTexture("flamme1"),true, 0.1, 12, 5, 5);
+    getContentPane()->addComponent(&m_flamme1);
+
+    m_flamme2.create("flamme2", 804, 555,
+                     ptr_managerGroup->ptr_textureManager->getTexture("flamme2"),true, 0.1, 12, 5, 5);
+    getContentPane()->addComponent(&m_flamme2);
+
+    m_ordi.create("ordi", 377, 443,
+                  ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
+    getContentPane()->addComponent(&m_ordi);
+
+    m_coffeeSmoke.create("coffeeSmoke", 195, 475,
+                         ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.1, 60, 50, 20);
+    //getContentPane()->addComponent(&m_coffeeSmoke);
 
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
@@ -269,7 +292,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_equipment3.create("equipement_3", 170, 520,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment3"));
-    getContentPane()->addComponent(&m_equipment3);
+    m_equipment3Panel.addComponent(&m_equipment3);
+    m_equipment3Panel.addComponent(&m_coffeeSmoke);
+    getContentPane()->addComponent(&m_equipment3Panel);
 
     m_equipment4.create("equipement_4", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment4"));
@@ -339,51 +364,37 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment20"));
     getContentPane()->addComponent(&m_equipment20);
 
-    /* Animation */
-    m_bulle.create("bulle", 28, 400,
-                   ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
-    getContentPane()->addComponent(&m_bulle);
 
-    m_flamme1.create("flamme1", 902, 520,
-                    ptr_managerGroup->ptr_textureManager->getTexture("flamme1"),true, 0.1, 12, 5, 5);
-    getContentPane()->addComponent(&m_flamme1);
-
-    m_flamme2.create("flamme2", 804, 555,
-                    ptr_managerGroup->ptr_textureManager->getTexture("flamme2"),true, 0.1, 12, 5, 5);
-    getContentPane()->addComponent(&m_flamme2);
-
-    m_ordi.create("ordi", 377, 443,
-                   ptr_managerGroup->ptr_textureManager->getTexture("ordi"),true, 0.5, 69, 92, 3);
-    getContentPane()->addComponent(&m_ordi);
-
-    m_coffeeSmoke.create("coffeeSmoke", 195, 475,
-                  ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.1, 60, 50, 20);
-    getContentPane()->addComponent(&m_coffeeSmoke);
 
 
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);
-    m_equipment3.setVisible(true);
+    m_equipment3Panel.setVisible(false); //
     m_equipment4.setVisible(false);
     m_equipment5.setVisible(false);
     m_equipment6.setVisible(false);
-    m_equipment7.setVisible(true);
+    m_equipment7.setVisible(false); //
     m_equipment8.setVisible(false);
-    m_equipment9.setVisible(true);
+    m_equipment9.setVisible(false); //
     m_equipment10.setVisible(false);
-    m_equipment11.setVisible(true);
-    m_equipment12.setVisible(true);
+    m_equipment11.setVisible(false);    //
+    m_equipment12.setVisible(false);    //
     m_equipment13.setVisible(false);
     m_equipment14.setVisible(false);
     m_equipment15.setVisible(false);
-    m_equipment16.setVisible(true);
-    m_equipment17.setVisible(true);
-    m_equipment19.setVisible(true);
+    m_equipment16.setVisible(false);    //
+    m_equipment17.setVisible(false);    //
+    m_equipment18.setVisible(false);    //
+    m_equipment19.setVisible(false);    //
     m_equipment20.setVisible(false);
     m_subTabEquipmentPanel2.setVisible(false);
     m_tabStatsPanel.setVisible(false);
     m_tabScientistPanel.setVisible(false);
+    m_flamme1.setVisible(false);
+    m_flamme2.setVisible(false);
+    m_bulle.setVisible(false);
+
 }
 
 /*!
@@ -403,7 +414,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                        sf::Event *e, double frameTime) {
 
     //Si on est pas sur la fenetre, on return
-    if (!m_ptr_managerGroup->ptr_targetManager->isLoginMenu())
+    if (!m_ptr_managerGroup->ptr_targetManager->isLaboratoryRoom())
         return;
     m_timeElapsed += frameTime;
     if(m_timeElapsed >= frameTime){

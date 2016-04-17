@@ -20,6 +20,7 @@ class LaboratoryRoom : public BasicInterface
 		NPanel m_background;
 		NPanel m_equipment1;
 		NPanel m_equipment2;
+		NPanel m_equipment3Panel;
 		NPanel m_equipment3;
 		NPanel m_equipment4;
 		NPanel m_equipment5;
