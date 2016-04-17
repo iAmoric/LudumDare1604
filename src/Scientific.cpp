@@ -21,3 +21,11 @@ void Scientific::nextLvl() {
     m_level++;
     m_price *= 1.5;
 }
+
+unsigned long long Scientific::getPrice(){
+    return m_price;
+}
+
+int Scientific::getLevel(){
+    return m_level;
+}

@@ -80,7 +80,7 @@ void ResourceLoader::load() {
     a_tm.addTexture("bank-icon", pathComputer + "bank-icon.png");
     a_tm.addTexture("click-icon", pathComputer + "click-icon.png");
     a_tm.addTexture("money-icon", pathComputer + "money-icon.png");
-    a_tm.addTexture("reputation-icon", pathComputer + "reputation-icon.jpg");
+    a_tm.addTexture("reputation-icon", pathComputer + "reputation-icon.png");
     a_tm.addTexture("research-icon", pathComputer + "research-icon.png");
     a_tm.addTexture("time-icon", pathComputer + "time-icon.png");
 

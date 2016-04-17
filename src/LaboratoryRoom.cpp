@@ -709,6 +709,21 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                              ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_tabScientistPanel.addComponent(&m_buyButtonSerge);
 
+    m_scientistJeanneCost.create("JeanneCost", 565, 340, 35, &m_fontLabel, L"0", sf::Color::White);
+    m_tabScientistPanel.addComponent(&m_scientistJeanneCost);
+
+    m_scientistSergeCost.create("SergeCost", 805, 340, 35, &m_fontLabel, L"0", sf::Color::White);
+    m_tabScientistPanel.addComponent(&m_scientistSergeCost);
+
+    m_reputationPanel1.create("reputationPanel1", 615, 353,
+                            ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_tabScientistPanel.addComponent(&m_reputationPanel1);
+
+    m_reputationPanel2.create("reputationPanel2", 855, 353,
+                              ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_tabScientistPanel.addComponent(&m_reputationPanel2);
+
+
     /* Animation */
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
@@ -902,8 +917,15 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
         m_labelReputation.setText(unit.toWString());
+
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee());
     m_labelMonsterYears.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getScientificVector().at(0)->getPrice());
+    m_scientistJeanneCost.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getScientificVector().at(1)->getPrice());
+    m_scientistSergeCost.setText(unit.toWString());
 
     if (getLabo()->getM_year() >=
         getLabo()->getM_ptr_monster()->getAnnee()) {
@@ -924,6 +946,14 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
                                 m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
         }
+    }
+
+    if (m_inputHandler.getComponentId() == "buyButtonJeanne"){
+        getLabo()->lvlUpScientific(1);
+    }
+
+    if (m_inputHandler.getComponentId() == "buyButtonSerge"){
+
     }
 
 

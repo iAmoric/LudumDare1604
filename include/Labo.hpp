@@ -68,6 +68,7 @@ public:
     Stats *getM_ptr_stats();
 
     void incrementEvolutionLevel();
+    std::vector<Scientific *> getScientificVector();
 };
 
 #endif //CLIENT_LABO_HPP

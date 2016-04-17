@@ -19,6 +19,10 @@ public:
     Scientific(std::string name, unsigned long long price, int type);
     ~Scientific();
     void nextLvl();
+
+    unsigned long long int getPrice();
+
+    int getLevel();
 };
 
 #endif //CLIENT_SCIENTIFIC_HPP
