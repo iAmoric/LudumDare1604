@@ -13,7 +13,7 @@ Labo::Labo() {
     m_ScientificVector.push_back(new Scientific("Yvonne", 5, 2));
 
     m_ptr_stats = new Stats();
-    m_ptr_monster = new Monster(3);
+    m_ptr_monster = new Monster(30);
     m_YPS = 0;
     m_CPS = 1;
     m_YPSBonus = 1;
@@ -89,11 +89,14 @@ void Labo::updateYPS() {
 }
 
 void Labo::updateCPS() {
-    double percentage = 100;
+    double percentage = 1;
     m_CPS = (unsigned long long) (percentage * m_LaboPieceVector.at(0)->getYPS());
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
-        percentage = percentage - i/2;
-        m_CPS = (unsigned long long) (percentage * m_LaboPieceVector.at(i)->getYPS());
+        if(m_LaboPieceVector.at(i)->isBought()) {
+            percentage = percentage - (i / 2) / 100;
+
+            m_CPS = (unsigned long long) (percentage * m_LaboPieceVector.at(i)->getYPS());
+        }
     }
     m_CPS *= m_CPSBonus;
     m_CPS *= m_restartBonus;
@@ -108,10 +111,10 @@ void Labo::restart(){
     m_ptr_stats->incrementActualReputation(m_reputationPointOwned);
     m_ptr_stats->incrementTotalReputation(m_reputationPointOwned);
     initLaboPieceVector();
-    updateYPS();
-    updateCPS();
     m_YPS = 0;
     m_CPS = 1;
+    updateYPS();
+    updateCPS();
     if(m_evolutionLevel > m_ptr_stats->getM_nbEvoMax()){
         m_ptr_stats->setNbEvoMax(m_evolutionLevel);
     }
@@ -127,7 +130,7 @@ void Labo::evolution() {
     if(m_year >= m_ptr_monster->getAnnee()){
         // TODO : create function to auto-generate year of a monster
         m_evolutionLevel++;
-        m_ptr_monster->setAnnee(50);
+        m_ptr_monster->setAnnee(m_year + 10 * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
     }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
@@ -150,6 +153,7 @@ void Labo::grant(){
     }
     m_money = m_money + moneyGain;
     m_year += m_YPS;
+    updateCPS();
     m_ptr_stats->incrementSpentTime();
     m_ptr_stats->incrementActualMoney(m_money);
     m_ptr_stats->incrementTotalMoney(m_money);

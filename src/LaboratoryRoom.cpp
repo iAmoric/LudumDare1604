@@ -46,7 +46,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_iconClick.create("click-icon", 188, 462,
                     ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
     getContentPane()->addComponent(&m_iconClick);
-    m_labelClick.create("labelBank", 212, 457, 20, &m_fontLabel, L"0", sf::Color::Black);
+    m_labelClick.create("labelClick", 212, 457, 20, &m_fontLabel, L"0", sf::Color::Black);
     getContentPane()->addComponent(&m_labelClick);
 
     m_iconMoney.create("money-icon", 188, 436,
@@ -55,16 +55,21 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_labelMoney.create("labelMoney", 212, 431, 20, &m_fontLabel, L"0", sf::Color::Black);
     getContentPane()->addComponent(&m_labelMoney);
 
-    m_iconReputation.create("reputation-icon", 295, 410,
+    m_iconReputation.create("reputation-icon", 284, 441,
                     ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
     getContentPane()->addComponent(&m_iconReputation);
-    m_labelReputation.create("labelReputation", 319, 405, 20, &m_fontLabel, L"0", sf::Color::Black);
+    m_labelReputation.create("labelReputation", 310, 436, 20, &m_fontLabel, L"0", sf::Color::Black);
     getContentPane()->addComponent(&m_labelReputation);
 
-    m_iconResearch.create("research-icon", 295, 384,
+    m_labelSlash.create("labelSlash", 300, 379, 20, &m_fontLabel, L"/", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelSlash);
+    m_labelMonsterYears.create("labelMonsterYears", 310, 379, 20, &m_fontLabel, L"0", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelMonsterYears);
+
+    m_iconResearch.create("research-icon", 284, 410,
                     ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
     getContentPane()->addComponent(&m_iconResearch);
-    m_labelResearch.create("labelResearch", 319, 379, 20, &m_fontLabel, L"0", sf::Color::Black);
+    m_labelResearch.create("labelResearch", 310, 405, 20, &m_fontLabel, L"0", sf::Color::Black);
     getContentPane()->addComponent(&m_labelResearch);
 
     m_iconTime.create("time-icon",  188, 384,
@@ -897,6 +902,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
         m_labelReputation.setText(unit.toWString());
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee());
+    m_labelMonsterYears.setText(unit.toWString());
+
     if (getLabo()->getM_year() >=
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel()<25) {
@@ -949,7 +957,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
 
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice() &&
+                getLabo()->getM_LaboPieceVector().at(0)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(0)->getPrice());
             getLabo()->lvlUpLaboPiece(0);
             if (!m_equipment2.isVisible() || !m_equipment4.isVisible() ||
@@ -975,7 +984,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment2"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(1)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(1)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(1)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
             getLabo()->lvlUpLaboPiece(1);
             if (!m_equipment4.isVisible() || !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
@@ -1000,7 +1010,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment3"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(2)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(2)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(2)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(2)->getPrice());
             getLabo()->lvlUpLaboPiece(2);
             if (!m_equipment20.isVisible()) {
@@ -1023,7 +1034,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment4"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(3)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(3)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(3)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(3)->getPrice());
             getLabo()->lvlUpLaboPiece(3);
             if (!m_equipment5.isVisible() || !m_equipment13.isVisible() ||
@@ -1047,7 +1059,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         }
     }
     if (m_inputHandler.getComponentId() == "buttonEquipment5"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(4)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(4)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(4)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(4)->getPrice());
             getLabo()->lvlUpLaboPiece(4);
             if (!m_equipment13.isVisible() || !m_equipment14.isVisible() ||
@@ -1072,7 +1085,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment6"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(5)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(5)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(5)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(5)->getPrice());
             getLabo()->lvlUpLaboPiece(5);
             if (!m_equipment7.isVisible()) {
@@ -1096,7 +1110,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment7"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(6)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(6)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(6)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(6)->getPrice());
             getLabo()->lvlUpLaboPiece(6);
             m_equipment6.setVisible(false);
@@ -1118,7 +1133,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment8"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(7)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(7)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(7)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(7)->getPrice());
             getLabo()->lvlUpLaboPiece(7);
             if (!m_equipment9.isVisible()) {
@@ -1141,7 +1157,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment9"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(8)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(8)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(8)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(8)->getPrice());
             getLabo()->lvlUpLaboPiece(8);
             m_equipment8.setVisible(false);
@@ -1163,7 +1180,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment10"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(9)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(9)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(9)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(9)->getPrice());
             getLabo()->lvlUpLaboPiece(9);
             if (!m_equipment12.isVisible()) {
@@ -1187,7 +1205,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment11"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(10)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(10)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(10)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(10)->getPrice());
             getLabo()->lvlUpLaboPiece(10);
             m_equipment11.setVisible(true);
@@ -1208,7 +1227,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment12"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(11)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(11)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(11)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(11)->getPrice());
             getLabo()->lvlUpLaboPiece(11);
             m_equipment10.setVisible(false);
@@ -1230,7 +1250,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment13"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(12)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(12)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(12)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(12)->getPrice());
             getLabo()->lvlUpLaboPiece(12);
         if (!m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
@@ -1254,7 +1275,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment14"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(13)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(13)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(13)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(13)->getPrice());
             getLabo()->lvlUpLaboPiece(13);
             if (!m_equipment15.isVisible() || !m_equipment16.isVisible()) {
@@ -1279,7 +1301,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment15"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(14)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(14)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(14)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(14)->getPrice());
             getLabo()->lvlUpLaboPiece(14);
             if (!m_equipment16.isVisible()) {
@@ -1303,7 +1326,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment16"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(15)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(15)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(15)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(15)->getPrice());
             getLabo()->lvlUpLaboPiece(15);
             m_equipment15.setVisible(false);
@@ -1325,7 +1349,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment17"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(16)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(16)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(16)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(16)->getPrice());
             getLabo()->lvlUpLaboPiece(16);
             m_equipment17.setVisible(true);
@@ -1346,7 +1371,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment18"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(17)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(17)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(17)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(17)->getPrice());
             getLabo()->lvlUpLaboPiece(17);
             m_equipment18.setVisible(true);
@@ -1367,7 +1393,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment19"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(18)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(18)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(18)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(18)->getPrice());
             getLabo()->lvlUpLaboPiece(18);
             m_equipment19.setVisible(true);
@@ -1388,7 +1415,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment20"){
-        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(19)->getPrice()) {
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(19)->getPrice() &&
+           getLabo()->getM_LaboPieceVector().at(19)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(19)->getPrice());
             getLabo()->lvlUpLaboPiece(19);
             m_equipment3Panel.setVisible(false);
