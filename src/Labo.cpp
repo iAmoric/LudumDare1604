@@ -35,7 +35,7 @@ Labo::~Labo() {
 
 //TODO Complete LaboPieceList
 void Labo::initLaboPieceVector() {
-    m_LaboPieceVector.empty();
+    m_LaboPieceVector.clear();
     m_LaboPieceVector.push_back(new LaboPiece("Clicker", 1, 5, true, false));
     m_LaboPieceVector.push_back(new LaboPiece("2Flasks", 2, 10, false, false));
     m_LaboPieceVector.push_back(new LaboPiece("2TestTubes", 3, 20, false, false));
@@ -107,6 +107,7 @@ void Labo::updateCPS() {
 void Labo::restart(){
     m_ptr_stats->setActualMoney(0);
     m_money = 0;
+    m_ptr_stats->incrementNbReset();
     m_restartBonus *= 1.1;
     m_reputationPointOwned += m_reputationPointWaiting;
     m_reputationPointWaiting = 0;

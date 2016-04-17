@@ -57,6 +57,8 @@ private:
 	NPanel m_bannerPanel;
 	sf::Font m_fontLabel;
 
+	NButton m_resetButton;
+
 	//Label for stats' panel
 	NLabel m_nbClick;
 	NLabel m_nbReset;
@@ -84,6 +86,9 @@ private:
 	NLabel m_reputation;
 	NLabel m_labelLevel;
 	NLabel m_suppReputation;
+
+	NPanel m_panelTutorial;
+	NLabel m_tutorial;
 
 	NPanel m_panelGoldEquipment1;
 	NPanel m_panelGoldEquipment2;
@@ -134,6 +139,7 @@ private:
 	NButton m_buttonEquipment20;
 	NButton m_buyButtonJeanne;
 	NButton m_buyButtonSerge;
+	NButton m_closePopupButton;
 
 	NLabel m_labelEquipment1;
 	NLabel m_labelEquipment2;
@@ -251,6 +257,13 @@ private:
 
 	int m_NbMonster;
     double m_timeElapsed;
+	std::wstring txtFirstConnect;
+	std::wstring txtFirstEvolution;
+	std::wstring txtFirstCanReset;
+	std::wstring txtFirstReset;
+	std::wstring txtFirstReputation;
+	std::wstring txtEndGame;
+
 
     bool m_bool;
 	Labo* getLabo();
@@ -291,6 +304,14 @@ public:
 	void checkStateEvolutionAnimation();
 
 	void undisplayClickAnimation();
+
+	void checkStatePopupOnAnimation();
+
+	void checkStatePopupOffAnimation();
+
+	void resetLabo();
+
+
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP
