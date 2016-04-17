@@ -22,12 +22,13 @@ private:
     unsigned long long m_money;
     sf::Time m_time;
     unsigned long long m_year;
-    long m_reputationPointWaiting;
-    long m_reputationPointOwned;
+    unsigned long long m_reputationPointWaiting;
+    unsigned long long m_reputationPointOwned;
     double m_restartBonus;
     double m_CPSBonus;
     double m_YPSBonus;
-    int m_evolutionLevel;
+    unsigned long long m_evolutionLevel;
+    unsigned long long moneyGain;
 
     void initLaboPieceVector();
 public:
@@ -44,6 +45,20 @@ public:
     void click();
     unsigned long long getM_year();
     void isPurchasablePiece();
+
+    unsigned long long int getMoney();
+
+    unsigned long long int getCPS();
+
+    unsigned long long int getYPS();
+
+    unsigned long long getReputationPointWaiting();
+
+    unsigned long long getReputationPointOwned();
+
+    unsigned long long getEvolutionLevel();
+
+    unsigned long long int getMoneyGain();
     std::vector<LaboPiece *> getM_LaboPieceVector();
 
 

@@ -41,9 +41,14 @@ bool LaboPiece::isBuyable(){
 unsigned long long LaboPiece::getPrice(){
     return m_price;
 }
+
 void LaboPiece::setBought() {
     m_isBought = true;
 }
 bool LaboPiece::isBought(){
     return m_isBought;
+}
+
+int LaboPiece::getLevel(){
+    return m_level;
 }

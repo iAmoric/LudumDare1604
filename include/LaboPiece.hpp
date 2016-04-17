@@ -29,6 +29,7 @@ public:
     void setBought();
     bool isBuyable();
     bool isBought();
+    int getLevel();
 
 
     unsigned long long int getPrice();
