@@ -87,6 +87,9 @@ private:
 	NLabel m_labelLevel;
 	NLabel m_suppReputation;
 
+	NPanel m_panelTutorial;
+	NLabel m_tutorial;
+
 	NPanel m_panelGoldEquipment1;
 	NPanel m_panelGoldEquipment2;
 	NPanel m_panelGoldEquipment3;
@@ -254,6 +257,13 @@ private:
 
 	int m_NbMonster;
     double m_timeElapsed;
+	std::wstring txtFirstConnect;
+	std::wstring txtFirstEvolution;
+	std::wstring txtFirstCanReset;
+	std::wstring txtFirstReset;
+	std::wstring txtFirstReputation;
+	std::wstring txtEndGame;
+
 
     bool m_bool;
 	Labo* getLabo();
