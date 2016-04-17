@@ -18,6 +18,7 @@ private:
     NButton m_helpButton;
     AnimatableObject m_searchBar;
     AnimatableObject m_searchBarLoop;
+    AnimatableObject m_animationTransition;
 
 public:
     HomePage(bool debug, ManagerGroup *ptr_managerGroup);
@@ -27,6 +28,7 @@ public:
                         sf::Event * e, double frameTime);
 
     void checkStateAnimation();
+    void checkStateAnimationTransition();
 
 };
 

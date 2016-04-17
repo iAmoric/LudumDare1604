@@ -37,6 +37,9 @@ HomePage::HomePage(bool debug, ManagerGroup *ptr_managerGroup) :
                            true, 0.5, 47, 545, 2);
     getContentPane()->addComponent(&m_searchBarLoop);
     m_searchBarLoop.setVisible(false);
+
+
+    //m_animationTransition.setVisible(false);
 }
 
 HomePage::~HomePage(){
@@ -51,9 +54,14 @@ void HomePage::update(sf::RenderWindow *window,
         return;
 
     checkStateAnimation();
+    checkStateAnimationTransition();
 
     if (m_inputHandler.getComponentId() == "playButton"){
-        m_ptr_managerGroup->ptr_targetManager->isOnLaboratoryRoom();
+        m_animationTransition.create("animationTransition", 0, 0,
+                                     m_ptr_managerGroup->ptr_textureManager->getTexture("animationTransition"),
+                                     false, 0.05, 640, 960, 12);
+        getContentPane()->addComponent(&m_animationTransition);
+
     }
 
     // Basic Interface updating
@@ -68,6 +76,13 @@ void HomePage::checkStateAnimation() {
     if(m_searchBar.isStopped()){
         m_searchBar.setVisible(false);
         m_searchBarLoop.setVisible(true);
+    }
+}
+
+void HomePage::checkStateAnimationTransition() {
+    if (m_animationTransition.isStopped()){
+        //m_animationTransition.setVisible(false);
+        m_ptr_managerGroup->ptr_targetManager->isOnLaboratoryRoom();
     }
 }
 
