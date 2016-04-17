@@ -150,6 +150,9 @@ void ResourceLoader::load() {
 	a_tm.addTexture("animatedPlay", pathAnimation + "animatedPlay.png");
 	a_tm.addTexture("searchBar", pathAnimation + "searchBar.png");
 	a_tm.addTexture("searchBarLoop", pathAnimation + "searchBarLoop.png");
+	a_tm.addTexture("clickAnimation1", pathAnimation + "clickAnimation1.png");
+	a_tm.addTexture("clickAnimation2", pathAnimation + "clickAnimation2.png");
+	a_tm.addTexture("clickAnimation3", pathAnimation + "clickAnimation3.png");
 
 	/* Mouse */
 	a_tm.addTexture("mouse", pathSprite + "mouse_pointer.png");

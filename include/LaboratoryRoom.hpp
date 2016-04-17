@@ -184,8 +184,10 @@ private:
     AnimatableObject m_flamme1;
     AnimatableObject m_flamme2;
     AnimatableObject m_ordi;
-
-    AnimatableObject m_coffeeSmoke;
+	AnimatableObject m_coffeeSmoke;
+	AnimatableObject m_clickAnimation1;
+	AnimatableObject m_clickAnimation2;
+	AnimatableObject m_clickAnimation3;
 
     double m_timeElapsed;
 

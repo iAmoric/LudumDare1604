@@ -663,6 +663,21 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_coffeeSmoke.create("coffeeSmoke", 195, 475,
                          ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.27, 60, 50, 20);
 
+    m_clickAnimation1.create("clickAnimation1", 200, 175,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.02, 192, 192, 7);
+    getContentPane()->addComponent(&m_clickAnimation1);
+    m_clickAnimation1.setVisible(false);
+
+    m_clickAnimation2.create("clickAnimation2", 200, 175,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.018, 192, 192, 8);
+    getContentPane()->addComponent(&m_clickAnimation2);
+    m_clickAnimation2.setVisible(false);
+
+    m_clickAnimation3.create("clickAnimation3", 200, 175,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation3"),false, 0.018, 192, 192, 8);
+    getContentPane()->addComponent(&m_clickAnimation3);
+    m_clickAnimation3.setVisible(false);
+
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
@@ -907,7 +922,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_equipment3.setVisible(false);
         m_equipment20.setVisible(true);
     }
-
 
     basicInput(e, frameTime);
     basicDraw(window);
