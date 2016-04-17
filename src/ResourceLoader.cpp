@@ -88,25 +88,25 @@ void ResourceLoader::load() {
 	a_tm.addTexture("background", pathView + "background.png");
 
 	/* Equipments to buy */
-	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png"); //
+	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png");
 	a_tm.addTexture("equipment2", pathEquipment + "2test_tubes.png"); // à mettre à la place du 1
-	a_tm.addTexture("equipment3", pathEquipment + "coffee.png"); //
+	a_tm.addTexture("equipment3", pathEquipment + "coffee.png");
 	a_tm.addTexture("equipment4", pathEquipment + "3test_tubes.png"); // à mettre à la place du 2
 	a_tm.addTexture("equipment5", pathEquipment + "4test_tubes.png"); // à mettre à la place du 4
-	a_tm.addTexture("equipment6", pathEquipment + "purple_balloon.png"); //
+	a_tm.addTexture("equipment6", pathEquipment + "purple_balloon.png");
 	a_tm.addTexture("equipment7", pathEquipment + "heanting_mantle.png"); // à mettre à la place du 6
-	a_tm.addTexture("equipment8", pathEquipment + "1flask.png"); //
+	a_tm.addTexture("equipment8", pathEquipment + "1flask.png");
 	a_tm.addTexture("equipment9", pathEquipment + "2flasks.png"); // à mettre à la place du 8
-	a_tm.addTexture("equipment10", pathEquipment + "cool_mantle_balloon.png");//
-	a_tm.addTexture("equipment11", pathEquipment + "pink_flask.png"); //
+	a_tm.addTexture("equipment10", pathEquipment + "cool_mantle_balloon.png");
+	a_tm.addTexture("equipment11", pathEquipment + "pink_flask.png");
 	a_tm.addTexture("equipment12", pathEquipment + "heanting_mantle_balloon.png"); // à mettre à la place du 10
 	a_tm.addTexture("equipment13", pathEquipment + "5test_tubes.png"); // à mettre à la place du 5
 	a_tm.addTexture("equipment14", pathEquipment + "6test_tubes.png"); // à mettre à la place du 13
 	a_tm.addTexture("equipment15", pathEquipment + "7test_tubes.png"); // à mettre à la place du 14
 	a_tm.addTexture("equipment16", pathEquipment + "8test_tubes.png"); // à mettre à la place du 15
-	a_tm.addTexture("equipment17", pathEquipment + "pink_burette.png"); //
-	a_tm.addTexture("equipment18", pathEquipment + "medal.png"); //
-	a_tm.addTexture("equipment19", pathEquipment + "microscope.png"); //
+	a_tm.addTexture("equipment17", pathEquipment + "pink_burette.png");
+	a_tm.addTexture("equipment18", pathEquipment + "medal.png");
+	a_tm.addTexture("equipment19", pathEquipment + "microscope.png");
 	a_tm.addTexture("equipment20", pathEquipment + "beer.png"); // à mettre à la place du 3
 
 	/* Color Buttons */

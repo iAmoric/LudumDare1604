@@ -751,25 +751,25 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     /* Init visible*/
     m_equipment1.setVisible(false);
-    m_equipment2.setVisible(false);
-    m_equipment3Panel.setVisible(false); //
-    m_equipment4.setVisible(false);
-    m_equipment5.setVisible(false);
+    m_equipment2.setVisible(false);         //Remplace le 1
+    m_equipment3Panel.setVisible(false);
+    m_equipment4.setVisible(false);         //Remplace le 2
+    m_equipment5.setVisible(false);         //Remplace le 4
     m_equipment6.setVisible(false);
-    m_equipment7.setVisible(false); //
+    m_equipment7.setVisible(false);         //Remplace le 6
     m_equipment8.setVisible(false);
-    m_equipment9.setVisible(false); //
+    m_equipment9.setVisible(false);         //Remplace le 8
     m_equipment10.setVisible(false);
-    m_equipment11.setVisible(false);    //
-    m_equipment12.setVisible(false);    //
-    m_equipment13.setVisible(false);
-    m_equipment14.setVisible(false);
-    m_equipment15.setVisible(false);
-    m_equipment16.setVisible(false);    //
-    m_equipment17.setVisible(false);    //
-    m_equipment18.setVisible(false);    //
-    m_equipment19.setVisible(false);    //
-    m_equipment20.setVisible(false);
+    m_equipment11.setVisible(false);
+    m_equipment12.setVisible(false);        //Remplace le 10
+    m_equipment13.setVisible(false);        //Remplace le 5
+    m_equipment14.setVisible(false);        //Remplace le 13
+    m_equipment15.setVisible(false);        //Remplace le 14
+    m_equipment16.setVisible(false);        //Remplace le 15
+    m_equipment17.setVisible(false);
+    m_equipment18.setVisible(false);
+    m_equipment19.setVisible(false);
+    m_equipment20.setVisible(false);        //Remplace le 3
     m_subTabEquipmentPanel2.setVisible(false);
     m_tabStatsPanel.setVisible(false);
     m_tabScientistPanel.setVisible(false);
@@ -817,27 +817,95 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel2.setVisible(true);
     }
 
+    //TODO : Update des stats (argent, yps etc..)
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
-        std::cout << "click bouton " << 1 << std::endl;
+        m_equipment1.setVisible(true);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment2"){
-        std::cout << "click bouton " << 2 << std::endl;
+        m_equipment1.setVisible(false);
+        m_equipment2.setVisible(true);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment3"){
-        std::cout << "click bouton " << 3 << std::endl;
+        m_equipment3Panel.setVisible(true);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment4"){
-        std::cout << "click bouton " << 4 << std::endl;
+        m_equipment2.setVisible(false);
+        m_equipment4.setVisible(true);
     }
     if (m_inputHandler.getComponentId() == "buttonEquipment5"){
-        std::cout << "click bouton " << 5 << std::endl;
+        m_equipment4.setVisible(false);
+        m_equipment5.setVisible(true);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment6"){
-        std::cout << "click bouton " << 6 << std::endl;
+        m_equipment6.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment7"){
+        m_equipment6.setVisible(false);
+        m_equipment7.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment8"){
+        m_equipment8.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment9"){
+        m_equipment8.setVisible(false);
+        m_equipment9.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment10"){
+        m_equipment10.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment11"){
+        m_equipment11.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment12"){
+        m_equipment10.setVisible(false);
+        m_equipment12.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment13"){
+        m_equipment5.setVisible(false);
+        m_equipment13.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment14"){
+        m_equipment13.setVisible(false);
+        m_equipment14.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment15"){
+        m_equipment14.setVisible(false);
+        m_equipment15.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment16"){
+        m_equipment15.setVisible(false);
+        m_equipment16.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment17"){
+        m_equipment17.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment18"){
+        m_equipment18.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment19"){
+        m_equipment19.setVisible(true);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment20"){
+        m_equipment3.setVisible(false);
+        m_equipment20.setVisible(true);
     }
 
 

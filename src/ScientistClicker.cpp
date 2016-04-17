@@ -20,6 +20,8 @@ int main(int argc, char ** argv)
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
     WINDOW_NAME, sf::Style::None);
 
+
+
     // Window framerate - Default : 120 fps
     window.setFramerateLimit(WINDOW_FPS);
 
