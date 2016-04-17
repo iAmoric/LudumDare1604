@@ -979,7 +979,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment20"){
-        m_equipment3.setVisible(false);
+        m_equipment3Panel.setVisible(false);
         m_equipment20.setVisible(true);
     }
 
