@@ -10,7 +10,6 @@
 #define DEF_LABORATORY_ROOM_HPP
 
 #include "BasicInterface.hpp"
-#include "Units.hpp"
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 #include "patch.hpp"
@@ -18,36 +17,36 @@
 //LoginMenu hérite de BasicInterface
 class LaboratoryRoom : public BasicInterface
 {
-	private:
-		NPanel m_background;
-		NPanel m_equipment1;
-		NPanel m_equipment2;
-		NPanel m_equipment3Panel;
-		NPanel m_equipment3;
-		NPanel m_equipment4;
-		NPanel m_equipment5;
-		NPanel m_equipment6;
-		NPanel m_equipment7;
-		NPanel m_equipment8;
-		NPanel m_equipment9;
-		NPanel m_equipment10;
-		NPanel m_equipment11;
-		NPanel m_equipment12;
-		NPanel m_equipment13;
-		NPanel m_equipment14;
-		NPanel m_equipment15;
-		NPanel m_equipment16;
-		NPanel m_equipment17;
-		NPanel m_equipment18;
-		NPanel m_equipment19;
-		NPanel m_equipment20;
-		NPanel m_tabScientistPanel;
-		NPanel m_tabEquipmentPanel;
-		NPanel m_tabStatsPanel;
-		NPanel m_subTabEquipmentPanel1;
-		NPanel m_subTabEquipmentPanel2;
-		NPanel m_scientistJeannePanel;
-		NPanel m_scientistSergePanel;
+private:
+	NPanel m_background;
+	NPanel m_equipment1;
+	NPanel m_equipment2;
+	NPanel m_equipment3Panel;
+	NPanel m_equipment3;
+	NPanel m_equipment4;
+	NPanel m_equipment5;
+	NPanel m_equipment6;
+	NPanel m_equipment7;
+	NPanel m_equipment8;
+	NPanel m_equipment9;
+	NPanel m_equipment10;
+	NPanel m_equipment11;
+	NPanel m_equipment12;
+	NPanel m_equipment13;
+	NPanel m_equipment14;
+	NPanel m_equipment15;
+	NPanel m_equipment16;
+	NPanel m_equipment17;
+	NPanel m_equipment18;
+	NPanel m_equipment19;
+	NPanel m_equipment20;
+	NPanel m_tabScientistPanel;
+	NPanel m_tabEquipmentPanel;
+	NPanel m_tabStatsPanel;
+	NPanel m_subTabEquipmentPanel1;
+	NPanel m_subTabEquipmentPanel2;
+	NPanel m_scientistJeannePanel;
+	NPanel m_scientistSergePanel;
 	sf::Font m_fontLabel;
 
 

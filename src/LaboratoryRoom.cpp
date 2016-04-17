@@ -28,7 +28,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     if (!m_fontLabel.loadFromFile("../res/font/IndieFlower.ttf")) {
         std::cerr << "Issue with font downloading" << std::endl;
     }
+
+    /* background */
     m_contentPane.setSprite(ptr_managerGroup->ptr_textureManager->getTexture("background"));
+
     /* Screen */
     m_screen.create("screen", 186, 378,
                     ptr_managerGroup->ptr_textureManager->getTexture("screen"));
@@ -146,12 +149,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_panelEquipment1Global.addComponent(&m_buttonEquipment1);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
+    std::wstring informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
+    std::wstring informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment1Price.create("labelEquipment1Price", 508, 88+60*down, 22,
-                             &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice()), sf::Color::White);
+                             &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment1Name.create("labelEquipment1Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Orange Juice", sf::Color::Black);
-    std::wstring informationsEquipment1 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment1 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment1.create("labelEquipment1Name", 508, 118+60*down, 20,
                                  &m_fontLabel, informationsEquipment1, sf::Color::Black);
     m_panelEquipment1Global.addComponent(&m_labelEquipment1Price);
@@ -166,12 +173,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button2"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
     m_panelEquipment2Global.addComponent(&m_buttonEquipment2);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment2Price.create("labelEquipment2Price", 508, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment2Name.create("labelEquipment2Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Grass Juice", sf::Color::Black);
-    std::wstring informationsEquipment2 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment2 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment2.create("labelEquipment2Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment2, sf::Color::Black);
     m_panelEquipment2Global.addComponent(&m_labelEquipment2Price);
@@ -186,12 +197,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button3"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
     m_panelEquipment3Global.addComponent(&m_buttonEquipment3);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment3Price.create("labelEquipment3Price", 508, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment3Name.create("labelEquipment3Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Coffee", sf::Color::Black);
-    std::wstring informationsEquipment3 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment3 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment3.create("labelEquipment3Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment3, sf::Color::Black);
     m_panelEquipment3Global.addComponent(&m_labelEquipment3Price);
@@ -206,12 +221,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button4"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_panelEquipment4Global.addComponent(&m_buttonEquipment4);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment4Price.create("labelEquipment4Price", 508, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment4Name.create("labelEquipment4Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Love Potion", sf::Color::Black);
-    std::wstring informationsEquipment4 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment4 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment4.create("labelEquipment4Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment4, sf::Color::Black);
     m_panelEquipment4Global.addComponent(&m_labelEquipment4Price);
@@ -226,12 +245,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button5"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button5Press"));
     m_panelEquipment5Global.addComponent(&m_buttonEquipment5);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment5Price.create("labelEquipment5Price", 508, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment5Name.create("labelEquipment5Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Sea Water", sf::Color::Black);
-    std::wstring informationsEquipment5 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment5 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment5.create("labelEquipment5Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment5, sf::Color::Black);
     m_panelEquipment5Global.addComponent(&m_labelEquipment5Price);
@@ -246,12 +269,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button6"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button6Press"));
     m_panelEquipment6Global.addComponent(&m_buttonEquipment6);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment6Price.create("labelEquipment6Price", 738, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment6Name.create("labelEquipment6Name", 815, 91+60*down, 18,
-                                 &m_fontLabel, L"Unicorne Blood", sf::Color::Black);
-    std::wstring informationsEquipment6 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getYPS()) + L" YPS ";
+                                 &m_fontLabel, L"Unicorn Blood", sf::Color::Black);
+    std::wstring informationsEquipment6 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment6.create("labelEquipment6Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment6, sf::Color::Black);
     m_panelEquipment6Global.addComponent(&m_labelEquipment6Price);
@@ -266,12 +293,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button7"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button7Press"));
     m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment7);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment7Price.create("labelEquipment7Price", 738, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment7Name.create("labelEquipment7Name", 815, 91+60*down, 18,
                                  &m_fontLabel, L"Mercury", sf::Color::Black);
-    std::wstring informationsEquipment7 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment7 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment7.create("labelEquipment7Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment7, sf::Color::Black);
     m_panelEquipment7Global.addComponent(&m_labelEquipment7Price);
@@ -286,12 +317,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button8"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button8Press"));
     m_panelEquipment8Global.addComponent(&m_buttonEquipment8);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment8Price.create("labelEquipment8Price", 738, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment8Name.create("labelEquipment8Name", 815, 91+60*down, 18,
                                  &m_fontLabel, L"Witch Blood", sf::Color::Black);
-    std::wstring informationsEquipment8 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment8 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment8.create("labelEquipment8Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment8, sf::Color::Black);
     m_panelEquipment8Global.addComponent(&m_labelEquipment8Price);
@@ -306,12 +341,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_panelEquipment9Global.addComponent(&m_buttonEquipment9);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment9Price.create("labelEquipment9Price", 738, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment9Name.create("labelEquipment9Name", 815, 91+60*down, 18,
                                  &m_fontLabel, L"Bloody Mary", sf::Color::Black);
-    std::wstring informationsEquipment9 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment9 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment9.create("labelEquipment9Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment9, sf::Color::Black);
     m_panelEquipment9Global.addComponent(&m_labelEquipment9Price);
@@ -326,12 +365,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button2"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
     m_panelEquipment10Global.addComponent(&m_buttonEquipment10);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment10Price.create("labelEquipment10Price", 738, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment10Name.create("labelEquipment10Name", 815, 91+60*down, 18,
                                  &m_fontLabel, L"Mana Potion", sf::Color::Black);
-    std::wstring informationsEquipment10 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment10 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment10.create("labelEquipment10Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment10, sf::Color::Black);
     m_panelEquipment10Global.addComponent(&m_labelEquipment10Price);
@@ -347,12 +390,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button3"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
     m_panelEquipment11Global.addComponent(&m_buttonEquipment11);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment11Price.create("labelEquipment11Price", 508, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment11Name.create("labelEquipment11Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Phenolphthalein", sf::Color::Black);
-    std::wstring informationsEquipment11 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment11 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment11.create("labelEquipment11Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment11, sf::Color::Black);
     m_panelEquipment11Global.addComponent(&m_labelEquipment11Price);
@@ -367,12 +414,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button4"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_panelEquipment12Global.addComponent(&m_buttonEquipment12);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment12Price.create("labelEquipment12Price", 508, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment12Name.create("labelEquipment12Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Heal Potion", sf::Color::Black);
-    std::wstring informationsEquipment12 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment12 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment12.create("labelEquipment12Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment12, sf::Color::Black);
     m_panelEquipment12Global.addComponent(&m_labelEquipment12Price);
@@ -387,12 +438,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button5"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button5Press"));
     m_panelEquipment13Global.addComponent(&m_buttonEquipment13);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment13Price.create("labelEquipment13Price", 508, 88+60*down, 22,
-                                   &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getPrice()), sf::Color::White);
+                                   &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment13Name.create("labelEquipment13Name", 585, 91+60*down, 18,
                                   &m_fontLabel, L"KMnO4", sf::Color::Black);
-    std::wstring informationsEquipment13 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getLevel()) + L"      "
-                                           + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment13 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getLevel()) + L"   "
+                                           + informationEquipmentYPS;
     m_labelEquipment13.create("labelEquipment13Name", 508, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment13, sf::Color::Black);
     m_panelEquipment13Global.addComponent(&m_labelEquipment13Price);
@@ -407,12 +462,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button6"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button6Press"));
     m_panelEquipment14Global.addComponent(&m_buttonEquipment14);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment14Price.create("labelEquipment14Price", 508, 88+60*down, 22,
-                                   &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getPrice()), sf::Color::White);
+                                   &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment14Name.create("labelEquipment14Name", 585, 91+60*down, 18,
                                   &m_fontLabel, L"Black Matter", sf::Color::Black);
-    std::wstring informationsEquipment14 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getLevel()) + L"      "
-                                           + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment14 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getLevel()) + L"   "
+                                           + informationEquipmentYPS;
     m_labelEquipment14.create("labelEquipment14Name", 508, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment14, sf::Color::Black);
     m_panelEquipment14Global.addComponent(&m_labelEquipment14Price);
@@ -421,18 +480,23 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_subTabEquipmentPanel2.addComponent(&m_panelEquipment14Global);
     down++;
 
+
     m_panelEquipment15Global.create("panelEquipment15Global", 2000, 2000,
                                     ptr_managerGroup->ptr_textureManager->getTexture("close_1"));
     m_buttonEquipment15.create("buttonEquipment15", 500, 90+60*down,
                               ptr_managerGroup->ptr_textureManager->getTexture("button7"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button7Press"));
     m_panelEquipment15Global.addComponent(&m_buttonEquipment15);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment15Price.create("labelEquipment15Price", 508, 88+60*down, 22,
-                                   &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getPrice()), sf::Color::White);
+                                   &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment15Name.create("labelEquipment15Name", 585, 91+60*down, 18,
                                   &m_fontLabel, L"Brake Fluid", sf::Color::Black);
-    std::wstring informationsEquipment15 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getLevel()) + L"      "
-                                           + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment15 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getLevel()) + L"   "
+                                           + informationEquipmentYPS;
     m_labelEquipment15.create("labelEquipment15Name", 508, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment15, sf::Color::Black);
     m_panelEquipment15Global.addComponent(&m_labelEquipment15Price);
@@ -447,12 +511,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button8"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button8Press"));
     m_panelEquipment16Global.addComponent(&m_buttonEquipment16);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment16Price.create("labelEquipment16Price", 738, 88+60*down, 22,
-                                  &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getPrice()), sf::Color::White);
+                                  &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment16Name.create("labelEquipment16Name", 815, 91+60*down, 18,
                                  &m_fontLabel, L"Nitrogen", sf::Color::Black);
-    std::wstring informationsEquipment16 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getLevel()) + L"      "
-                                          + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment16 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getLevel()) + L"   "
+                                          + informationEquipmentYPS;
     m_labelEquipment16.create("labelEquipment16Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment16, sf::Color::Black);
     m_panelEquipment16Global.addComponent(&m_labelEquipment16Price);
@@ -467,12 +535,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_panelEquipment17Global.addComponent(&m_buttonEquipment17);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment17Price.create("labelEquipment17Price", 738, 88+60*down, 22,
-                                   &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getPrice()), sf::Color::White);
+                                   &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment17Name.create("labelEquipment17Name", 815, 91+60*down, 18,
                                   &m_fontLabel, L"Osmium", sf::Color::Black);
-    std::wstring informationsEquipment17 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getLevel()) + L"      "
-                                           + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment17 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getLevel()) + L"   "
+                                           + informationEquipmentYPS;
     m_labelEquipment17.create("labelEquipment17Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment17, sf::Color::Black);
     m_panelEquipment17Global.addComponent(&m_labelEquipment17Price);
@@ -487,12 +559,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button2"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
     m_panelEquipment18Global.addComponent(&m_buttonEquipment18);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment18Price.create("labelEquipment18Price", 738, 88+60*down, 22,
-                                   &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getPrice()), sf::Color::White);
+                                   &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment18Name.create("labelEquipment18Name", 815, 91+60*down, 18,
                                   &m_fontLabel, L"Science Medal", sf::Color::Black);
-    std::wstring informationsEquipment18 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getLevel()) + L"      "
-                                           + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment18 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getLevel()) + L"   "
+                                           + informationEquipmentYPS;
     m_labelEquipment18.create("labelEquipment18Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment18, sf::Color::Black);
     m_panelEquipment18Global.addComponent(&m_labelEquipment18Price);
@@ -507,12 +583,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button3"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
     m_panelEquipment19Global.addComponent(&m_buttonEquipment19);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment19Price.create("labelEquipment19Price", 738, 88+60*down, 22,
-                                   &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getPrice()), sf::Color::White);
+                                   &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment19Name.create("labelEquipment19Name", 815, 91+60*down, 18,
                                   &m_fontLabel, L"Microscope", sf::Color::Black);
-    std::wstring informationsEquipment19 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getLevel()) + L"      "
-                                           + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment19 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getLevel()) + L"   "
+                                           + informationEquipmentYPS;
     m_labelEquipment19.create("labelEquipment19Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment19, sf::Color::Black);
     m_panelEquipment19Global.addComponent(&m_labelEquipment19Price);
@@ -527,12 +607,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                ptr_managerGroup->ptr_textureManager->getTexture("button4"),
                                ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_panelEquipment20Global.addComponent(&m_buttonEquipment20);
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getPrice());
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getYPS());
+    informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment20Price.create("labelEquipment20Price", 738, 88+60*down, 22,
-                                   &m_fontLabel, cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getPrice()), sf::Color::White);
+                                   &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment20Name.create("labelEquipment20Name", 815, 91+60*down, 18,
                                   &m_fontLabel, L"Beer", sf::Color::Black);
-    std::wstring informationsEquipment20 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getLevel()) + L"      "
-                                           + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getYPS()) + L" YPS ";
+    std::wstring informationsEquipment20 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getLevel()) + L"   "
+                                           + informationEquipmentYPS;
     m_labelEquipment20.create("labelEquipment20Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment20, sf::Color::Black);
     m_panelEquipment20Global.addComponent(&m_labelEquipment20Price);
@@ -559,7 +643,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                              ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_tabScientistPanel.addComponent(&m_buyButtonSerge);
 
-/* Animation */
+    /* Animation */
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
     getContentPane()->addComponent(&m_bulle);
@@ -577,8 +661,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_ordi);
 
     m_coffeeSmoke.create("coffeeSmoke", 195, 475,
-                         ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.1, 60, 50, 20);
-    //getContentPane()->addComponent(&m_coffeeSmoke);
+                         ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.27, 60, 50, 20);
 
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,

@@ -23,13 +23,7 @@ using std::wstring;
  * \param chiffre
  * \param nom_unite
  */
-Units::Units(unsigned long long chiffre) {
-    m_chiffre = chiffre;
-    m_tableauLettre[0] = ' ';
-    for (int i = 1; i < 26; ++i) {
-        m_tableauLettre[i] = (char)(65+i);
-    }
-    longToUnits();
+Units::Units() {
 }
 /*
  * \brief Destructor
@@ -41,10 +35,10 @@ Units::~Units() {
  * \param
  */
 void Units::longToUnits(){
-    unsigned long long tamponReste = m_chiffre;
+    long tamponReste = 0;
     unsigned long long tamponQuotient = m_chiffre;
     while(tamponQuotient >= 1000){
-        tamponReste = tamponQuotient%1000;
+        tamponReste = (long)tamponQuotient%1000;
         tamponQuotient -= tamponReste;
         tamponQuotient = tamponQuotient/1000;
         m_tab_nom_unite.push_back(tamponReste);
@@ -52,7 +46,7 @@ void Units::longToUnits(){
     m_tab_nom_unite.push_back(tamponQuotient);
 }
 std::wstring Units::toWString(){
-    int position = m_tab_nom_unite.size();
+    unsigned int position = m_tab_nom_unite.size();
     std::string string;
     string = cast::toString(m_tab_nom_unite.at(position-1)) + m_tableauLettre[position-1];
 
@@ -65,16 +59,27 @@ wstring Units::utf8toUtf16(const string & str)
     if (str.empty())
         return wstring();
 
-    size_t charsNeeded = ::MultiByteToWideChar(CP_UTF8, 0,
+    size_t charsNeeded = (size_t)::MultiByteToWideChar(CP_UTF8, 0,
                                                str.data(), (int)str.size(), NULL, 0);
     if (charsNeeded == 0)
         throw runtime_error("Failed converting UTF-8 string to UTF-16");
 
     vector<wchar_t> buffer(charsNeeded);
-    int charsConverted = ::MultiByteToWideChar(CP_UTF8, 0,
+    unsigned int charsConverted = (unsigned int)::MultiByteToWideChar(CP_UTF8, 0,
                                                str.data(), (int)str.size(), &buffer[0], buffer.size());
     if (charsConverted == 0)
         throw runtime_error("Failed converting UTF-8 string to UTF-16");
 
     return wstring(&buffer[0], charsConverted);
+}
+
+
+void Units::setNumber(unsigned long long number){
+    m_tab_nom_unite.clear();
+    m_chiffre = number;
+    m_tableauLettre[0] = ' ';
+    for (int i = 1; i < 26; ++i) {
+        m_tableauLettre[i] = (char)(65+i);
+    }
+    longToUnits();
 }

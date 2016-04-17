@@ -7,12 +7,14 @@
 
 #include "Manager.hpp"
 #include "Labo.hpp"
+#include "Units.hpp"
 
 class GameManager : public Manager {
 
 private:
     bool m_debug;
     Labo* m_labo;
+    Units* m_units;
 
 public:
     // Constructor
@@ -22,6 +24,7 @@ public:
     ~GameManager();
 
     Labo* getLabo();
+    Units* getUnits();
 
 };
 

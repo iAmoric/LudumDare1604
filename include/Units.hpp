@@ -14,10 +14,11 @@ private:
     unsigned long long m_chiffre;
     char m_tableauLettre[26];
 public:
-    Units(unsigned long long chiffre);
+    Units();
     ~Units();
     void longToUnits();
     std::wstring toWString();
+    void setNumber(unsigned long long number);
 
     std::wstring utf8toUtf16(const std::string &str);
 };
