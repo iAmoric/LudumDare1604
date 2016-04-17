@@ -827,6 +827,13 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_whiteBoardAnimation);
     m_whiteBoardAnimation.setVisible(false);
 
+    m_evolutionAnimation.create("evolvAnimation", 100, 95,
+                                ptr_managerGroup->ptr_textureManager->getTexture("evolvAnimation"),false, 0.06, 300, 300, 14);
+    m_evolutionAnimation.setVisible(false);
+    getContentPane()->addComponent(&m_evolutionAnimation);
+    //m_popupOnAnimation
+
+
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"), true, 0.2, 79, 120, 3);
@@ -949,6 +956,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_targetPanel = "tabEquipmentPanel";
 
+    firstConnect = true;
+    firstEvolution = false;
+    firstCanReset = false;
+    firstReputation = false;
+    firstReset = false;
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -961,6 +973,13 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (!m_ptr_managerGroup->ptr_targetManager->isLaboratoryRoom())
         return;
 
+    if (firstConnect){
+        firstConnect=false;
+
+    }
+
+
+
     m_timeElapsed += frameTime;
     if(m_timeElapsed >= 1){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
@@ -969,6 +988,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
     checkStateWhiteBoardAnimation();
     checkStateClickAnimation();
+    checkStateEvolutionAnimation();
 
     m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
     m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
@@ -1007,6 +1027,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel()<25) {
             getLabo()->evolution();
+            m_monster.setVisible(false);
+            m_evolutionAnimation.setVisible(true);
+            m_evolutionAnimation.play();
             m_labelLevel.setText(L"Evolution " + cast::toWstring(getLabo()->getEvolutionLevel()));
             m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())),
                                 m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())));
@@ -1733,6 +1756,14 @@ void LaboratoryRoom::checkStateClickAnimation() {
 void LaboratoryRoom::undisplayClickAnimation(){
     m_clickAnimation3.setVisible(false);
     m_clickAnimation2.setVisible(false);
+}
+
+
+void LaboratoryRoom::checkStateEvolutionAnimation() {
+    if(m_evolutionAnimation.isStopped()){
+        m_evolutionAnimation.setVisible(false);
+        m_monster.setVisible(true);
+    }
 }
 
 

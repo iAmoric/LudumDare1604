@@ -184,6 +184,9 @@ void ResourceLoader::load() {
 	a_tm.addTexture("clickAnimation2", pathAnimation + "clickAnimation2.png");
 	a_tm.addTexture("whiteBoardAnimation", pathAnimation + "cleanWhiteBoard_1.png");
 	a_tm.addTexture("animationTransition", pathAnimation + "animationTransition.jpg");
+	a_tm.addTexture("popUpOn", pathAnimation + "popUpShow.png");
+	a_tm.addTexture("popUpOff", pathAnimation + "popUpHide.png");
+	a_tm.addTexture("evolvAnimation", pathAnimation + "evolution.png");
 
 	/* Mouse */
 	a_tm.addTexture("mouse", pathSprite + "mouse_pointer.png");
