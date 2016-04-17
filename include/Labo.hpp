@@ -66,6 +66,8 @@ public:
     Monster *getM_ptr_monster();
 
     Stats *getM_ptr_stats();
+
+    void incrementEvolutionLevel();
 };
 
 #endif //CLIENT_LABO_HPP

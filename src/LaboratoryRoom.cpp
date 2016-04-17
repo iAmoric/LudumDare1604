@@ -897,20 +897,18 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
         m_labelReputation.setText(unit.toWString());
-
-    if (m_inputHandler.getComponentId() == "monster"){
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
-    }
-
-    if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
-        m_NbMonster++;
-        if (m_NbMonster<=25) {
-            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
-                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
+    if (getLabo()->getM_year() >=
+        getLabo()->getM_ptr_monster()->getAnnee()) {
+        if (getLabo()->getEvolutionLevel()<25) {
+            getLabo()->evolution();
+            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())),
+                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())));
         }
     }
-
+    if (m_inputHandler.getComponentId() == "monster") {
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
+    }
+    
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
         if (m_targetPanel!="tabStatsPanel") {
             m_targetPanel = "tabStatsPanel";
