@@ -237,6 +237,9 @@ private:
 	AnimatableObject m_clickAnimation2;
 	AnimatableObject m_clickAnimation3;
 	AnimatableObject m_whiteBoardAnimation;
+	AnimatableObject m_popupOnAnimation;
+	AnimatableObject m_popupOffAnimation;
+	AnimatableObject m_evolutionAnimation;
 
 	int m_NbMonster;
     double m_timeElapsed;
@@ -245,6 +248,13 @@ private:
 	Labo* getLabo();
 
 	std::string m_targetPanel;
+
+	bool firstConnect;
+	bool firstEvolution;
+	bool firstCanReset;
+	bool firstReset;
+	bool firstReputation;
+	bool endGame;
 
 public:
     // Constructor
@@ -269,6 +279,8 @@ public:
 	void checkStateWhiteBoardAnimation();
 
 	void checkStateClickAnimation();
+
+	void checkStateEvolutionAnimation();
 
 	void undisplayClickAnimation();
 };
