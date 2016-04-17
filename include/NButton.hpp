@@ -23,7 +23,7 @@ class NButton : public VisualObject
 
 		sf::Sprite m_secondSprite;
 		Surrounder m_surrounder;
-
+		sf::Vector2f m_pos;
 		std::vector < std::string > m_textList;
 
 	public:

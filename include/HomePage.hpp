@@ -17,6 +17,7 @@ private:
     NButton m_buttonPlay;
     NButton m_helpButton;
     AnimatableObject m_searchBar;
+    AnimatableObject m_searchBarLoop;
 
 public:
     HomePage(bool debug, ManagerGroup *ptr_managerGroup);
@@ -24,6 +25,8 @@ public:
 
     virtual void update(sf::RenderWindow * window,
                         sf::Event * e, double frameTime);
+
+    void checkStateAnimation();
 
 };
 

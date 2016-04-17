@@ -16,6 +16,8 @@ class Surrounder
 	private:
 		sf::Vector2f m_position; 
 		sf::Vector2f m_size;
+		sf::Texture m_cursorTexture;
+		sf::Sprite m_cursorSprite;
 
 		sf::RectangleShape m_rectShape;
 
@@ -28,10 +30,10 @@ class Surrounder
 
 		// Methods
 		void init(const sf::Vector2f & pos, 
-		const sf::Vector2u & size, const sf::Color & color);
+		const sf::Vector2u & size);
 
 		// Getters
-		sf::RectangleShape * getShape();
+		sf::Sprite * getShape(sf::Vector2f pos);
 };
 
 #endif // DEF_SURROUNDER_HPP

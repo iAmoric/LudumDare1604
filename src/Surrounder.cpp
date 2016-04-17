@@ -35,26 +35,19 @@ Surrounder::~Surrounder() {
  * \return None
  */
 void Surrounder::init(const sf::Vector2f & pos,
-const sf::Vector2u & size, const sf::Color & color) {
+const sf::Vector2u & size) {
 
-	m_position.x = pos.x;
-	m_position.y = pos.y;
+	m_cursorTexture.loadFromFile("../res/sprites/mouse_pointer.png");
+	m_cursorSprite.setTexture(m_cursorTexture);
 
-	m_size.x = (float)size.x;
-	m_size.y = (float)size.y;
-
-	m_rectShape.setPosition(m_position);
-	m_rectShape.setSize(m_size);
-
-	m_rectShape.setFillColor(sf::Color::Transparent);
-	m_rectShape.setOutlineColor(color);
-	m_rectShape.setOutlineThickness(1);
 }
 
 /*!
  * \brief Return the shape to surround an object
  * \return m_rectShape The shape
  */
-sf::RectangleShape * Surrounder::getShape() {
-	return &m_rectShape;
+sf::Sprite * Surrounder::getShape(sf::Vector2f pos) {
+	m_cursorSprite.setPosition(pos);
+	return &m_cursorSprite;
+	//return &m_rectShape;
 }

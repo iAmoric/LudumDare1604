@@ -773,39 +773,27 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_subTabEquipmentPanel2.setVisible(false);
     m_tabStatsPanel.setVisible(false);
     m_tabScientistPanel.setVisible(false);
-    m_flamme1.setVisible(false);
-    m_flamme2.setVisible(false);
-    m_bulle.setVisible(false);
+    m_flamme1.setVisible(false);    //
+    m_flamme2.setVisible(false);    //
+    m_bulle.setVisible(false);  //
 
 }
 
-/*!
- * \brief Constructor
- */
 LaboratoryRoom::~LaboratoryRoom() {
-    // TODO
+    // None
 }
 
-/*!
- * \brief Update current object
- * \param window The pointer on the window
- * \param frameTime The elpased time
- */
-//Méthode appellé à chaque tour de boucle, elle gère les évènements
 void LaboratoryRoom::update(sf::RenderWindow *window,
                        sf::Event *e, double frameTime) {
 
-    //Si on est pas sur la fenetre, on return
     if (!m_ptr_managerGroup->ptr_targetManager->isLaboratoryRoom())
         return;
+
     m_timeElapsed += frameTime;
     if(m_timeElapsed >= frameTime){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
     }
-    // YPC, YPS, MPS, MPC, years, reputation
-
-
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
         displayStatsPanel();
@@ -829,11 +817,13 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel2.setVisible(true);
     }
 
-    // Basic Interface updating
+    /*for (int i = 1; i< 21 ; i++){
+        if (m_inputHandler.getComponentId() == "buttonEquipment"+i){
+            std::cout << "click bouton " << i << std::endl;
+        }
+    }*/
+
     basicInput(e, frameTime);
-
-
-    // Drawing all content
     basicDraw(window);
 }
 
@@ -857,6 +847,7 @@ void LaboratoryRoom::displayScientistPanel(){
     undisplayAllTabs();
     m_tabScientistPanel.setVisible(true);
 }
+
 
 
 
