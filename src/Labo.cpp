@@ -59,7 +59,8 @@ void Labo::initLaboPieceVector() {
 }
 
 void Labo::lvlUpLaboPiece(unsigned int id) {
-    m_YPS = m_YPS - m_LaboPieceVector.at(id)->getYPS();
+    if(m_LaboPieceVector.at(id)->getLevel() > 0)
+        m_YPS = m_YPS - m_LaboPieceVector.at(id)->getYPS();
     m_LaboPieceVector.at(id)->nextLvl();
     m_YPS = m_YPS + m_LaboPieceVector.at(id)->getYPS();
 }
@@ -123,15 +124,17 @@ void Labo::evolution() {
             m_evolutionLevel == 15 || m_evolutionLevel == 20){
         m_reputationPointWaiting += 5 * m_evolutionLevel;
     }
-    m_evolutionLevel ++;
-
+    if(m_year >= m_ptr_monster->getAnnee()){
+        // TODO : create function to auto-generate year of a monster
+        m_evolutionLevel++;
+        m_ptr_monster->setAnnee(50);
+    }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
             moneyGain = m_LaboPieceVector.at(i)->getPrice();
     }
     m_money += moneyGain * 3;
-    m_ptr_stats->incrementActualMoney(m_money);
-    m_ptr_stats->incrementTotalMoney(m_money);
+
 }
 
 /**
@@ -143,22 +146,17 @@ void Labo::grant(){
         if(m_LaboPieceVector.at(i)->isBought()){
             moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
         }
+        if(moneyGain == 0) moneyGain += 1;
     }
     m_money = m_money + moneyGain;
     m_year += m_YPS;
     m_ptr_stats->incrementSpentTime();
-    if(m_year >= m_ptr_monster->getAnnee()){
-        // TODO : create function to auto-generate year of a monster
-        m_ptr_monster->setAnnee(30);
-    }
+    m_ptr_stats->incrementActualMoney(m_money);
+    m_ptr_stats->incrementTotalMoney(m_money);
 }
 
 void Labo::click() {
     m_year += m_CPS;
-    if(m_year >= m_ptr_monster->getAnnee()){
-        // TODO : create function to auto-generate year of a monster
-        m_ptr_monster->setAnnee(30);
-    }
 }
 unsigned long long Labo::getM_year(){
     return m_year;
@@ -206,4 +204,7 @@ Stats* Labo::getM_ptr_stats(){
 
 std::vector<LaboPiece *> Labo::getM_LaboPieceVector() {
     return m_LaboPieceVector;
+}
+void Labo::incrementEvolutionLevel(){
+    m_evolutionLevel++;
 }

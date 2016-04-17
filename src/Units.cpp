@@ -12,6 +12,7 @@
 #include <stdexcept>
 #include <vector>
 #include <windows.h>
+#include <iostream>
 
 using std::runtime_error;
 using std::string;
@@ -48,8 +49,20 @@ void Units::longToUnits(){
 std::wstring Units::toWString(){
     unsigned int position = m_tab_nom_unite.size();
     std::string string;
-    string = cast::toString(m_tab_nom_unite.at(position-1)) + m_tableauLettre[position-1];
+    std::string nb = " ";
 
+    if(m_tab_nom_unite.size() == 1){
+        string = cast::toString(m_tab_nom_unite.at(position-1));
+    }
+    else if(m_tab_nom_unite.at(position-1) > 100){
+        string = cast::toString(m_tab_nom_unite.at(position-1)) + m_tableauLettre[position-1];
+    }
+    else{
+        if(m_tab_nom_unite.at(position-2) < 100) nb = " 0";
+        else if (m_tab_nom_unite.at(position-2) < 10) nb = " 00";
+        string = cast::toString(m_tab_nom_unite.at(position-1)) + nb +
+                cast::toString(m_tab_nom_unite.at(position-2)) + m_tableauLettre[position-1];
+    }
 
     return utf8toUtf16(string);
 }

@@ -827,6 +827,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment20"), true, 0.1, 83, 70, 3);
     getContentPane()->addComponent(&m_equipment20);
 
+
+
+
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
@@ -870,13 +873,11 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         return;
 
     m_timeElapsed += frameTime;
-    if(m_timeElapsed >= frameTime){
+    if(m_timeElapsed >= 1){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
     }
     checkStateWhiteBoardAnimation();
-
-
 
     Units unit = Units();
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
@@ -896,8 +897,15 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
         m_labelReputation.setText(unit.toWString());
-
-    if (m_inputHandler.getComponentId() == "monster"){
+    if (getLabo()->getM_year() >=
+        getLabo()->getM_ptr_monster()->getAnnee()) {
+        if (getLabo()->getEvolutionLevel()<25) {
+            getLabo()->evolution();
+            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())),
+                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())));
+        }
+    }
+    if (m_inputHandler.getComponentId() == "monster") {
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
 
@@ -909,6 +917,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                                 m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
         }
     }
+
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
         if (m_targetPanel!="tabStatsPanel") {
@@ -955,6 +964,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
             getLabo()->lvlUpLaboPiece(0);
         }*/
+
 
     /* verifying money to buy equipment */
     m_panelEquipment2Global.setVisible(false);
@@ -1071,323 +1081,464 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     //TODO : Update des stats (argent, yps etc..)
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
-        if (!m_equipment2.isVisible() || !m_equipment4.isVisible() ||
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(0)->getPrice());
+            getLabo()->lvlUpLaboPiece(0);
+            if (!m_equipment2.isVisible() || !m_equipment4.isVisible() ||
                 !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
                 !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
-            m_equipment1.setVisible(true);
+                m_equipment1.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
+            m_labelEquipment1Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment1.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
-        m_labelEquipment1Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
-                                               + informationEquipmentYPS;
-        m_labelEquipment1.setText(informationsEquipment);
 
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment2"){
-        if (!m_equipment4.isVisible() || !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(1)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
+            getLabo()->lvlUpLaboPiece(1);
+            if (!m_equipment4.isVisible() || !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
                 !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
-            m_equipment1.setVisible(false);
-            m_equipment2.setVisible(true);
+                m_equipment1.setVisible(false);
+                m_equipment2.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getPrice());
+            m_labelEquipment2Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment2.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getPrice());
-        m_labelEquipment2Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getLevel()) + L"   "
-                                              + informationEquipmentYPS;
-        m_labelEquipment2.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment3"){
-        if (!m_equipment20.isVisible()) {
-            m_equipment3Panel.setVisible(true);
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(2)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(2)->getPrice());
+            getLabo()->lvlUpLaboPiece(2);
+            if (!m_equipment20.isVisible()) {
+                m_equipment3Panel.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getPrice());
+            m_labelEquipment3Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment3.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getPrice());
-        m_labelEquipment3Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment3.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment4"){
-        if (!m_equipment5.isVisible() || !m_equipment13.isVisible() ||
-            !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
-            m_equipment2.setVisible(false);
-            m_equipment4.setVisible(true);
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(3)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(3)->getPrice());
+            getLabo()->lvlUpLaboPiece(3);
+            if (!m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+                !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+                m_equipment2.setVisible(false);
+                m_equipment4.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getPrice());
+            m_labelEquipment4Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment4.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getPrice());
-        m_labelEquipment4Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment4.setText(informationsEquipment);
     }
     if (m_inputHandler.getComponentId() == "buttonEquipment5"){
-        if (!m_equipment13.isVisible() || !m_equipment14.isVisible() ||
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(4)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(4)->getPrice());
+            getLabo()->lvlUpLaboPiece(4);
+            if (!m_equipment13.isVisible() || !m_equipment14.isVisible() ||
                 !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
-            m_equipment4.setVisible(false);
-            m_equipment5.setVisible(true);
+                m_equipment4.setVisible(false);
+                m_equipment5.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getPrice());
+            m_labelEquipment5Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment5.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getPrice());
-        m_labelEquipment5Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment5.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment6"){
-        if (!m_equipment7.isVisible()) {
-            m_equipment6.setVisible(true);
-            m_flamme1.setVisible(true);
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(5)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(5)->getPrice());
+            getLabo()->lvlUpLaboPiece(5);
+            if (!m_equipment7.isVisible()) {
+                m_equipment6.setVisible(true);
+                m_flamme1.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getPrice());
+            m_labelEquipment6Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment6.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getPrice());
-        m_labelEquipment6Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment6.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment7"){
-        m_equipment6.setVisible(false);
-        m_equipment7.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(6)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(6)->getPrice());
+            getLabo()->lvlUpLaboPiece(6);
+            m_equipment6.setVisible(false);
+            m_equipment7.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getPrice());
-        m_labelEquipment7Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getPrice());
+            m_labelEquipment7Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment7.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment7.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment8"){
-        if (!m_equipment9.isVisible()) {
-            m_equipment8.setVisible(true);
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(7)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(7)->getPrice());
+            getLabo()->lvlUpLaboPiece(7);
+            if (!m_equipment9.isVisible()) {
+                m_equipment8.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getPrice());
+            m_labelEquipment8Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment8.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getPrice());
-        m_labelEquipment8Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment8.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment9"){
-        m_equipment8.setVisible(false);
-        m_equipment9.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(8)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(8)->getPrice());
+            getLabo()->lvlUpLaboPiece(8);
+            m_equipment8.setVisible(false);
+            m_equipment9.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getPrice());
-        m_labelEquipment9Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getPrice());
+            m_labelEquipment9Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment9.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment9.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment10"){
-        if (!m_equipment12.isVisible()) {
-            m_equipment10.setVisible(true);
-            m_flamme2.setVisible(true);
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(9)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(9)->getPrice());
+            getLabo()->lvlUpLaboPiece(9);
+            if (!m_equipment12.isVisible()) {
+                m_equipment10.setVisible(true);
+                m_flamme2.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getPrice());
+            m_labelEquipment10Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment10.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getPrice());
-        m_labelEquipment10Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment10.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment11"){
-        m_equipment11.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(10)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(10)->getPrice());
+            getLabo()->lvlUpLaboPiece(10);
+            m_equipment11.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getPrice());
-        m_labelEquipment11Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getPrice());
+            m_labelEquipment11Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment11.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment11.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment12"){
-        m_equipment10.setVisible(false);
-        m_equipment12.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(11)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(11)->getPrice());
+            getLabo()->lvlUpLaboPiece(11);
+            m_equipment10.setVisible(false);
+            m_equipment12.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getPrice());
-        m_labelEquipment12Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getPrice());
+            m_labelEquipment12Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment12.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment12.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment13"){
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(12)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(12)->getPrice());
+            getLabo()->lvlUpLaboPiece(12);
         if (!m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
             m_equipment4.setVisible(false);
             m_equipment13.setVisible(true);
-            m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->nextLvl();
 
-            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getPrice());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getPrice());
             m_labelEquipment13Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getYPS());
-            std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-            std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getLevel()) + L"   "
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getLevel()) + L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment13.setText(informationsEquipment);
+        }
         }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment14"){
-        if (!m_equipment15.isVisible() || !m_equipment16.isVisible()) {
-            m_equipment13.setVisible(false);
-            m_equipment14.setVisible(true);
-            m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(13)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(13)->getPrice());
+            getLabo()->lvlUpLaboPiece(13);
+            if (!m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+                m_equipment13.setVisible(false);
+                m_equipment14.setVisible(true);
 
-            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getPrice());
-            m_labelEquipment14Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+                m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getPrice());
+                m_labelEquipment14Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getYPS());
-            std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-            std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getLevel()) + L"   "
-                                                 + informationEquipmentYPS;
-            m_labelEquipment14.setText(informationsEquipment);
+                m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getYPS());
+                std::wstring informationEquipmentYPS =
+                        m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+                std::wstring informationsEquipment = L"level " + cast::toWstring(
+                        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getLevel()) +
+                                                     L"   "
+                                                     + informationEquipmentYPS;
+                m_labelEquipment14.setText(informationsEquipment);
+            }
         }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment15"){
-        if (!m_equipment16.isVisible()) {
-            m_equipment14.setVisible(false);
-            m_equipment15.setVisible(true);
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(14)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(14)->getPrice());
+            getLabo()->lvlUpLaboPiece(14);
+            if (!m_equipment16.isVisible()) {
+                m_equipment14.setVisible(false);
+                m_equipment15.setVisible(true);
+            }
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getPrice());
+            m_labelEquipment15Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment15.setText(informationsEquipment);
         }
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->nextLvl();
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getPrice());
-        m_labelEquipment15Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
-
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment15.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment16"){
-        m_equipment15.setVisible(false);
-        m_equipment16.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(15)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(15)->getPrice());
+            getLabo()->lvlUpLaboPiece(15);
+            m_equipment15.setVisible(false);
+            m_equipment16.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getPrice());
-        m_labelEquipment16Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getPrice());
+            m_labelEquipment16Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment16.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment16.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment17"){
-        m_equipment17.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(16)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(16)->getPrice());
+            getLabo()->lvlUpLaboPiece(16);
+            m_equipment17.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getPrice());
-        m_labelEquipment17Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getPrice());
+            m_labelEquipment17Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment17.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment17.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment18"){
-        m_equipment18.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(17)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(17)->getPrice());
+            getLabo()->lvlUpLaboPiece(17);
+            m_equipment18.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getPrice());
-        m_labelEquipment18Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getPrice());
+            m_labelEquipment18Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment18.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment18.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment19"){
-        m_equipment19.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(18)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(18)->getPrice());
+            getLabo()->lvlUpLaboPiece(18);
+            m_equipment19.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getPrice());
-        m_labelEquipment19Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getPrice());
+            m_labelEquipment19Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment19.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment19.setText(informationsEquipment);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment20"){
-        m_equipment3Panel.setVisible(false);
-        m_equipment20.setVisible(true);
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->nextLvl();
+        if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(19)->getPrice()) {
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(19)->getPrice());
+            getLabo()->lvlUpLaboPiece(19);
+            m_equipment3Panel.setVisible(false);
+            m_equipment20.setVisible(true);
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getPrice());
-        m_labelEquipment20Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getPrice());
+            m_labelEquipment20Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
 
-        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getYPS());
-        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
-        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getLevel()) + L"   "
-                                             + informationEquipmentYPS;
-        m_labelEquipment20.setText(informationsEquipment);
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getYPS());
+            std::wstring informationEquipmentYPS =
+                    m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment20.setText(informationsEquipment);
+        }
     }
 
     basicInput(e, frameTime);
