@@ -711,6 +711,50 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                              ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_tabScientistPanel.addComponent(&m_buyButtonSerge);
 
+    /* Label */
+    m_nbClick.create("nbClick",500,80,15,&m_fontLabel
+            ,L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick())
+            , sf::Color::Black);
+    m_nbReset.create("nbReset",500,95,15,&m_fontLabel
+            ,L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset())
+            , sf::Color::Black);
+    m_nbEvoMax.create("nbEvoMax",500,110,15,&m_fontLabel
+            ,L"Maximum level achieved : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbEvoMax())
+            , sf::Color::Black);
+    m_spentTime.create("spentTime",500,125,15,&m_fontLabel
+            ,L"Time spent : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds())
+            , sf::Color::Black);
+    m_actualMoney.create("actualMoney",500,140,15,&m_fontLabel
+            ,L"Actual amount of money : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualMoney())
+            , sf::Color::Black);
+    m_totalMoney.create("totalMoney",500,155,15,&m_fontLabel
+            ,L"Total amount of money obtained in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney())
+            , sf::Color::Black);
+    m_spentMoney.create("spentMoney",500,170,15,&m_fontLabel
+            ,L"Total amount of money spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentMoney())
+            , sf::Color::Black);
+    m_actualReputation.create("actualReputation",500,185,15,&m_fontLabel
+            ,L"Actual reputation : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualReputation())
+            , sf::Color::Black);
+    m_totalReputation.create("totalReputation",500,200,15,&m_fontLabel
+            ,L"Total reputation earned in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
+            , sf::Color::Black);
+    m_spentReputation.create("nbClick",500,215,15,&m_fontLabel
+            ,L"Total reputation spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentReputation())
+            , sf::Color::Black);
+
+    m_tabStatsPanel.addComponent(&m_nbClick);
+    m_tabStatsPanel.addComponent(&m_nbReset);
+    m_tabStatsPanel.addComponent(&m_nbEvoMax);
+    m_tabStatsPanel.addComponent(&m_spentTime);
+    m_tabStatsPanel.addComponent(&m_actualMoney);
+    m_tabStatsPanel.addComponent(&m_totalMoney);
+    m_tabStatsPanel.addComponent(&m_spentMoney);
+    m_tabStatsPanel.addComponent(&m_actualReputation);
+    m_tabStatsPanel.addComponent(&m_totalReputation);
+    m_tabStatsPanel.addComponent(&m_spentReputation);
+
+
     /* Animation */
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
@@ -864,8 +908,6 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_targetPanel = "tabEquipmentPanel";
 
-
-
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -882,10 +924,22 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if(m_timeElapsed >= 1){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
+        m_spentTime.setText(L"Time spent : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds()));
     }
     checkStateWhiteBoardAnimation();
     checkStateClickAnimation();
 
+    m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
+    m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
+    m_nbEvoMax.setText(L"Maximum level achieved : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbEvoMax()));
+    m_spentMoney.setText(L"Total amount of money spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentMoney()));
+    m_totalReputation.setText(L"Total reputation earned in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation()));
+    m_spentReputation.setText(L"Total reputation spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentReputation()));
+    m_actualMoney.setText(L"Actual amount of money : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualMoney()));
+    m_totalMoney.setText(L"Total amount of money obtained in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney()));
+    m_actualReputation.setText(L"Actual reputation : " +
+                                       cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
+    +L" (+"+cast::toWstring(getLabo()->getReputationPointWaiting()) + L" if you quit the lab now)");
 
     Units unit = Units();
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
@@ -985,15 +1039,10 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel1.setVisible(false);
         m_subTabEquipmentPanel2.setVisible(true);
     }
-    /* put the arrow only when the playerhave enought money to purchase the 11th equipment */
+    /* put the arrow only when the player have enought money to purchase the 11th equipment */
     if (!m_panelEquipment11Global.isVisible()) {
         m_arrowRightButton.setVisible(false);
     }
-        /*if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()){
-            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
-            getLabo()->lvlUpLaboPiece(0);
-        }*/
-
 
     /* verifying money to buy equipment */
     m_panelEquipment2Global.setVisible(false);
