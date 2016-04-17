@@ -904,7 +904,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
         m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
         m_NbMonster++;
-        if (m_NbMonster<=20) {
+        if (m_NbMonster<=25) {
             m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
                                 m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
         }
