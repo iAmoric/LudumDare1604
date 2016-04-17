@@ -738,6 +738,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_clickAnimation3);
     m_clickAnimation3.setVisible(false);
 
+    m_whiteBoardAnimation.create("whiteBoardAnimation", 494, 82,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("whiteBoardAnimation"),false, 0.04, 336, 448, 21);
+    getContentPane()->addComponent(&m_whiteBoardAnimation);
+    m_whiteBoardAnimation.setVisible(false);
+
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
@@ -821,9 +826,6 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment20"));
     getContentPane()->addComponent(&m_equipment20);
 
-
-
-
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
@@ -852,6 +854,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_flamme2.setVisible(false);    //
     m_bulle.setVisible(false);  //
 
+    m_targetPanel = "tabEquipmentPanel";
+
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -870,19 +874,38 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_timeElapsed = 0;
     }
 
+    checkStateWhiteBoardAnimation();
+
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
-        displayStatsPanel();
+        if (m_targetPanel!="tabStatsPanel") {
+            m_targetPanel = "tabStatsPanel";
+            m_whiteBoardAnimation.setVisible(true);
+            m_whiteBoardAnimation.play();
+        }
+        //displayStatsPanel();
     }
 
     if (m_inputHandler.getComponentId() == "tabEquipmentButton"){
-        displayEquipmentPanel();
+        if (m_targetPanel!="tabEquipmentPanel") {
+            m_targetPanel = "tabEquipmentPanel";
+            m_whiteBoardAnimation.setVisible(true);
+            m_whiteBoardAnimation.play();
+        }
+        //displayEquipmentPanel();
     }
 
     if (m_inputHandler.getComponentId() == "tabScientistButton"){
-        displayScientistPanel();
+        if (m_targetPanel!="tabScientistPanel") {
+            m_targetPanel = "tabScientistPanel";
+            m_whiteBoardAnimation.setVisible(true);
+            m_whiteBoardAnimation.play();
+        }
+
+        //displayScientistPanel();
     }
 
     if (m_inputHandler.getComponentId() == "arrowLeftButton"){
+        //m_targetPanel = m_subTabEquipmentPanel1;
         m_subTabEquipmentPanel2.setVisible(false);
         m_subTabEquipmentPanel1.setVisible(true);
     }
@@ -1008,6 +1031,18 @@ void LaboratoryRoom::displayScientistPanel(){
     m_tabScientistPanel.setVisible(true);
 }
 
+void LaboratoryRoom::checkStateWhiteBoardAnimation(){
+    if(m_whiteBoardAnimation.isStopped()){
+        m_whiteBoardAnimation.setVisible(false);
+
+        if (m_targetPanel == "tabScientistPanel")
+            displayScientistPanel();
+        if (m_targetPanel == "tabEquipmentPanel")
+            displayEquipmentPanel();
+        if (m_targetPanel == "tabStatsPanel")
+            displayStatsPanel();
+    }
+}
 
 
 

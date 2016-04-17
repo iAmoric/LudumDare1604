@@ -196,6 +196,7 @@ private:
     NPanel m_iconResearch;
     NLabel m_labelTime;
     NPanel m_iconTime;
+	//NPanel m_targetPanel;
 
     AnimatableObject m_loading;
     AnimatableObject m_bulle;
@@ -206,11 +207,13 @@ private:
 	AnimatableObject m_clickAnimation1;
 	AnimatableObject m_clickAnimation2;
 	AnimatableObject m_clickAnimation3;
+	AnimatableObject m_whiteBoardAnimation;
 
     double m_timeElapsed;
 
     bool m_bool;
 
+	std::string m_targetPanel;
 
 public:
     // Constructor
@@ -231,6 +234,8 @@ public:
     void displayEquipmentPanel();
 
     void displayScientistPanel();
+
+	void checkStateWhiteBoardAnimation();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP
