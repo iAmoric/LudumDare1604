@@ -14,15 +14,17 @@ Labo::Labo() {
 
     m_ptr_stats = new Stats();
     m_ptr_monster = new Monster(50);
-    m_YPS, m_CPS = 0;
-    m_YPSBonus, m_CPSBonus = 1;
+    m_YPS = 0;
+    m_CPS = 1;
+    m_YPSBonus = 1;
+    m_CPSBonus = 1;
     m_money = 0;
     m_restartBonus = 1;
     m_year=0;
     m_reputationPointWaiting = 0;
     m_reputationPointOwned = 0;
     m_evolutionLevel = 1;
-    moneyGain = 0;
+    moneyGain = 1;
 
 
 }
@@ -74,10 +76,10 @@ void Labo::lvlUpScientific(unsigned int type) {
     }
 }
 
-//TODO Rajouter bonus scientific
+
 void Labo::updateYPS() {
     m_YPS = 0;
-    for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
+    for(unsigned int i = 0; i < m_LaboPieceVector.size() -1; i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
             m_YPS = m_YPS + m_LaboPieceVector.at(i)->getYPS();
     }
@@ -97,7 +99,7 @@ void Labo::updateCPS() {
 }
 
 
-void Labo::restart() {
+void Labo::restart(){
     m_ptr_stats->setActualMoney(0);
     m_restartBonus *= 1.1;
     m_reputationPointOwned += m_reputationPointWaiting;
@@ -107,7 +109,8 @@ void Labo::restart() {
     initLaboPieceVector();
     updateYPS();
     updateCPS();
-    m_YPS, m_CPS = 0;
+    m_YPS = 0;
+    m_CPS = 1;
     if(m_evolutionLevel > m_ptr_stats->getM_nbEvoMax()){
         m_ptr_stats->setNbEvoMax(m_evolutionLevel);
     }
@@ -136,29 +139,25 @@ void Labo::evolution() {
  * Upload also the time
  */
 void Labo::grant(){
-
-
     for(unsigned int i = 1; i < m_LaboPieceVector.size()-2; i++ ){
         if(m_LaboPieceVector.at(i)->isBought()){
             moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
         }
     }
-    m_money += moneyGain;
+    m_money = m_money + moneyGain;
     m_year += m_YPS;
     m_ptr_stats->incrementSpentTime();
-    if(m_year == m_ptr_monster->getAnnee()){
+    if(m_year >= m_ptr_monster->getAnnee()){
         // TODO : create function to auto-generate year of a monster
-        m_ptr_monster->setAnnee(3000);
-        m_year = 0;
+        m_ptr_monster->setAnnee(30*m_YPS);
     }
 }
 
 void Labo::click() {
     m_year += m_CPS;
-    if(m_year == m_ptr_monster->getAnnee()){
+    if(m_year >= m_ptr_monster->getAnnee()){
         // TODO : create function to auto-generate year of a monster
-        m_ptr_monster->setAnnee(3000);
-        m_year = 0;
+        m_ptr_monster->setAnnee(30*m_YPS);
     }
 }
 unsigned long long Labo::getM_year(){
@@ -167,6 +166,11 @@ unsigned long long Labo::getM_year(){
 unsigned long long Labo::getMoney(){
     return m_money;
 }
+
+void Labo::setMoney(unsigned long long money){
+    m_money = money;
+}
+
 unsigned long long Labo::getCPS(){
     return m_CPS;
 }

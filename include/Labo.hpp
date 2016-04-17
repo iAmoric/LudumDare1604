@@ -61,6 +61,7 @@ public:
     unsigned long long int getMoneyGain();
     std::vector<LaboPiece *> getM_LaboPieceVector();
 
+    void setMoney(unsigned long long int money);
 
     Monster *getM_ptr_monster();
 

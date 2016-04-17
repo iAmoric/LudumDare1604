@@ -196,7 +196,6 @@ private:
     NPanel m_iconResearch;
     NLabel m_labelTime;
     NPanel m_iconTime;
-	//NPanel m_targetPanel;
 
     AnimatableObject m_loading;
     AnimatableObject m_bulle;
@@ -213,6 +212,7 @@ private:
     double m_timeElapsed;
 
     bool m_bool;
+	Labo* getLabo();
 
 	std::string m_targetPanel;
 

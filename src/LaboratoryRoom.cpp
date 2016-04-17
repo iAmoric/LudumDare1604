@@ -875,6 +875,32 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
     checkStateWhiteBoardAnimation();
 
+
+
+    Units unit = Units();
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
+        m_labelTime.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getYPS());
+       m_labelResearch.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getCPS());
+        m_labelClick.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoney());
+        m_labelBank.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoneyGain());
+        m_labelMoney.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
+        m_labelReputation.setText(unit.toWString());
+
+    if (m_inputHandler.getComponentId() == "monster"){
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
+    }
+
+    if (m_inputHandler.getComponentId() == "tabStatsButton"){
     if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
         m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
         m_NbMonster++;
@@ -918,6 +944,11 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel1.setVisible(false);
         m_subTabEquipmentPanel2.setVisible(true);
     }
+
+        /*if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()){
+            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
+            getLabo()->lvlUpLaboPiece(0);
+        }*/
 
     //TODO : Update des stats (argent, yps etc..)
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
@@ -1240,6 +1271,10 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     basicInput(e, frameTime);
     basicDraw(window);
+}
+
+Labo* LaboratoryRoom::getLabo(){
+    return m_ptr_managerGroup->ptr_gameManager->getLabo();
 }
 
 void LaboratoryRoom::undisplayAllTabs(){

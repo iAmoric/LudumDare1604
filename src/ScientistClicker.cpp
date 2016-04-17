@@ -397,7 +397,7 @@ int main(int argc, char ** argv)
     //Boucle de jeu
     sf::Clock clock;
     while (window.isOpen())
-    {   
+    {
         // Exiting program
         if(!managerGroup->ptr_targetManager->isExit()) {
             managerGroup->ptr_musicManager->stopPlaylist();
