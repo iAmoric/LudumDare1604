@@ -76,6 +76,7 @@ private:
 	NPanel m_panelReputation;
 	NLabel m_reputation;
 	NLabel m_labelLevel;
+	NLabel m_suppReputation;
 
 	NPanel m_panelGoldEquipment1;
 	NPanel m_panelGoldEquipment2;

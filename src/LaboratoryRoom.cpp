@@ -756,29 +756,32 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     //Second part of the stats
     m_panelYear.create("imgYear",500,250,ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
-    m_year.create("labelYear",525,252,15,&m_fontLabel
+    m_year.create("labelYear",525,250,15,&m_fontLabel
             ,cast::toWstring("Actual year / years to evolve")
             , sf::Color::Black);
-    m_panelMoney.create("imgMoney",738,250,ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
-    m_money.create("labelMoney",768,252,15,&m_fontLabel
+    m_panelMoney.create("imgMoney",730,350,ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
+    m_money.create("labelMoney",755,350,15,&m_fontLabel
             ,cast::toWstring("Money you have")
             , sf::Color::Black);
     m_panelMoneyPS.create("imgMoneyPS",500,350,ptr_managerGroup->ptr_textureManager->getTexture("money-icon"));
-    m_moneyPS.create("labelMoneyPS",525,352,15,&m_fontLabel
+    m_moneyPS.create("labelMoneyPS",525,350,15,&m_fontLabel
             ,cast::toWstring("Money earned per second")
             , sf::Color::Black);
-    m_panelClickPS.create("imgClickPS",500,300,ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
-    m_clickPS.create("labelClickPS",525,302,15,&m_fontLabel
+    m_panelClickPS.create("imgClickPS",730,250,ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
+    m_clickPS.create("labelClickPS",755,250,15,&m_fontLabel
             ,cast::toWstring("Years earned by a click")
             , sf::Color::Black);
-    m_panelYearPS.create("imgYearPS",735,300,ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
-    m_yearPS.create("labelYearPS",760,302,15,&m_fontLabel
+    m_panelYearPS.create("imgYearPS",730,300,ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
+    m_yearPS.create("labelYearPS",755,300,15,&m_fontLabel
             ,cast::toWstring("Years earned per second")
             , sf::Color::Black);
-    m_panelReputation.create("imgReputation",735,350,ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
-    m_reputation.create("labelReputation",760,344,15,&m_fontLabel
-            ,cast::toWstring("Reputation you'll\nwin on reset")
+    m_panelReputation.create("imgReputation",500,300,ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_reputation.create("labelReputation",525,300,15,&m_fontLabel
+            ,cast::toWstring("Reputation you have")
             , sf::Color::Black);
+    m_suppReputation.create("labelSuppReputation",525,315,15,&m_fontLabel
+    ,cast::toWstring("(reputation earned by reset)")
+    ,sf::Color::Black);
 
     m_tabStatsPanel.addComponent(&m_panelYear);
     m_tabStatsPanel.addComponent(&m_year);
@@ -792,6 +795,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabStatsPanel.addComponent(&m_yearPS);
     m_tabStatsPanel.addComponent(&m_panelReputation);
     m_tabStatsPanel.addComponent(&m_reputation);
+    m_tabStatsPanel.addComponent(&m_suppReputation);
     /* Animation */
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
