@@ -13,7 +13,7 @@ Labo::Labo() {
     m_ScientificVector.push_back(new Scientific("Yvonne", 5, 2));
 
     m_ptr_stats = new Stats();
-    m_ptr_monster = new Monster(50);
+    m_ptr_monster = new Monster(3);
     m_YPS = 0;
     m_CPS = 1;
     m_YPSBonus = 1;
@@ -149,7 +149,7 @@ void Labo::grant(){
     m_ptr_stats->incrementSpentTime();
     if(m_year >= m_ptr_monster->getAnnee()){
         // TODO : create function to auto-generate year of a monster
-        m_ptr_monster->setAnnee(30*m_YPS);
+        m_ptr_monster->setAnnee(30);
     }
 }
 
@@ -157,7 +157,7 @@ void Labo::click() {
     m_year += m_CPS;
     if(m_year >= m_ptr_monster->getAnnee()){
         // TODO : create function to auto-generate year of a monster
-        m_ptr_monster->setAnnee(30*m_YPS);
+        m_ptr_monster->setAnnee(30);
     }
 }
 unsigned long long Labo::getM_year(){

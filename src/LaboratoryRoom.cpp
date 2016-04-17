@@ -77,9 +77,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_timeElapsed = 0;
 
     /* Monster */
+    m_NbMonster = 1;
     m_monster.create("monster", 140, 140,
-                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"),
-                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"));
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
     getContentPane()->addComponent(&m_monster);
 
     /* Background */
@@ -903,8 +904,10 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
         m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
         m_NbMonster++;
-        m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"),
-                            m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"));
+        if (m_NbMonster<=20) {
+            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
+                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
+        }
     }
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
@@ -1042,6 +1045,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "buttonEquipment6"){
         if (!m_equipment7.isVisible()) {
             m_equipment6.setVisible(true);
+            m_flamme1.setVisible(true);
         }
         m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->nextLvl();
 
@@ -1104,6 +1108,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "buttonEquipment10"){
         if (!m_equipment12.isVisible()) {
             m_equipment10.setVisible(true);
+            m_flamme2.setVisible(true);
         }
         m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->nextLvl();
 
