@@ -62,6 +62,10 @@ public:
     std::vector<LaboPiece *> getM_LaboPieceVector();
 
     void setMoney(unsigned long long int money);
+
+    Monster *getM_ptr_monster();
+
+    Stats *getM_ptr_stats();
 };
 
 #endif //CLIENT_LABO_HPP

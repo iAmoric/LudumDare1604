@@ -71,7 +71,7 @@ set(SOURCE_FILES include/AnimatableObject.hpp
         include/Units.hpp
         src/Monster.cpp
         include/Monster.hpp
-        include/Stats.hpp)
+        include/Stats.hpp include/ico.hpp)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 message(WARNING "CMake runtime output Directory : ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")

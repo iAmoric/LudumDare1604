@@ -191,12 +191,19 @@ unsigned long long Labo::getMoneyGain(){
 }
 
 void Labo::isPurchasablePiece(){
-    for (int i = 0; i < m_LaboPieceVector.size(); ++i) {
-        if(m_money >= m_LaboPieceVector.at(i)->getPrice()){
+    for (int i = 1; i < m_LaboPieceVector.size(); ++i) {
+        if(m_money >= m_LaboPieceVector.at(i)->getPrice() && m_LaboPieceVector.at(i-1)->isBought()){
             m_LaboPieceVector.at(i)->setBuyable();
         }
     }
 }
+Monster* Labo::getM_ptr_monster(){
+    return m_ptr_monster;
+}
+Stats* Labo::getM_ptr_stats(){
+    return m_ptr_stats;
+}
+
 std::vector<LaboPiece *> Labo::getM_LaboPieceVector() {
     return m_LaboPieceVector;
 }

@@ -88,25 +88,25 @@ void ResourceLoader::load() {
 	a_tm.addTexture("background", pathView + "background.png");
 
 	/* Equipments to buy */
-	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png"); //
+	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png");
 	a_tm.addTexture("equipment2", pathEquipment + "2test_tubes.png"); // à mettre à la place du 1
-	a_tm.addTexture("equipment3", pathEquipment + "coffee.png"); //
+	a_tm.addTexture("equipment3", pathEquipment + "coffee.png");
 	a_tm.addTexture("equipment4", pathEquipment + "3test_tubes.png"); // à mettre à la place du 2
 	a_tm.addTexture("equipment5", pathEquipment + "4test_tubes.png"); // à mettre à la place du 4
-	a_tm.addTexture("equipment6", pathEquipment + "purple_balloon.png"); //
+	a_tm.addTexture("equipment6", pathEquipment + "purple_balloon.png");
 	a_tm.addTexture("equipment7", pathEquipment + "heanting_mantle.png"); // à mettre à la place du 6
-	a_tm.addTexture("equipment8", pathEquipment + "1flask.png"); //
+	a_tm.addTexture("equipment8", pathEquipment + "1flask.png");
 	a_tm.addTexture("equipment9", pathEquipment + "2flasks.png"); // à mettre à la place du 8
-	a_tm.addTexture("equipment10", pathEquipment + "cool_mantle_balloon.png");//
-	a_tm.addTexture("equipment11", pathEquipment + "pink_flask.png"); //
+	a_tm.addTexture("equipment10", pathEquipment + "cool_mantle_balloon.png");
+	a_tm.addTexture("equipment11", pathEquipment + "pink_flask.png");
 	a_tm.addTexture("equipment12", pathEquipment + "heanting_mantle_balloon.png"); // à mettre à la place du 10
 	a_tm.addTexture("equipment13", pathEquipment + "5test_tubes.png"); // à mettre à la place du 5
 	a_tm.addTexture("equipment14", pathEquipment + "6test_tubes.png"); // à mettre à la place du 13
 	a_tm.addTexture("equipment15", pathEquipment + "7test_tubes.png"); // à mettre à la place du 14
 	a_tm.addTexture("equipment16", pathEquipment + "8test_tubes.png"); // à mettre à la place du 15
-	a_tm.addTexture("equipment17", pathEquipment + "pink_burette.png"); //
-	a_tm.addTexture("equipment18", pathEquipment + "medal.png"); //
-	a_tm.addTexture("equipment19", pathEquipment + "microscope.png"); //
+	a_tm.addTexture("equipment17", pathEquipment + "pink_burette.png");
+	a_tm.addTexture("equipment18", pathEquipment + "medal.png");
+	a_tm.addTexture("equipment19", pathEquipment + "microscope.png");
 	a_tm.addTexture("equipment20", pathEquipment + "beer.png"); // à mettre à la place du 3
 
 	/* Color Buttons */
@@ -135,9 +135,38 @@ void ResourceLoader::load() {
 	a_tm.addTexture("sergePanel", pathButton + "sergeButton.png");
 	a_tm.addTexture("jeannePanel", pathButton + "jeanneButton.png");
 
-	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_5.png");
+	/* Monster */
+	//Cellule
+	a_tm.addTexture("monster_1", pathMonster + "cellule/cellule_1.png");
+	a_tm.addTexture("monster_2", pathMonster + "cellule/cellule_2.png");
+	a_tm.addTexture("monster_3", pathMonster + "cellule/cellule_3.png");
+	a_tm.addTexture("monster_4", pathMonster + "cellule/cellule_4.png");
+	a_tm.addTexture("monster_5", pathMonster + "cellule/cellule_5.png");
+	//Eau
+	a_tm.addTexture("monster_6", pathMonster + "eau/eau_1.png");
+	a_tm.addTexture("monster_7", pathMonster + "eau/eau_2.png");
+	a_tm.addTexture("monster_8", pathMonster + "eau/eau_3.png");
+	a_tm.addTexture("monster_9", pathMonster + "eau/eau_4.png");
+	a_tm.addTexture("monster_10", pathMonster + "eau/eau_5.png");
+	//Terre
+	a_tm.addTexture("monster_11", pathMonster + "terre/terre_1.png");
+	a_tm.addTexture("monster_12", pathMonster + "terre/terre_2.png");
+	a_tm.addTexture("monster_13", pathMonster + "terre/terre_3.png");
+	a_tm.addTexture("monster_14", pathMonster + "terre/terre_4.png");
+	a_tm.addTexture("monster_15", pathMonster + "terre/terre_5.png");
+	//Air
+	a_tm.addTexture("monster_16", pathMonster + "air/air_1.png");
+	a_tm.addTexture("monster_17", pathMonster + "air/air_2.png");
+	a_tm.addTexture("monster_18", pathMonster + "air/air_3.png");
+	a_tm.addTexture("monster_19", pathMonster + "air/air_4.png");
+	a_tm.addTexture("monster_20", pathMonster + "air/air_5.png");
+	//Espace
+	a_tm.addTexture("monster_21", pathMonster + "espace/espace_1.png");
+	a_tm.addTexture("monster_22", pathMonster + "espace/espace_2.png");
+	a_tm.addTexture("monster_23", pathMonster + "espace/espace_3.png");
+	a_tm.addTexture("monster_24", pathMonster + "espace/espace_4.png");
+	a_tm.addTexture("monster_25", pathMonster + "espace/espace_5.png");
 
-	a_tm.addTexture("monster", pathMonster + "espace/espace_5.png");
 	a_tm.addTexture("background", pathView + "background.png");
 
 	/* animation */
@@ -150,10 +179,15 @@ void ResourceLoader::load() {
 	a_tm.addTexture("animatedPlay", pathAnimation + "animatedPlay.png");
 	a_tm.addTexture("searchBar", pathAnimation + "searchBar.png");
 	a_tm.addTexture("searchBarLoop", pathAnimation + "searchBarLoop.png");
+	a_tm.addTexture("clickAnimation1", pathAnimation + "clickAnimation1.png");
+	a_tm.addTexture("clickAnimation2", pathAnimation + "clickAnimation2.png");
+	a_tm.addTexture("clickAnimation3", pathAnimation + "clickAnimation3.png");
 
 	/* Mouse */
 	a_tm.addTexture("mouse", pathSprite + "mouse_pointer.png");
 
+	/* Money Gold */
+	a_tm.addTexture("gold", pathEquipment + "gold.png");
 
 	a_mm.setState(true);
 	a_tm.setState(true);

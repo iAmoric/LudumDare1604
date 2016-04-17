@@ -149,21 +149,21 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1"),
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_panelEquipment1Global.addComponent(&m_buttonEquipment1);
-    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
-            ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
-    std::wstring informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
-    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
-            ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
+    std::wstring informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
+    ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
     std::wstring informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment1Price.create("labelEquipment1Price", 508, 88+60*down, 22,
                              &m_fontLabel, informationEquipmentPrice, sf::Color::White);
     m_labelEquipment1Name.create("labelEquipment1Name", 585, 91+60*down, 18,
                                  &m_fontLabel, L"Orange Juice", sf::Color::Black);
-    std::wstring informationsEquipment1 = L"level " + cast::toWstring(
-            ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
+    std::wstring informationsEquipment1 = L"level " + cast::toWstring(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
                                           + informationEquipmentYPS;
     m_labelEquipment1.create("labelEquipment1Name", 508, 118+60*down, 20,
                                  &m_fontLabel, informationsEquipment1, sf::Color::Black);
+    m_panelGoldEquipment1.create("gold1", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment1Global.addComponent(&m_panelGoldEquipment1);
     m_panelEquipment1Global.addComponent(&m_labelEquipment1Price);
     m_panelEquipment1Global.addComponent(&m_labelEquipment1Name);
     m_panelEquipment1Global.addComponent(&m_labelEquipment1);
@@ -177,7 +177,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
     m_panelEquipment2Global.addComponent(&m_buttonEquipment2);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment2Price.create("labelEquipment2Price", 508, 88+60*down, 22,
@@ -188,6 +188,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment2.create("labelEquipment2Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment2, sf::Color::Black);
+    m_panelGoldEquipment2.create("gold2", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment2Global.addComponent(&m_panelGoldEquipment2);
     m_panelEquipment2Global.addComponent(&m_labelEquipment2Price);
     m_panelEquipment2Global.addComponent(&m_labelEquipment2Name);
     m_panelEquipment2Global.addComponent(&m_labelEquipment2);
@@ -201,7 +204,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
     m_panelEquipment3Global.addComponent(&m_buttonEquipment3);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment3Price.create("labelEquipment3Price", 508, 88+60*down, 22,
@@ -212,6 +215,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment3.create("labelEquipment3Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment3, sf::Color::Black);
+    m_panelGoldEquipment3.create("gold3", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment3Global.addComponent(&m_panelGoldEquipment3);
     m_panelEquipment3Global.addComponent(&m_labelEquipment3Price);
     m_panelEquipment3Global.addComponent(&m_labelEquipment3Name);
     m_panelEquipment3Global.addComponent(&m_labelEquipment3);
@@ -225,7 +231,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_panelEquipment4Global.addComponent(&m_buttonEquipment4);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment4Price.create("labelEquipment4Price", 508, 88+60*down, 22,
@@ -236,6 +242,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment4.create("labelEquipment4Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment4, sf::Color::Black);
+    m_panelGoldEquipment4.create("gold4", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment4Global.addComponent(&m_panelGoldEquipment4);
     m_panelEquipment4Global.addComponent(&m_labelEquipment4Price);
     m_panelEquipment4Global.addComponent(&m_labelEquipment4Name);
     m_panelEquipment4Global.addComponent(&m_labelEquipment4);
@@ -249,7 +258,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button5Press"));
     m_panelEquipment5Global.addComponent(&m_buttonEquipment5);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment5Price.create("labelEquipment5Price", 508, 88+60*down, 22,
@@ -260,6 +269,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment5.create("labelEquipment5Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment5, sf::Color::Black);
+    m_panelGoldEquipment5.create("gold5", 560, 95+60*down,
+                                ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment5Global.addComponent(&m_panelGoldEquipment5);
     m_panelEquipment5Global.addComponent(&m_labelEquipment5Price);
     m_panelEquipment5Global.addComponent(&m_labelEquipment5Name);
     m_panelEquipment5Global.addComponent(&m_labelEquipment5);
@@ -273,7 +285,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button6Press"));
     m_panelEquipment6Global.addComponent(&m_buttonEquipment6);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment6Price.create("labelEquipment6Price", 738, 88+60*down, 22,
@@ -284,6 +296,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment6.create("labelEquipment6Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment6, sf::Color::Black);
+    m_panelGoldEquipment6.create("gold6", 790, 95+60*down,
+                                ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment6Global.addComponent(&m_panelGoldEquipment6);
     m_panelEquipment6Global.addComponent(&m_labelEquipment6Price);
     m_panelEquipment6Global.addComponent(&m_labelEquipment6Name);
     m_panelEquipment6Global.addComponent(&m_labelEquipment6);
@@ -297,7 +312,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button7Press"));
     m_subTabEquipmentPanel1.addComponent(&m_buttonEquipment7);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment7Price.create("labelEquipment7Price", 738, 88+60*down, 22,
@@ -308,6 +323,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment7.create("labelEquipment7Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment7, sf::Color::Black);
+    m_panelGoldEquipment7.create("gold7", 790, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment7Global.addComponent(&m_panelGoldEquipment7);
     m_panelEquipment7Global.addComponent(&m_labelEquipment7Price);
     m_panelEquipment7Global.addComponent(&m_labelEquipment7Name);
     m_panelEquipment7Global.addComponent(&m_labelEquipment7);
@@ -321,7 +339,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button8Press"));
     m_panelEquipment8Global.addComponent(&m_buttonEquipment8);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment8Price.create("labelEquipment8Price", 738, 88+60*down, 22,
@@ -332,6 +350,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment8.create("labelEquipment8Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment8, sf::Color::Black);
+    m_panelGoldEquipment8.create("gold8", 790, 95+60*down,
+                                ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment8Global.addComponent(&m_panelGoldEquipment8);
     m_panelEquipment8Global.addComponent(&m_labelEquipment8Price);
     m_panelEquipment8Global.addComponent(&m_labelEquipment8Name);
     m_panelEquipment8Global.addComponent(&m_labelEquipment8);
@@ -345,7 +366,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_panelEquipment9Global.addComponent(&m_buttonEquipment9);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment9Price.create("labelEquipment9Price", 738, 88+60*down, 22,
@@ -356,6 +377,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment9.create("labelEquipment9Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment9, sf::Color::Black);
+    m_panelGoldEquipment9.create("gold9", 790, 95+60*down,
+                                ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment9Global.addComponent(&m_panelGoldEquipment9);
     m_panelEquipment9Global.addComponent(&m_labelEquipment9Price);
     m_panelEquipment9Global.addComponent(&m_labelEquipment9Name);
     m_panelEquipment9Global.addComponent(&m_labelEquipment9);
@@ -369,7 +393,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
     m_panelEquipment10Global.addComponent(&m_buttonEquipment10);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment10Price.create("labelEquipment10Price", 738, 88+60*down, 22,
@@ -380,6 +404,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment10.create("labelEquipment10Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment10, sf::Color::Black);
+    m_panelGoldEquipment10.create("gold10", 790, 95+60*down,
+                                ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment10Global.addComponent(&m_panelGoldEquipment10);
     m_panelEquipment10Global.addComponent(&m_labelEquipment10Price);
     m_panelEquipment10Global.addComponent(&m_labelEquipment10Name);
     m_panelEquipment10Global.addComponent(&m_labelEquipment10);
@@ -394,7 +421,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
     m_panelEquipment11Global.addComponent(&m_buttonEquipment11);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment11Price.create("labelEquipment11Price", 508, 88+60*down, 22,
@@ -405,6 +432,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment11.create("labelEquipment11Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment11, sf::Color::Black);
+    m_panelGoldEquipment11.create("gold11", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment11Global.addComponent(&m_panelGoldEquipment11);
     m_panelEquipment11Global.addComponent(&m_labelEquipment11Price);
     m_panelEquipment11Global.addComponent(&m_labelEquipment11Name);
     m_panelEquipment11Global.addComponent(&m_labelEquipment11);
@@ -418,7 +448,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_panelEquipment12Global.addComponent(&m_buttonEquipment12);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment12Price.create("labelEquipment12Price", 508, 88+60*down, 22,
@@ -429,6 +459,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment12.create("labelEquipment12Name", 508, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment12, sf::Color::Black);
+    m_panelGoldEquipment12.create("gold12", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment12Global.addComponent(&m_panelGoldEquipment12);
     m_panelEquipment12Global.addComponent(&m_labelEquipment12Price);
     m_panelEquipment12Global.addComponent(&m_labelEquipment12Name);
     m_panelEquipment12Global.addComponent(&m_labelEquipment12);
@@ -442,7 +475,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button5Press"));
     m_panelEquipment13Global.addComponent(&m_buttonEquipment13);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment13Price.create("labelEquipment13Price", 508, 88+60*down, 22,
@@ -453,6 +486,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                            + informationEquipmentYPS;
     m_labelEquipment13.create("labelEquipment13Name", 508, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment13, sf::Color::Black);
+    m_panelGoldEquipment13.create("gold13", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment13Global.addComponent(&m_panelGoldEquipment13);
     m_panelEquipment13Global.addComponent(&m_labelEquipment13Price);
     m_panelEquipment13Global.addComponent(&m_labelEquipment13Name);
     m_panelEquipment13Global.addComponent(&m_labelEquipment13);
@@ -466,7 +502,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button6Press"));
     m_panelEquipment14Global.addComponent(&m_buttonEquipment14);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment14Price.create("labelEquipment14Price", 508, 88+60*down, 22,
@@ -477,6 +513,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                            + informationEquipmentYPS;
     m_labelEquipment14.create("labelEquipment14Name", 508, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment14, sf::Color::Black);
+    m_panelGoldEquipment14.create("gold14", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment14Global.addComponent(&m_panelGoldEquipment14);
     m_panelEquipment14Global.addComponent(&m_labelEquipment14Price);
     m_panelEquipment14Global.addComponent(&m_labelEquipment14Name);
     m_panelEquipment14Global.addComponent(&m_labelEquipment14);
@@ -491,7 +530,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button7Press"));
     m_panelEquipment15Global.addComponent(&m_buttonEquipment15);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment15Price.create("labelEquipment15Price", 508, 88+60*down, 22,
@@ -502,6 +541,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                            + informationEquipmentYPS;
     m_labelEquipment15.create("labelEquipment15Name", 508, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment15, sf::Color::Black);
+    m_panelGoldEquipment15.create("gold15", 560, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment15Global.addComponent(&m_panelGoldEquipment15);
     m_panelEquipment15Global.addComponent(&m_labelEquipment15Price);
     m_panelEquipment15Global.addComponent(&m_labelEquipment15Name);
     m_panelEquipment15Global.addComponent(&m_labelEquipment15);
@@ -515,7 +557,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button8Press"));
     m_panelEquipment16Global.addComponent(&m_buttonEquipment16);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment16Price.create("labelEquipment16Price", 738, 88+60*down, 22,
@@ -526,6 +568,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                           + informationEquipmentYPS;
     m_labelEquipment16.create("labelEquipment16Name", 738, 118+60*down, 20,
                              &m_fontLabel, informationsEquipment16, sf::Color::Black);
+    m_panelGoldEquipment16.create("gold16", 790, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment16Global.addComponent(&m_panelGoldEquipment16);
     m_panelEquipment16Global.addComponent(&m_labelEquipment16Price);
     m_panelEquipment16Global.addComponent(&m_labelEquipment16Name);
     m_panelEquipment16Global.addComponent(&m_labelEquipment16);
@@ -539,7 +584,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button1Press"));
     m_panelEquipment17Global.addComponent(&m_buttonEquipment17);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment17Price.create("labelEquipment17Price", 738, 88+60*down, 22,
@@ -550,6 +595,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                            + informationEquipmentYPS;
     m_labelEquipment17.create("labelEquipment17Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment17, sf::Color::Black);
+    m_panelGoldEquipment17.create("gold17", 790, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment17Global.addComponent(&m_panelGoldEquipment17);
     m_panelEquipment17Global.addComponent(&m_labelEquipment17Price);
     m_panelEquipment17Global.addComponent(&m_labelEquipment17Name);
     m_panelEquipment17Global.addComponent(&m_labelEquipment17);
@@ -563,7 +611,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button2Press"));
     m_panelEquipment18Global.addComponent(&m_buttonEquipment18);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment18Price.create("labelEquipment18Price", 738, 88+60*down, 22,
@@ -574,6 +622,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                            + informationEquipmentYPS;
     m_labelEquipment18.create("labelEquipment18Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment18, sf::Color::Black);
+    m_panelGoldEquipment18.create("gold18", 790, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment18Global.addComponent(&m_panelGoldEquipment18);
     m_panelEquipment18Global.addComponent(&m_labelEquipment18Price);
     m_panelEquipment18Global.addComponent(&m_labelEquipment18Name);
     m_panelEquipment18Global.addComponent(&m_labelEquipment18);
@@ -587,7 +638,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                               ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
     m_panelEquipment19Global.addComponent(&m_buttonEquipment19);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment19Price.create("labelEquipment19Price", 738, 88+60*down, 22,
@@ -598,6 +649,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                            + informationEquipmentYPS;
     m_labelEquipment19.create("labelEquipment19Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment19, sf::Color::Black);
+    m_panelGoldEquipment19.create("gold19", 790, 95+60*down,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment19Global.addComponent(&m_panelGoldEquipment19);
     m_panelEquipment19Global.addComponent(&m_labelEquipment19Price);
     m_panelEquipment19Global.addComponent(&m_labelEquipment19Name);
     m_panelEquipment19Global.addComponent(&m_labelEquipment19);
@@ -611,7 +665,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_panelEquipment20Global.addComponent(&m_buttonEquipment20);
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getPrice());
-    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" Gold";
+    informationEquipmentPrice = ptr_managerGroup->ptr_gameManager->getUnits()->toWString();
     ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getYPS());
     informationEquipmentYPS = ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS ";
     m_labelEquipment20Price.create("labelEquipment20Price", 738, 88+60*down, 22,
@@ -622,6 +676,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                            + informationEquipmentYPS;
     m_labelEquipment20.create("labelEquipment20Name", 738, 118+60*down, 20,
                               &m_fontLabel, informationsEquipment20, sf::Color::Black);
+    m_panelGoldEquipment20.create("gold20", 790, 95+60*down,
+                                  ptr_managerGroup->ptr_textureManager->getTexture("gold"));
+    m_panelEquipment20Global.addComponent(&m_panelGoldEquipment20);
     m_panelEquipment20Global.addComponent(&m_labelEquipment20Price);
     m_panelEquipment20Global.addComponent(&m_labelEquipment20Name);
     m_panelEquipment20Global.addComponent(&m_labelEquipment20);
@@ -665,6 +722,21 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_coffeeSmoke.create("coffeeSmoke", 195, 475,
                          ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.27, 60, 50, 20);
+
+    m_clickAnimation1.create("clickAnimation1", 200, 175,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.02, 192, 192, 7);
+    getContentPane()->addComponent(&m_clickAnimation1);
+    m_clickAnimation1.setVisible(false);
+
+    m_clickAnimation2.create("clickAnimation2", 200, 175,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.018, 192, 192, 8);
+    getContentPane()->addComponent(&m_clickAnimation2);
+    m_clickAnimation2.setVisible(false);
+
+    m_clickAnimation3.create("clickAnimation3", 200, 175,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation3"),false, 0.018, 192, 192, 8);
+    getContentPane()->addComponent(&m_clickAnimation3);
+    m_clickAnimation3.setVisible(false);
 
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
@@ -754,25 +826,25 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     /* Init visible*/
     m_equipment1.setVisible(false);
-    m_equipment2.setVisible(false);
-    m_equipment3Panel.setVisible(false); //
-    m_equipment4.setVisible(false);
-    m_equipment5.setVisible(false);
+    m_equipment2.setVisible(false);         //Remplace le 1
+    m_equipment3Panel.setVisible(false);
+    m_equipment4.setVisible(false);         //Remplace le 2
+    m_equipment5.setVisible(false);         //Remplace le 4
     m_equipment6.setVisible(false);
-    m_equipment7.setVisible(false); //
+    m_equipment7.setVisible(false);         //Remplace le 6
     m_equipment8.setVisible(false);
-    m_equipment9.setVisible(false); //
+    m_equipment9.setVisible(false);         //Remplace le 8
     m_equipment10.setVisible(false);
-    m_equipment11.setVisible(false);    //
-    m_equipment12.setVisible(false);    //
-    m_equipment13.setVisible(false);
-    m_equipment14.setVisible(false);
-    m_equipment15.setVisible(false);
-    m_equipment16.setVisible(false);    //
-    m_equipment17.setVisible(false);    //
-    m_equipment18.setVisible(false);    //
-    m_equipment19.setVisible(false);    //
-    m_equipment20.setVisible(false);
+    m_equipment11.setVisible(false);
+    m_equipment12.setVisible(false);        //Remplace le 10
+    m_equipment13.setVisible(false);        //Remplace le 5
+    m_equipment14.setVisible(false);        //Remplace le 13
+    m_equipment15.setVisible(false);        //Remplace le 14
+    m_equipment16.setVisible(false);        //Remplace le 15
+    m_equipment17.setVisible(false);
+    m_equipment18.setVisible(false);
+    m_equipment19.setVisible(false);
+    m_equipment20.setVisible(false);        //Remplace le 3
     m_subTabEquipmentPanel2.setVisible(false);
     m_tabStatsPanel.setVisible(false);
     m_tabScientistPanel.setVisible(false);
@@ -793,7 +865,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         return;
 
     m_timeElapsed += frameTime;
-    if(m_timeElapsed >= 1){
+    if(m_timeElapsed >= frameTime){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
     }
@@ -823,6 +895,13 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
+    if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
+        m_NbMonster++;
+        m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"),
+                            m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"));
+    }
+    if (m_inputHandler.getComponentId() == "tabStatsButton") {
         displayStatsPanel();
     }
 
@@ -844,34 +923,329 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel2.setVisible(true);
     }
 
-    if (m_inputHandler.getComponentId() == "buttonEquipment1"){
-        std::cout << m_ptr_managerGroup->ptr_gameManager->getLabo()->getMoney() << std::endl;
-        std::cout << "YPS : " + m_ptr_managerGroup->ptr_gameManager->getLabo()->getYPS() << std::endl;
         /*if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()){
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
             getLabo()->lvlUpLaboPiece(0);
         }*/
+
+    //TODO : Update des stats (argent, yps etc..)
+    if (m_inputHandler.getComponentId() == "buttonEquipment1"){
+        if (!m_equipment2.isVisible() || !m_equipment4.isVisible() ||
+                !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+                !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment1.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getPrice());
+        m_labelEquipment1Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
+                                               + informationEquipmentYPS;
+        m_labelEquipment1.setText(informationsEquipment);
+
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment2"){
-        std::cout << "click bouton 2" << 2 << std::endl;
+        if (!m_equipment4.isVisible() || !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+                !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment1.setVisible(false);
+            m_equipment2.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getPrice());
+        m_labelEquipment2Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getLevel()) + L"   "
+                                              + informationEquipmentYPS;
+        m_labelEquipment2.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment3"){
-        std::cout << "click bouton 3" << 3 << std::endl;
+        if (!m_equipment20.isVisible()) {
+            m_equipment3Panel.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getPrice());
+        m_labelEquipment3Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment3.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment4"){
-        std::cout << "click bouton 4" << 4 << std::endl;
+        if (!m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+            !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment2.setVisible(false);
+            m_equipment4.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getPrice());
+        m_labelEquipment4Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment4.setText(informationsEquipment);
     }
     if (m_inputHandler.getComponentId() == "buttonEquipment5"){
-        std::cout << "click bouton 5" << 5 << std::endl;
+        if (!m_equipment13.isVisible() || !m_equipment14.isVisible() ||
+                !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment4.setVisible(false);
+            m_equipment5.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getPrice());
+        m_labelEquipment5Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment5.setText(informationsEquipment);
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment6"){
-        std::cout << "click bouton 6" << 6 << std::endl;
+        if (!m_equipment7.isVisible()) {
+            m_equipment6.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getPrice());
+        m_labelEquipment6Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment6.setText(informationsEquipment);
     }
 
+    if (m_inputHandler.getComponentId() == "buttonEquipment7"){
+        m_equipment6.setVisible(false);
+        m_equipment7.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getPrice());
+        m_labelEquipment7Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment7.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment8"){
+        if (!m_equipment9.isVisible()) {
+            m_equipment8.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getPrice());
+        m_labelEquipment8Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment8.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment9"){
+        m_equipment8.setVisible(false);
+        m_equipment9.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getPrice());
+        m_labelEquipment9Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment9.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment10"){
+        if (!m_equipment12.isVisible()) {
+            m_equipment10.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getPrice());
+        m_labelEquipment10Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment10.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment11"){
+        m_equipment11.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getPrice());
+        m_labelEquipment11Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment11.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment12"){
+        m_equipment10.setVisible(false);
+        m_equipment12.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getPrice());
+        m_labelEquipment12Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment12.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment13"){
+        if (!m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment4.setVisible(false);
+            m_equipment13.setVisible(true);
+            m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->nextLvl();
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getPrice());
+            m_labelEquipment13Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getYPS());
+            std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(12)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment13.setText(informationsEquipment);
+        }
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment14"){
+        if (!m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment13.setVisible(false);
+            m_equipment14.setVisible(true);
+            m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->nextLvl();
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getPrice());
+            m_labelEquipment14Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+            m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getYPS());
+            std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+            std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(13)->getLevel()) + L"   "
+                                                 + informationEquipmentYPS;
+            m_labelEquipment14.setText(informationsEquipment);
+        }
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment15"){
+        if (!m_equipment16.isVisible()) {
+            m_equipment14.setVisible(false);
+            m_equipment15.setVisible(true);
+        }
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getPrice());
+        m_labelEquipment15Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment15.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment16"){
+        m_equipment15.setVisible(false);
+        m_equipment16.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getPrice());
+        m_labelEquipment16Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment16.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment17"){
+        m_equipment17.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getPrice());
+        m_labelEquipment17Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment17.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment18"){
+        m_equipment18.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getPrice());
+        m_labelEquipment18Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment18.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment19"){
+        m_equipment19.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getPrice());
+        m_labelEquipment19Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment19.setText(informationsEquipment);
+    }
+
+    if (m_inputHandler.getComponentId() == "buttonEquipment20"){
+        m_equipment3.setVisible(false);
+        m_equipment20.setVisible(true);
+        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->nextLvl();
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getPrice());
+        m_labelEquipment20Price.setText(m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString());
+
+        m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getYPS());
+        std::wstring informationEquipmentYPS = m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
+        std::wstring informationsEquipment = L"level " + cast::toWstring(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getLevel()) + L"   "
+                                             + informationEquipmentYPS;
+        m_labelEquipment20.setText(informationsEquipment);
+    }
 
     basicInput(e, frameTime);
     basicDraw(window);

@@ -49,7 +49,26 @@ private:
 	NPanel m_scientistSergePanel;
 	sf::Font m_fontLabel;
 
-
+	NPanel m_panelGoldEquipment1;
+	NPanel m_panelGoldEquipment2;
+	NPanel m_panelGoldEquipment3;
+	NPanel m_panelGoldEquipment4;
+	NPanel m_panelGoldEquipment5;
+	NPanel m_panelGoldEquipment6;
+	NPanel m_panelGoldEquipment7;
+	NPanel m_panelGoldEquipment8;
+	NPanel m_panelGoldEquipment9;
+	NPanel m_panelGoldEquipment10;
+	NPanel m_panelGoldEquipment11;
+	NPanel m_panelGoldEquipment12;
+	NPanel m_panelGoldEquipment13;
+	NPanel m_panelGoldEquipment14;
+	NPanel m_panelGoldEquipment15;
+	NPanel m_panelGoldEquipment16;
+	NPanel m_panelGoldEquipment17;
+	NPanel m_panelGoldEquipment18;
+	NPanel m_panelGoldEquipment19;
+	NPanel m_panelGoldEquipment20;
 
 	NButton m_monster;
 	NButton m_tabStatsButton;
@@ -164,7 +183,6 @@ private:
 	NPanel m_panelEquipment19Global;
 	NPanel m_panelEquipment20Global;
 
-
     NPanel m_screen;
     NLabel m_labelBank;
     NPanel m_iconBank;
@@ -184,9 +202,12 @@ private:
     AnimatableObject m_flamme1;
     AnimatableObject m_flamme2;
     AnimatableObject m_ordi;
+	AnimatableObject m_coffeeSmoke;
+	AnimatableObject m_clickAnimation1;
+	AnimatableObject m_clickAnimation2;
+	AnimatableObject m_clickAnimation3;
 
-    AnimatableObject m_coffeeSmoke;
-
+	int m_NbMonster;
     double m_timeElapsed;
 
     bool m_bool;
