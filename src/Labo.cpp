@@ -193,6 +193,13 @@ void Labo::isPurchasablePiece(){
         }
     }
 }
+Monster* Labo::getM_ptr_monster(){
+    return m_ptr_monster;
+}
+Stats* Labo::getM_ptr_stats(){
+    return m_ptr_stats;
+}
+
 std::vector<LaboPiece *> Labo::getM_LaboPieceVector() {
     return m_LaboPieceVector;
 }

@@ -62,6 +62,9 @@ public:
     std::vector<LaboPiece *> getM_LaboPieceVector();
 
 
+    Monster *getM_ptr_monster();
+
+    Stats *getM_ptr_stats();
 };
 
 #endif //CLIENT_LABO_HPP
