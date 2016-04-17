@@ -29,8 +29,14 @@ HomePage::HomePage(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_searchBar.create("searchBar", 85, 80,
                        ptr_managerGroup->ptr_textureManager->getTexture("searchBar"),
-                       false, 0.15, 47, 545, 18);
+                       false, 0.2, 47, 545, 18);
     getContentPane()->addComponent(&m_searchBar);
+
+    m_searchBarLoop.create("searchBarLoop", 85, 80,
+                           ptr_managerGroup->ptr_textureManager->getTexture("searchBarLoop"),
+                           true, 0.5, 47, 545, 2);
+    getContentPane()->addComponent(&m_searchBarLoop);
+    m_searchBarLoop.setVisible(false);
 }
 
 HomePage::~HomePage(){
@@ -44,6 +50,8 @@ void HomePage::update(sf::RenderWindow *window,
     if (!m_ptr_managerGroup->ptr_targetManager->isHomePage())
         return;
 
+    checkStateAnimation();
+
     if (m_inputHandler.getComponentId() == "playButton"){
         m_ptr_managerGroup->ptr_targetManager->isOnLaboratoryRoom();
     }
@@ -54,5 +62,12 @@ void HomePage::update(sf::RenderWindow *window,
 
     // Drawing all content
     basicDraw(window);
+}
+
+void HomePage::checkStateAnimation() {
+    if(m_searchBar.isStopped()){
+        m_searchBar.setVisible(false);
+        m_searchBarLoop.setVisible(true);
+    }
 }
 

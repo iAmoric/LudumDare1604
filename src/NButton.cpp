@@ -48,9 +48,8 @@ sf::Texture * texture_1, sf::Texture * texture_2) {
 	m_secondSprite.setTexture(*texture_2);
 	m_secondSprite.setPosition(m_position);
 
-	//m_surrounder.init(m_mainSprite.getPosition(),
-	//m_mainSprite.getTexture()->getSize(),
-	//sf::Color(196,130,56));
+	m_surrounder.init(m_mainSprite.getPosition(),
+	m_mainSprite.getTexture()->getSize());
 }
 
 /*!
@@ -65,8 +64,10 @@ void NButton::draw(sf::RenderWindow * window) {
 		window->draw(m_secondSprite);
 	} else if (m_isOver) {
 		window->draw(m_mainSprite);
-		//window->draw(*m_surrounder.getShape());
+		window->setMouseCursorVisible(false);
+		window->draw(*m_surrounder.getShape(m_pos));
 	} else {
+		window->setMouseCursorVisible(true);
 		window->draw(m_mainSprite);
 	}
 }
@@ -122,6 +123,8 @@ std::string NButton::eventMouseMoved(sf::Event * e) {
 	intersects(mousePosition)) {
 		id = m_id;
 		m_isOver = true;
+		m_pos.x = e->mouseMove.x;
+		m_pos.y = e->mouseMove.y;
 	} else {
 		m_isOver = false;
 	}
@@ -180,8 +183,7 @@ void NButton::setPosition(float x, float y) {
 	m_secondSprite.setPosition(m_position);
 
 	m_surrounder.init(m_mainSprite.getPosition(),
-					  m_mainSprite.getTexture()->getSize(),
-					  sf::Color(196,130,56));
+					  m_mainSprite.getTexture()->getSize());
 
 }
 
