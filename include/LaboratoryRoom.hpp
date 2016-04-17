@@ -237,6 +237,10 @@ public:
     void displayScientistPanel();
 
 	void checkStateWhiteBoardAnimation();
+
+	void checkStateClickAnimation();
+
+	void undisplayClickAnimation();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP

@@ -64,7 +64,8 @@ void NButton::draw(sf::RenderWindow * window) {
 		window->draw(m_secondSprite);
 	} else if (m_isOver) {
 		window->draw(m_mainSprite);
-		window->setMouseCursorVisible(false);
+		if(m_isEnable)
+			window->setMouseCursorVisible(false);
 		window->draw(*m_surrounder.getShape(m_pos));
 	} else {
 		window->setMouseCursorVisible(true);

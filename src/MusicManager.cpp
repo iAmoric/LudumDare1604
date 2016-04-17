@@ -15,8 +15,8 @@
  */
 MusicManager::MusicManager(bool debug) : Manager() {
     m_debug = debug;
-    m_volumeMusic = 50;
-    m_volumeSound = 50 ;
+    m_volumeMusic = 100;
+    m_volumeSound = 100 ;
     m_currentPlaylist = 0;
 }
 

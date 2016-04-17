@@ -18,9 +18,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     /* Musique */
     ptr_managerGroup->ptr_musicManager->
-            createPlaylist("playlistMenu", true, 1.2);
+            createPlaylist("playlistMenu", true, 1.0);
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->addMusic("../res/music/menu/Epipath.ogg");
+    ptr_managerGroup->ptr_musicManager->
+            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Blue_Illusions.wav");
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
@@ -724,18 +726,18 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_coffeeSmoke.create("coffeeSmoke", 195, 475,
                          ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.27, 60, 50, 20);
 
-    m_clickAnimation1.create("clickAnimation1", 200, 175,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.02, 192, 192, 7);
+    m_clickAnimation1.create("clickAnimation1", 170, 145,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.05, 192, 192, 7);
     getContentPane()->addComponent(&m_clickAnimation1);
     m_clickAnimation1.setVisible(false);
 
-    m_clickAnimation2.create("clickAnimation2", 200, 175,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.018, 192, 192, 8);
+    m_clickAnimation2.create("clickAnimation2", 165, 150,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.05, 192, 192, 8);
     getContentPane()->addComponent(&m_clickAnimation2);
     m_clickAnimation2.setVisible(false);
 
-    m_clickAnimation3.create("clickAnimation3", 200, 175,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation3"),false, 0.018, 192, 192, 8);
+    m_clickAnimation3.create("clickAnimation3", 160, 145,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation3"),false, 0.005, 192, 192, 7);
     getContentPane()->addComponent(&m_clickAnimation3);
     m_clickAnimation3.setVisible(false);
 
@@ -857,6 +859,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_targetPanel = "tabEquipmentPanel";
 
+
+
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -875,7 +879,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_timeElapsed = 0;
     }
     checkStateWhiteBoardAnimation();
-
+    checkStateClickAnimation();
 
 
     Units unit = Units();
@@ -898,6 +902,24 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_labelReputation.setText(unit.toWString());
 
     if (m_inputHandler.getComponentId() == "monster"){
+        int anim = 1+ rand() % 3;
+        switch(anim){
+            case 1 :
+                undisplayClickAnimation();
+                m_clickAnimation1.setVisible(true);
+                m_clickAnimation1.play();
+                break;
+            case 2 :
+                undisplayClickAnimation();
+                m_clickAnimation2.setVisible(true);
+                m_clickAnimation2.play();
+                break;
+            case 3 :
+                undisplayClickAnimation();
+                m_clickAnimation3.setVisible(true);
+                m_clickAnimation3.play();
+                break;
+            }
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
 
@@ -953,7 +975,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->lvlUpLaboPiece(0);
         }*/
 
-    //TODO : Update des stats (argent, yps etc..)
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
         if (!m_equipment2.isVisible() || !m_equipment4.isVisible() ||
                 !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
@@ -1314,6 +1335,25 @@ void LaboratoryRoom::checkStateWhiteBoardAnimation(){
         if (m_targetPanel == "tabStatsPanel")
             displayStatsPanel();
     }
+}
+
+void LaboratoryRoom::checkStateClickAnimation() {
+
+    if (m_clickAnimation1.isStopped())
+        m_clickAnimation1.setVisible(false);
+
+    if (m_clickAnimation2.isStopped())
+        m_clickAnimation2.setVisible(false);
+
+    if (m_clickAnimation3.isStopped())
+        m_clickAnimation3.setVisible(false);
+
+}
+
+void LaboratoryRoom::undisplayClickAnimation(){
+    m_clickAnimation3.setVisible(false);
+    m_clickAnimation2.setVisible(false);
+    m_clickAnimation1.setVisible(false);
 }
 
 
