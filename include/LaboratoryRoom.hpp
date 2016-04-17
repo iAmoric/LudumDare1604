@@ -49,6 +49,18 @@ private:
 	NPanel m_scientistSergePanel;
 	sf::Font m_fontLabel;
 
+	//Label for stats' panel
+	NLabel m_nbClick;
+	NLabel m_nbReset;
+	NLabel m_nbEvoMax;
+	NLabel m_spentTime;
+	NLabel m_actualMoney;
+	NLabel m_totalMoney;
+	NLabel m_spentMoney;
+	NLabel m_actualReputation;
+	NLabel m_totalReputation;
+	NLabel m_spentReputation;
+
 	NPanel m_panelGoldEquipment1;
 	NPanel m_panelGoldEquipment2;
 	NPanel m_panelGoldEquipment3;

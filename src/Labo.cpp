@@ -59,6 +59,7 @@ void Labo::initLaboPieceVector() {
 }
 
 void Labo::lvlUpLaboPiece(unsigned int id) {
+    m_ptr_stats->incrementSpentMoney(m_LaboPieceVector.at(id)->getPrice());
     if(m_LaboPieceVector.at(id)->getLevel() > 0)
         m_YPS = m_YPS - m_LaboPieceVector.at(id)->getYPS();
     m_LaboPieceVector.at(id)->nextLvl();
@@ -105,9 +106,10 @@ void Labo::updateCPS() {
 
 void Labo::restart(){
     m_ptr_stats->setActualMoney(0);
+    m_money = 0;
     m_restartBonus *= 1.1;
     m_reputationPointOwned += m_reputationPointWaiting;
-    m_reputationPointWaiting;
+    m_reputationPointWaiting = 0;
     m_ptr_stats->incrementActualReputation(m_reputationPointOwned);
     m_ptr_stats->incrementTotalReputation(m_reputationPointOwned);
     initLaboPieceVector();
@@ -129,6 +131,9 @@ void Labo::evolution() {
     }
     if(m_year >= m_ptr_monster->getAnnee()){
         m_evolutionLevel++;
+        if(m_evolutionLevel > m_ptr_stats->getM_nbEvoMax()){
+            m_ptr_stats->incrementNbEvoMax();
+        }
         m_ptr_monster->setAnnee(m_year + 10 * m_YPS * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
     }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
@@ -155,12 +160,13 @@ void Labo::grant(){
     m_year += m_YPS;
     updateCPS();
     m_ptr_stats->incrementSpentTime();
-    m_ptr_stats->incrementActualMoney(m_money);
-    m_ptr_stats->incrementTotalMoney(m_money);
+    m_ptr_stats->setActualMoney(m_money);
+    m_ptr_stats->setTotalMoney(m_money);
 }
 
 void Labo::click() {
     m_year += m_CPS;
+    m_ptr_stats->incrementNbClick();
 }
 unsigned long long Labo::getM_year(){
     return m_year;
