@@ -757,7 +757,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     //Second part of the stats
     m_panelYear.create("imgYear",500,250,ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
     m_year.create("labelYear",525,250,15,&m_fontLabel
-            ,cast::toWstring("Years to level up")
+            ,cast::toWstring("Actual year / years to evolve")
             , sf::Color::Black);
     m_panelMoney.create("imgMoney",500,300,ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
     m_money.create("labelMoney",525,300,15,&m_fontLabel
@@ -767,16 +767,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_moneyPS.create("labelMoneyPS",525,350,15,&m_fontLabel
             ,cast::toWstring("Money earned per second")
             , sf::Color::Black);
-    m_panelClickPS.create("imgClickPS",725,250,ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
-    m_clickPS.create("labelClickPS",750,250,15,&m_fontLabel
+    m_panelClickPS.create("imgClickPS",730,250,ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
+    m_clickPS.create("labelClickPS",755,250,15,&m_fontLabel
             ,cast::toWstring("Years earned by a click")
             , sf::Color::Black);
-    m_panelYearPS.create("imgYearPS",725,300,ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
-    m_yearPS.create("labelYearPS",750,300,15,&m_fontLabel
+    m_panelYearPS.create("imgYearPS",730,300,ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
+    m_yearPS.create("labelYearPS",755,300,15,&m_fontLabel
             ,cast::toWstring("Years earned per second")
             , sf::Color::Black);
-    m_panelReputation.create("imgReputation",725,350,ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
-    m_reputation.create("labelReputation",750,350,15,&m_fontLabel
+    m_panelReputation.create("imgReputation",730,350,ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_reputation.create("labelReputation",755,350,15,&m_fontLabel
             ,cast::toWstring("Reputation you have")
             , sf::Color::Black);
 
