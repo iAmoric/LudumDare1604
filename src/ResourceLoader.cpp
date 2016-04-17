@@ -86,6 +86,7 @@ void ResourceLoader::load() {
 
 	/* background */
 	a_tm.addTexture("background", pathView + "background.png");
+	a_tm.addTexture("banner", pathSprite + "banner.png");
 
 	/* Equipments to buy */
 	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png");
@@ -181,8 +182,11 @@ void ResourceLoader::load() {
 	a_tm.addTexture("searchBarLoop", pathAnimation + "searchBarLoop.png");
 	a_tm.addTexture("clickAnimation1", pathAnimation + "clickAnimation1.png");
 	a_tm.addTexture("clickAnimation2", pathAnimation + "clickAnimation2.png");
-	a_tm.addTexture("clickAnimation3", pathAnimation + "clickAnimation3.png");
 	a_tm.addTexture("whiteBoardAnimation", pathAnimation + "cleanWhiteBoard_1.png");
+	a_tm.addTexture("animationTransition", pathAnimation + "animationTransition.jpg");
+	a_tm.addTexture("popUpOn", pathAnimation + "popUpShow.png");
+	a_tm.addTexture("popUpOff", pathAnimation + "popUpHide.png");
+	a_tm.addTexture("evolvAnimation", pathAnimation + "evolution.png");
 
 	/* Mouse */
 	a_tm.addTexture("mouse", pathSprite + "mouse_pointer.png");

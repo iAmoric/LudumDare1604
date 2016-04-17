@@ -54,7 +54,36 @@ private:
 	NPanel m_reputationPanel2;
 
 
+	NPanel m_bannerPanel;
 	sf::Font m_fontLabel;
+
+	//Label for stats' panel
+	NLabel m_nbClick;
+	NLabel m_nbReset;
+	NLabel m_nbEvoMax;
+	NLabel m_spentTime;
+	NLabel m_actualMoney;
+	NLabel m_totalMoney;
+	NLabel m_spentMoney;
+	NLabel m_actualReputation;
+	NLabel m_totalReputation;
+	NLabel m_spentReputation;
+
+	//Second part of the stats
+	NPanel m_panelYear;
+	NLabel m_year;
+	NPanel m_panelMoney;
+	NLabel m_money;
+	NPanel m_panelMoneyPS;
+	NLabel m_moneyPS;
+	NPanel m_panelClickPS;
+	NLabel m_clickPS;
+	NPanel m_panelYearPS;
+	NLabel m_yearPS;
+	NPanel m_panelReputation;
+	NLabel m_reputation;
+	NLabel m_labelLevel;
+	NLabel m_suppReputation;
 
 	NPanel m_panelGoldEquipment1;
 	NPanel m_panelGoldEquipment2;
@@ -216,6 +245,9 @@ private:
 	AnimatableObject m_clickAnimation2;
 	AnimatableObject m_clickAnimation3;
 	AnimatableObject m_whiteBoardAnimation;
+	AnimatableObject m_popupOnAnimation;
+	AnimatableObject m_popupOffAnimation;
+	AnimatableObject m_evolutionAnimation;
 
 	int m_NbMonster;
     double m_timeElapsed;
@@ -224,6 +256,13 @@ private:
 	Labo* getLabo();
 
 	std::string m_targetPanel;
+
+	bool firstConnect;
+	bool firstEvolution;
+	bool firstCanReset;
+	bool firstReset;
+	bool firstReputation;
+	bool endGame;
 
 public:
     // Constructor
@@ -246,6 +285,12 @@ public:
     void displayScientistPanel();
 
 	void checkStateWhiteBoardAnimation();
+
+	void checkStateClickAnimation();
+
+	void checkStateEvolutionAnimation();
+
+	void undisplayClickAnimation();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP

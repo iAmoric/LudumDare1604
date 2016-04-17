@@ -18,9 +18,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     /* Musique */
     ptr_managerGroup->ptr_musicManager->
-            createPlaylist("playlistMenu", true, 1.2);
+            createPlaylist("playlistMenu", true, 1.0);
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->addMusic("../res/music/menu/Epipath.ogg");
+    ptr_managerGroup->ptr_musicManager->
+            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Blue_Illusions.wav");
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
@@ -724,6 +726,91 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabScientistPanel.addComponent(&m_reputationPanel2);
 
 
+    /* Label */
+    //First part of the stats
+    m_nbClick.create("nbClick",500,80,15,&m_fontLabel
+            ,L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick())
+            , sf::Color::Black);
+    m_nbReset.create("nbReset",500,95,15,&m_fontLabel
+            ,L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset())
+            , sf::Color::Black);
+    m_nbEvoMax.create("nbEvoMax",500,110,15,&m_fontLabel
+            ,L"Maximum level achieved : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbEvoMax())
+            , sf::Color::Black);
+    m_spentTime.create("spentTime",500,125,15,&m_fontLabel
+            ,L"Time spent : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds())
+            , sf::Color::Black);
+    m_actualMoney.create("actualMoney",500,140,15,&m_fontLabel
+            ,L"Actual amount of money : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualMoney())
+            , sf::Color::Black);
+    m_totalMoney.create("totalMoney",500,155,15,&m_fontLabel
+            ,L"Total amount of money obtained in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney())
+            , sf::Color::Black);
+    m_spentMoney.create("spentMoney",500,170,15,&m_fontLabel
+            ,L"Total amount of money spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentMoney())
+            , sf::Color::Black);
+    m_actualReputation.create("actualReputation",500,185,15,&m_fontLabel
+            ,L"Actual reputation : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualReputation())
+            , sf::Color::Black);
+    m_totalReputation.create("totalReputation",500,200,15,&m_fontLabel
+            ,L"Total reputation earned in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
+            , sf::Color::Black);
+    m_spentReputation.create("nbClick",500,215,15,&m_fontLabel
+            ,L"Total reputation spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentReputation())
+            , sf::Color::Black);
+    m_tabStatsPanel.addComponent(&m_nbClick);
+    m_tabStatsPanel.addComponent(&m_nbReset);
+    m_tabStatsPanel.addComponent(&m_nbEvoMax);
+    m_tabStatsPanel.addComponent(&m_spentTime);
+    m_tabStatsPanel.addComponent(&m_actualMoney);
+    m_tabStatsPanel.addComponent(&m_totalMoney);
+    m_tabStatsPanel.addComponent(&m_spentMoney);
+    m_tabStatsPanel.addComponent(&m_actualReputation);
+    m_tabStatsPanel.addComponent(&m_totalReputation);
+    m_tabStatsPanel.addComponent(&m_spentReputation);
+
+    //Second part of the stats
+    m_panelYear.create("imgYear",500,250,ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
+    m_year.create("labelYear",525,250,15,&m_fontLabel
+            ,cast::toWstring("Actual year / years to evolve")
+            , sf::Color::Black);
+    m_panelMoney.create("imgMoney",730,350,ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
+    m_money.create("labelMoney",755,350,15,&m_fontLabel
+            ,cast::toWstring("Money you have")
+            , sf::Color::Black);
+    m_panelMoneyPS.create("imgMoneyPS",500,350,ptr_managerGroup->ptr_textureManager->getTexture("money-icon"));
+    m_moneyPS.create("labelMoneyPS",525,350,15,&m_fontLabel
+            ,cast::toWstring("Money earned per second")
+            , sf::Color::Black);
+    m_panelClickPS.create("imgClickPS",730,250,ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
+    m_clickPS.create("labelClickPS",755,250,15,&m_fontLabel
+            ,cast::toWstring("Years earned by a click")
+            , sf::Color::Black);
+    m_panelYearPS.create("imgYearPS",730,300,ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
+    m_yearPS.create("labelYearPS",755,300,15,&m_fontLabel
+            ,cast::toWstring("Years earned per second")
+            , sf::Color::Black);
+    m_panelReputation.create("imgReputation",500,300,ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_reputation.create("labelReputation",525,300,15,&m_fontLabel
+            ,cast::toWstring("Reputation you have")
+            , sf::Color::Black);
+    m_suppReputation.create("labelSuppReputation",525,315,15,&m_fontLabel
+    ,cast::toWstring("(reputation earned by reset)")
+    ,sf::Color::Black);
+
+    m_tabStatsPanel.addComponent(&m_panelYear);
+    m_tabStatsPanel.addComponent(&m_year);
+    m_tabStatsPanel.addComponent(&m_panelMoney);
+    m_tabStatsPanel.addComponent(&m_money);
+    m_tabStatsPanel.addComponent(&m_panelMoneyPS);
+    m_tabStatsPanel.addComponent(&m_moneyPS);
+    m_tabStatsPanel.addComponent(&m_panelClickPS);
+    m_tabStatsPanel.addComponent(&m_clickPS);
+    m_tabStatsPanel.addComponent(&m_panelYearPS);
+    m_tabStatsPanel.addComponent(&m_yearPS);
+    m_tabStatsPanel.addComponent(&m_panelReputation);
+    m_tabStatsPanel.addComponent(&m_reputation);
+    m_tabStatsPanel.addComponent(&m_suppReputation);
     /* Animation */
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
@@ -744,25 +831,27 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_coffeeSmoke.create("coffeeSmoke", 195, 475,
                          ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.27, 60, 50, 20);
 
-    m_clickAnimation1.create("clickAnimation1", 200, 175,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.02, 192, 192, 7);
+    m_clickAnimation1.create("clickAnimation1", 150, 145,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.05, 192, 192, 3);
     getContentPane()->addComponent(&m_clickAnimation1);
     m_clickAnimation1.setVisible(false);
 
-    m_clickAnimation2.create("clickAnimation2", 200, 175,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.018, 192, 192, 8);
+    m_clickAnimation2.create("clickAnimation2", 150, 150,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.05, 192, 192, 7);
     getContentPane()->addComponent(&m_clickAnimation2);
     m_clickAnimation2.setVisible(false);
-
-    m_clickAnimation3.create("clickAnimation3", 200, 175,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation3"),false, 0.018, 192, 192, 8);
-    getContentPane()->addComponent(&m_clickAnimation3);
-    m_clickAnimation3.setVisible(false);
 
     m_whiteBoardAnimation.create("whiteBoardAnimation", 494, 82,
                                  ptr_managerGroup->ptr_textureManager->getTexture("whiteBoardAnimation"),false, 0.04, 336, 448, 21);
     getContentPane()->addComponent(&m_whiteBoardAnimation);
     m_whiteBoardAnimation.setVisible(false);
+
+    m_evolutionAnimation.create("evolvAnimation", 100, 95,
+                                ptr_managerGroup->ptr_textureManager->getTexture("evolvAnimation"),false, 0.06, 300, 300, 14);
+    m_evolutionAnimation.setVisible(false);
+    getContentPane()->addComponent(&m_evolutionAnimation);
+    //m_popupOnAnimation
+
 
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
@@ -847,8 +936,14 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment20"), true, 0.1, 83, 70, 3);
     getContentPane()->addComponent(&m_equipment20);
 
+    /* Banner */
+    m_bannerPanel.create("bannerPanel", 115, 33,
+                         ptr_managerGroup->ptr_textureManager->getTexture("banner"));
+    getContentPane()->addComponent(&m_bannerPanel);
 
-
+    m_labelLevel.create("levelLabel", 170, 55, 26,
+                        &m_fontLabel, L"Evolution 1", sf::Color::White);
+    getContentPane()->addComponent(&m_labelLevel);
 
     /* Init visible*/
     m_equipment1.setVisible(false);
@@ -880,6 +975,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_targetPanel = "tabEquipmentPanel";
 
+    firstConnect = true;
+    firstEvolution = false;
+    firstCanReset = false;
+    firstReputation = false;
+    firstReset = false;
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -892,12 +992,34 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (!m_ptr_managerGroup->ptr_targetManager->isLaboratoryRoom())
         return;
 
+    if (firstConnect){
+        firstConnect=false;
+
+    }
+
+
+
     m_timeElapsed += frameTime;
     if(m_timeElapsed >= 1){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
+        m_spentTime.setText(L"Time spent : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds()));
     }
     checkStateWhiteBoardAnimation();
+    checkStateClickAnimation();
+    checkStateEvolutionAnimation();
+
+    m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
+    m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
+    m_nbEvoMax.setText(L"Maximum level achieved : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbEvoMax()));
+    m_spentMoney.setText(L"Total amount of money spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentMoney()));
+    m_totalReputation.setText(L"Total reputation earned in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation()));
+    m_spentReputation.setText(L"Total reputation spent in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentReputation()));
+    m_actualMoney.setText(L"Actual amount of money : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualMoney()));
+    m_totalMoney.setText(L"Total amount of money obtained in your whole life : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney()));
+    m_actualReputation.setText(L"Actual reputation : " +
+                                       cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
+    +L" (+"+cast::toWstring(getLabo()->getReputationPointWaiting()) + L" if you quit the lab now)");
 
     Units unit = Units();
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
@@ -931,11 +1053,28 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel()<25) {
             getLabo()->evolution();
+            m_monster.setVisible(false);
+            m_evolutionAnimation.setVisible(true);
+            m_evolutionAnimation.play();
+            m_labelLevel.setText(L"Evolution " + cast::toWstring(getLabo()->getEvolutionLevel()));
             m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())),
                                 m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())));
         }
     }
-    if (m_inputHandler.getComponentId() == "monster") {
+    if (m_inputHandler.getComponentId() == "monster"){
+        int anim = 1+ rand() % 2;
+        switch(anim){
+            case 1 :
+                undisplayClickAnimation();
+                m_clickAnimation1.setVisible(true);
+                m_clickAnimation1.play();
+                break;
+            case 2 :
+                undisplayClickAnimation();
+                m_clickAnimation2.setVisible(true);
+                m_clickAnimation2.play();
+                break;
+        }
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
 
@@ -994,15 +1133,12 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel1.setVisible(false);
         m_subTabEquipmentPanel2.setVisible(true);
     }
-    /* put the arrow only when the playerhave enought money to purchase the 11th equipment */
+    /* put the arrow only when the player have enought money to purchase the 11th equipment */
     if (!m_panelEquipment11Global.isVisible()) {
         m_arrowRightButton.setVisible(false);
+    } else {
+        m_arrowRightButton.setVisible(true);
     }
-        /*if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice()){
-            getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
-            getLabo()->lvlUpLaboPiece(0);
-        }*/
-
 
     /* verifying money to buy equipment */
     m_panelEquipment2Global.setVisible(false);
@@ -1015,6 +1151,15 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_panelEquipment9Global.setVisible(false);
     m_panelEquipment10Global.setVisible(false);
     m_panelEquipment11Global.setVisible(false);
+    m_panelEquipment12Global.setVisible(false);
+    m_panelEquipment13Global.setVisible(false);
+    m_panelEquipment14Global.setVisible(false);
+    m_panelEquipment15Global.setVisible(false);
+    m_panelEquipment16Global.setVisible(false);
+    m_panelEquipment17Global.setVisible(false);
+    m_panelEquipment18Global.setVisible(false);
+    m_panelEquipment19Global.setVisible(false);
+    m_panelEquipment20Global.setVisible(false);
 
     if (getLabo()->getM_LaboPieceVector().at(0)->getPrice() > getLabo()->getMoney()) {
         m_buttonEquipment1.setEnabled(false);
@@ -1638,6 +1783,29 @@ void LaboratoryRoom::checkStateWhiteBoardAnimation(){
             displayEquipmentPanel();
         if (m_targetPanel == "tabStatsPanel")
             displayStatsPanel();
+    }
+}
+
+void LaboratoryRoom::checkStateClickAnimation() {
+
+    if (m_clickAnimation1.isStopped())
+        m_clickAnimation1.setVisible(false);
+
+    if (m_clickAnimation2.isStopped())
+        m_clickAnimation2.setVisible(false);
+
+}
+
+void LaboratoryRoom::undisplayClickAnimation(){
+    m_clickAnimation3.setVisible(false);
+    m_clickAnimation2.setVisible(false);
+}
+
+
+void LaboratoryRoom::checkStateEvolutionAnimation() {
+    if(m_evolutionAnimation.isStopped()){
+        m_evolutionAnimation.setVisible(false);
+        m_monster.setVisible(true);
     }
 }
 

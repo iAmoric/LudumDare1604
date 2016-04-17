@@ -24,7 +24,7 @@ Labo::Labo() {
     m_reputationPointWaiting = 0;
     m_reputationPointOwned = 0;
     m_evolutionLevel = 1;
-    moneyGain = 0;
+    moneyGain = 1;
 
 
 }
@@ -59,6 +59,7 @@ void Labo::initLaboPieceVector() {
 }
 
 void Labo::lvlUpLaboPiece(unsigned int id) {
+    m_ptr_stats->incrementSpentMoney(m_LaboPieceVector.at(id)->getPrice());
     if(m_LaboPieceVector.at(id)->getLevel() > 0)
         m_YPS = m_YPS - m_LaboPieceVector.at(id)->getYPS();
     m_LaboPieceVector.at(id)->nextLvl();
@@ -105,9 +106,10 @@ void Labo::updateCPS() {
 
 void Labo::restart(){
     m_ptr_stats->setActualMoney(0);
+    m_money = 0;
     m_restartBonus *= 1.1;
     m_reputationPointOwned += m_reputationPointWaiting;
-    m_reputationPointWaiting;
+    m_reputationPointWaiting = 0;
     m_ptr_stats->incrementActualReputation(m_reputationPointOwned);
     m_ptr_stats->incrementTotalReputation(m_reputationPointOwned);
     initLaboPieceVector();
@@ -122,21 +124,24 @@ void Labo::restart(){
 }
 
 void Labo::evolution() {
-    unsigned long long moneyGain2 = 0;
+    unsigned long long moneyGain = 0;
     if(m_evolutionLevel == 5 || m_evolutionLevel == 10 ||
             m_evolutionLevel == 15 || m_evolutionLevel == 20){
         m_reputationPointWaiting += 5 * m_evolutionLevel;
     }
     if(m_year >= m_ptr_monster->getAnnee()){
+        // TODO : create function to auto-generate year of a monster
         m_evolutionLevel++;
+        if(m_evolutionLevel > m_ptr_stats->getM_nbEvoMax()){
+            m_ptr_stats->incrementNbEvoMax();
+        }
         m_ptr_monster->setAnnee(m_year + 10 * m_YPS * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
     }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
-            moneyGain2 = m_LaboPieceVector.at(i)->getPrice();
+            moneyGain = m_LaboPieceVector.at(i)->getPrice();
     }
-    if(m_money == 0) m_money = 5;
-    else m_money += (moneyGain2/3) * (moneyGain2/3);
+    m_money += moneyGain * 3;
 
 }
 
@@ -149,18 +154,19 @@ void Labo::grant(){
         if(m_LaboPieceVector.at(i)->isBought()){
             moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
         }
-        if(moneyGain == 0 && m_YPS > 0) moneyGain += 1;
+        if(moneyGain == 0) moneyGain += 1;
     }
     m_money = m_money + moneyGain;
     m_year += m_YPS;
     updateCPS();
     m_ptr_stats->incrementSpentTime();
-    m_ptr_stats->incrementActualMoney(m_money);
-    m_ptr_stats->incrementTotalMoney(m_money);
+    m_ptr_stats->setActualMoney(m_money);
+    m_ptr_stats->setTotalMoney(m_money);
 }
 
 void Labo::click() {
     m_year += m_CPS;
+    m_ptr_stats->incrementNbClick();
 }
 unsigned long long Labo::getM_year(){
     return m_year;
