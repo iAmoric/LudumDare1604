@@ -157,6 +157,8 @@ void ResourceLoader::load() {
 	/* Mouse */
 	a_tm.addTexture("mouse", pathSprite + "mouse_pointer.png");
 
+	/* Money Gold */
+	a_tm.addTexture("gold", pathEquipment + "gold.png");
 
 	a_mm.setState(true);
 	a_tm.setState(true);
