@@ -899,14 +899,14 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "monster"){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
-
-    if (m_inputHandler.getComponentId() == "tabStatsButton"){
+    
     if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
         m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
         m_NbMonster++;
         m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"),
                             m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"));
     }
+
     if (m_inputHandler.getComponentId() == "tabStatsButton"){
         if (m_targetPanel!="tabStatsPanel") {
             m_targetPanel = "tabStatsPanel";
