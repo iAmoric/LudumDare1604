@@ -894,29 +894,46 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     //TODO : Update des stats (argent, yps etc..)
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
-        m_equipment1.setVisible(true);
+        if (!m_equipment2.isVisible() || !m_equipment4.isVisible() ||
+                !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+                !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment1.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment2"){
-        m_equipment1.setVisible(false);
-        m_equipment2.setVisible(true);
+        if (!m_equipment4.isVisible() || !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+                !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment1.setVisible(false);
+            m_equipment2.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment3"){
-        m_equipment3Panel.setVisible(true);
+        if (!m_equipment20.isVisible()) {
+            m_equipment3Panel.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment4"){
-        m_equipment2.setVisible(false);
-        m_equipment4.setVisible(true);
+        if (!m_equipment5.isVisible() || !m_equipment13.isVisible() ||
+            !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment2.setVisible(false);
+            m_equipment4.setVisible(true);
+        }
     }
     if (m_inputHandler.getComponentId() == "buttonEquipment5"){
-        m_equipment4.setVisible(false);
-        m_equipment5.setVisible(true);
+        if (!m_equipment13.isVisible() || !m_equipment14.isVisible() ||
+                !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment4.setVisible(false);
+            m_equipment5.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment6"){
-        m_equipment6.setVisible(true);
+        if (!m_equipment7.isVisible()) {
+            m_equipment6.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment7"){
@@ -925,7 +942,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment8"){
-        m_equipment8.setVisible(true);
+        if (!m_equipment9.isVisible()) {
+            m_equipment8.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment9"){
@@ -934,7 +953,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment10"){
-        m_equipment10.setVisible(true);
+        if (!m_equipment12.isVisible()) {
+            m_equipment10.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment11"){
@@ -947,18 +968,24 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment13"){
-        m_equipment5.setVisible(false);
-        m_equipment13.setVisible(true);
+        if (!m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment4.setVisible(false);
+            m_equipment13.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment14"){
-        m_equipment13.setVisible(false);
-        m_equipment14.setVisible(true);
+        if (!m_equipment15.isVisible() || !m_equipment16.isVisible()) {
+            m_equipment13.setVisible(false);
+            m_equipment14.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment15"){
-        m_equipment14.setVisible(false);
-        m_equipment15.setVisible(true);
+        if (!m_equipment16.isVisible()) {
+            m_equipment14.setVisible(false);
+            m_equipment15.setVisible(true);
+        }
     }
 
     if (m_inputHandler.getComponentId() == "buttonEquipment16"){
