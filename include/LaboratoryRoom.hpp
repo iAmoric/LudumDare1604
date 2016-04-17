@@ -47,6 +47,7 @@ private:
 	NPanel m_subTabEquipmentPanel2;
 	NPanel m_scientistJeannePanel;
 	NPanel m_scientistSergePanel;
+	NPanel m_bannerPanel;
 	sf::Font m_fontLabel;
 
 	//Label for stats' panel

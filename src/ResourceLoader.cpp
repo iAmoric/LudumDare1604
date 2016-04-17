@@ -86,6 +86,7 @@ void ResourceLoader::load() {
 
 	/* background */
 	a_tm.addTexture("background", pathView + "background.png");
+	a_tm.addTexture("banner", pathSprite + "banner.png");
 
 	/* Equipments to buy */
 	a_tm.addTexture("equipment1", pathEquipment + "1test_tube.png");

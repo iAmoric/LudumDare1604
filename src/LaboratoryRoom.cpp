@@ -878,6 +878,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("equipment20"), true, 0.1, 83, 70, 3);
     getContentPane()->addComponent(&m_equipment20);
 
+    /* Banner */
+    m_bannerPanel.create("bannerPanel", 115, 33,
+                         ptr_managerGroup->ptr_textureManager->getTexture("banner"));
+    getContentPane()->addComponent(&m_bannerPanel);
+
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
