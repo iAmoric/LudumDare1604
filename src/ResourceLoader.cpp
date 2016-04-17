@@ -182,7 +182,6 @@ void ResourceLoader::load() {
 	a_tm.addTexture("searchBarLoop", pathAnimation + "searchBarLoop.png");
 	a_tm.addTexture("clickAnimation1", pathAnimation + "clickAnimation1.png");
 	a_tm.addTexture("clickAnimation2", pathAnimation + "clickAnimation2.png");
-	a_tm.addTexture("clickAnimation3", pathAnimation + "clickAnimation3.png");
 	a_tm.addTexture("whiteBoardAnimation", pathAnimation + "cleanWhiteBoard_1.png");
 	a_tm.addTexture("animationTransition", pathAnimation + "animationTransition.jpg");
 

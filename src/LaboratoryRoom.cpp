@@ -775,20 +775,15 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_coffeeSmoke.create("coffeeSmoke", 195, 475,
                          ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"),true, 0.27, 60, 50, 20);
 
-    m_clickAnimation1.create("clickAnimation1", 170, 145,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.05, 192, 192, 7);
+    m_clickAnimation1.create("clickAnimation1", 150, 145,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation1"),false, 0.05, 192, 192, 3);
     getContentPane()->addComponent(&m_clickAnimation1);
     m_clickAnimation1.setVisible(false);
 
-    m_clickAnimation2.create("clickAnimation2", 165, 150,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.05, 192, 192, 8);
+    m_clickAnimation2.create("clickAnimation2", 150, 150,
+                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation2"),false, 0.05, 192, 192, 7);
     getContentPane()->addComponent(&m_clickAnimation2);
     m_clickAnimation2.setVisible(false);
-
-    m_clickAnimation3.create("clickAnimation3", 160, 145,
-                             ptr_managerGroup->ptr_textureManager->getTexture("clickAnimation3"),false, 0.005, 192, 192, 7);
-    getContentPane()->addComponent(&m_clickAnimation3);
-    m_clickAnimation3.setVisible(false);
 
     m_whiteBoardAnimation.create("whiteBoardAnimation", 494, 82,
                                  ptr_managerGroup->ptr_textureManager->getTexture("whiteBoardAnimation"),false, 0.04, 336, 448, 21);
@@ -883,6 +878,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("banner"));
     getContentPane()->addComponent(&m_bannerPanel);
 
+    m_labelLevel.create("levelLabel", 170, 55, 26,
+                        &m_fontLabel, L"Evolution 1", sf::Color::White);
+    getContentPane()->addComponent(&m_labelLevel);
+
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
@@ -971,12 +970,13 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel()<25) {
             getLabo()->evolution();
+            m_labelLevel.setText(L"Evolution " + cast::toWstring(getLabo()->getEvolutionLevel()));
             m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())),
                                 m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())));
         }
     }
     if (m_inputHandler.getComponentId() == "monster"){
-        int anim = 1+ rand() % 3;
+        int anim = 1+ rand() % 2;
         switch(anim){
             case 1 :
                 undisplayClickAnimation();
@@ -987,11 +987,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                 undisplayClickAnimation();
                 m_clickAnimation2.setVisible(true);
                 m_clickAnimation2.play();
-                break;
-            case 3 :
-                undisplayClickAnimation();
-                m_clickAnimation3.setVisible(true);
-                m_clickAnimation3.play();
                 break;
         }
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
@@ -1694,15 +1689,11 @@ void LaboratoryRoom::checkStateClickAnimation() {
     if (m_clickAnimation2.isStopped())
         m_clickAnimation2.setVisible(false);
 
-    if (m_clickAnimation3.isStopped())
-        m_clickAnimation3.setVisible(false);
-
 }
 
 void LaboratoryRoom::undisplayClickAnimation(){
     m_clickAnimation3.setVisible(false);
     m_clickAnimation2.setVisible(false);
-    m_clickAnimation1.setVisible(false);
 }
 
 
