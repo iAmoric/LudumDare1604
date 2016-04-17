@@ -692,6 +692,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_panelEquipment20Global.addComponent(&m_labelEquipment20);
     m_subTabEquipmentPanel2.addComponent(&m_panelEquipment20Global);
 
+    m_resetButton.create("resetButton", 260, 535,
+                         ptr_managerGroup->ptr_textureManager->getTexture("resetButton"),
+                         ptr_managerGroup->ptr_textureManager->getTexture("resetButton"));
+    getContentPane()->addComponent(&m_resetButton);
+
     //Boutons scientists
     m_scientistJeannePanel.create("jeannePanel", 500, 83,
                               ptr_managerGroup->ptr_textureManager->getTexture("jeannePanel"));
@@ -831,8 +836,6 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                 ptr_managerGroup->ptr_textureManager->getTexture("evolvAnimation"),false, 0.06, 300, 300, 14);
     m_evolutionAnimation.setVisible(false);
     getContentPane()->addComponent(&m_evolutionAnimation);
-    //m_popupOnAnimation
-
 
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
@@ -926,10 +929,26 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                         &m_fontLabel, L"Evolution 1", sf::Color::White);
     getContentPane()->addComponent(&m_labelLevel);
 
+    m_popupOnAnimation.create("popUpOn", 0, 0,
+                              ptr_managerGroup->ptr_textureManager->getTexture("popUpOn"),false, 0.1, 640, 960, 5);
+    getContentPane()->addComponent(&m_popupOnAnimation);
+    m_popupOnAnimation.setVisible(false);
+
+    m_popupOffAnimation.create("popUpOff", 0, 0,
+                               ptr_managerGroup->ptr_textureManager->getTexture("popUpOff"),false, 0.1, 640, 960, 5);
+    getContentPane()->addComponent(&m_popupOffAnimation);
+    m_popupOffAnimation.setVisible(false);
+
+    m_closePopupButton.create("closePopupButton", 550, 500,
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3"),
+                              ptr_managerGroup->ptr_textureManager->getTexture("button3Press"));
+    getContentPane()->addComponent(&m_closePopupButton);
+    m_closePopupButton.setVisible(true);
+
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
-    m_equipment3Panel.setVisible(false);
+    m_equipment3Panel.setVisible(true);
     m_equipment4.setVisible(false);         //Remplace le 2
     m_equipment5.setVisible(false);         //Remplace le 4
     m_equipment6.setVisible(false);
@@ -957,10 +976,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_targetPanel = "tabEquipmentPanel";
 
     firstConnect = true;
-    firstEvolution = false;
-    firstCanReset = false;
-    firstReputation = false;
-    firstReset = false;
+    firstEvolution = true;
+    firstCanReset = true;
+    firstReputation = true;
+    firstReset = true;
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -975,7 +994,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     if (firstConnect){
         firstConnect=false;
-
+        //TODO : setText sur le panel & afficher le panel
+        m_popupOnAnimation.setVisible(true);
+        m_popupOnAnimation.play();
     }
 
 
@@ -989,6 +1010,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     checkStateWhiteBoardAnimation();
     checkStateClickAnimation();
     checkStateEvolutionAnimation();
+    checkStatePopupOnAnimation();
+    checkStatePopupOffAnimation();
 
     m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
     m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
@@ -1026,6 +1049,12 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (getLabo()->getM_year() >=
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel()<25) {
+            if (firstEvolution){
+                firstEvolution=false;
+                //TODO : setText sur le panel & afficher le panel
+                m_popupOnAnimation.setVisible(true);
+                m_popupOnAnimation.play();
+            }
             getLabo()->evolution();
             m_monster.setVisible(false);
             m_evolutionAnimation.setVisible(true);
@@ -1094,6 +1123,17 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel2.setVisible(false);
         m_subTabEquipmentPanel1.setVisible(true);
     }
+
+    if (m_inputHandler.getComponentId() == "closePopupButton"){
+        m_closePopupButton.setVisible(false);
+        m_popupOnAnimation.setVisible(false);
+        //TODO : setVisible(false) pour le panel contenant les explications
+        m_popupOffAnimation.setVisible(true);
+        m_popupOffAnimation.play();
+    }
+
+    if (m_inputHandler.getComponentId() == "resetButton")
+        resetLabo();
 
     if (m_inputHandler.getComponentId() == "arrowRightButton"){
         m_subTabEquipmentPanel1.setVisible(false);
@@ -1219,7 +1259,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_buttonEquipment20.setEnabled(getLabo()->getM_LaboPieceVector().at(19)->getPrice() < getLabo()->getMoney());
 
 
-    //TODO : Update des stats (argent, yps etc..)
     if (m_inputHandler.getComponentId() == "buttonEquipment1"){
         if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(0)->getPrice() &&
                 getLabo()->getM_LaboPieceVector().at(0)->getLevel() < 21) {
@@ -1764,6 +1803,26 @@ void LaboratoryRoom::checkStateEvolutionAnimation() {
         m_evolutionAnimation.setVisible(false);
         m_monster.setVisible(true);
     }
+}
+
+void LaboratoryRoom::checkStatePopupOnAnimation() {
+    if(m_popupOnAnimation.isStopped()){
+        m_closePopupButton.setVisible(true);
+    }
+}
+
+void LaboratoryRoom::checkStatePopupOffAnimation() {
+    if(m_popupOffAnimation.isStopped()){
+        m_popupOffAnimation.setVisible(false);
+        //m_closePopupButton.setVisible(false);
+    }
+}
+
+void LaboratoryRoom::resetLabo() {
+    getLabo()->restart();
+    //TODO : vider la table
+    //TODO : Remettre le sprite du monstre de départ
+    //TODO : Remetre l'évolution à 1
 }
 
 

@@ -50,6 +50,8 @@ private:
 	NPanel m_bannerPanel;
 	sf::Font m_fontLabel;
 
+	NButton m_resetButton;
+
 	//Label for stats' panel
 	NLabel m_nbClick;
 	NLabel m_nbReset;
@@ -126,6 +128,7 @@ private:
 	NButton m_buttonEquipment20;
 	NButton m_buyButtonJeanne;
 	NButton m_buyButtonSerge;
+	NButton m_closePopupButton;
 
 	NLabel m_labelEquipment1;
 	NLabel m_labelEquipment2;
@@ -283,6 +286,12 @@ public:
 	void checkStateEvolutionAnimation();
 
 	void undisplayClickAnimation();
+
+	void checkStatePopupOnAnimation();
+
+	void checkStatePopupOffAnimation();
+
+	void resetLabo();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP
