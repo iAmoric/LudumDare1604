@@ -9,8 +9,8 @@ Labo::Labo() {
 
     initLaboPieceVector();
 
-    m_ScientificVector.push_back(new Scientific("Josette", 5, 1));
-    m_ScientificVector.push_back(new Scientific("Yvonne", 5, 2));
+    m_ScientificVector.push_back(new Scientific("Serge", 5, 1));
+    m_ScientificVector.push_back(new Scientific("Jeanne", 5, 2));
 
     m_ptr_stats = new Stats();
     m_ptr_monster = new Monster(30);
@@ -67,7 +67,7 @@ void Labo::lvlUpLaboPiece(unsigned int id) {
 }
 
 void Labo::lvlUpScientific(unsigned int type) {
-    m_LaboPieceVector.at(type)->nextLvl();
+    m_ScientificVector.at(type)->nextLvl();
     if(type == 1){
         m_CPSBonus = m_CPSBonus + 0.15;
         updateCPS();
@@ -197,6 +197,10 @@ unsigned long long Labo::getEvolutionLevel(){
 }
 unsigned long long Labo::getMoneyGain(){
     return moneyGain;
+}
+
+std::vector<Scientific *> Labo::getScientificVector(){
+    return m_ScientificVector;
 }
 
 void Labo::isPurchasablePiece(){

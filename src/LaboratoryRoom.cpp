@@ -716,6 +716,21 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                              ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_tabScientistPanel.addComponent(&m_buyButtonSerge);
 
+    m_scientistJeanneCost.create("JeanneCost", 565, 340, 35, &m_fontLabel, L"0", sf::Color::White);
+    m_tabScientistPanel.addComponent(&m_scientistJeanneCost);
+
+    m_scientistSergeCost.create("SergeCost", 805, 340, 35, &m_fontLabel, L"0", sf::Color::White);
+    m_tabScientistPanel.addComponent(&m_scientistSergeCost);
+
+    m_reputationPanel1.create("reputationPanel1", 615, 353,
+                            ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_tabScientistPanel.addComponent(&m_reputationPanel1);
+
+    m_reputationPanel2.create("reputationPanel2", 855, 353,
+                              ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_tabScientistPanel.addComponent(&m_reputationPanel2);
+
+
     /* Label */
     //First part of the stats
     m_nbClick.create("nbClick",500,80,15,&m_fontLabel
@@ -761,29 +776,32 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     //Second part of the stats
     m_panelYear.create("imgYear",500,250,ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
-    m_year.create("labelYear",525,252,15,&m_fontLabel
+    m_year.create("labelYear",525,250,15,&m_fontLabel
             ,cast::toWstring("Actual year / years to evolve")
             , sf::Color::Black);
-    m_panelMoney.create("imgMoney",738,250,ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
-    m_money.create("labelMoney",768,252,15,&m_fontLabel
+    m_panelMoney.create("imgMoney",730,350,ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
+    m_money.create("labelMoney",755,350,15,&m_fontLabel
             ,cast::toWstring("Money you have")
             , sf::Color::Black);
     m_panelMoneyPS.create("imgMoneyPS",500,350,ptr_managerGroup->ptr_textureManager->getTexture("money-icon"));
-    m_moneyPS.create("labelMoneyPS",525,352,15,&m_fontLabel
+    m_moneyPS.create("labelMoneyPS",525,350,15,&m_fontLabel
             ,cast::toWstring("Money earned per second")
             , sf::Color::Black);
-    m_panelClickPS.create("imgClickPS",500,300,ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
-    m_clickPS.create("labelClickPS",525,302,15,&m_fontLabel
+    m_panelClickPS.create("imgClickPS",730,250,ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
+    m_clickPS.create("labelClickPS",755,250,15,&m_fontLabel
             ,cast::toWstring("Years earned by a click")
             , sf::Color::Black);
-    m_panelYearPS.create("imgYearPS",735,300,ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
-    m_yearPS.create("labelYearPS",760,302,15,&m_fontLabel
+    m_panelYearPS.create("imgYearPS",730,300,ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
+    m_yearPS.create("labelYearPS",755,300,15,&m_fontLabel
             ,cast::toWstring("Years earned per second")
             , sf::Color::Black);
-    m_panelReputation.create("imgReputation",735,350,ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
-    m_reputation.create("labelReputation",760,344,15,&m_fontLabel
-            ,cast::toWstring("Reputation you'll\nwin on reset")
+    m_panelReputation.create("imgReputation",500,300,ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+    m_reputation.create("labelReputation",525,300,15,&m_fontLabel
+            ,cast::toWstring("Reputation you have")
             , sf::Color::Black);
+    m_suppReputation.create("labelSuppReputation",525,315,15,&m_fontLabel
+    ,cast::toWstring("(reputation earned by reset)")
+    ,sf::Color::Black);
 
     m_tabStatsPanel.addComponent(&m_panelYear);
     m_tabStatsPanel.addComponent(&m_year);
@@ -797,6 +815,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabStatsPanel.addComponent(&m_yearPS);
     m_tabStatsPanel.addComponent(&m_panelReputation);
     m_tabStatsPanel.addComponent(&m_reputation);
+    m_tabStatsPanel.addComponent(&m_suppReputation);
     /* Animation */
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"),true, 0.1, 75, 60, 15);
@@ -1043,8 +1062,15 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
         m_labelReputation.setText(unit.toWString());
+
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee());
     m_labelMonsterYears.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getScientificVector().at(0)->getPrice());
+    m_scientistJeanneCost.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getScientificVector().at(1)->getPrice());
+    m_scientistSergeCost.setText(unit.toWString());
 
     if (getLabo()->getM_year() >=
         getLabo()->getM_ptr_monster()->getAnnee()) {
@@ -1088,6 +1114,14 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
                                 m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
         }
+    }
+
+    if (m_inputHandler.getComponentId() == "buyButtonJeanne"){
+        getLabo()->lvlUpScientific(1);
+    }
+
+    if (m_inputHandler.getComponentId() == "buyButtonSerge"){
+
     }
 
 
@@ -1157,6 +1191,15 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_panelEquipment9Global.setVisible(false);
     m_panelEquipment10Global.setVisible(false);
     m_panelEquipment11Global.setVisible(false);
+    m_panelEquipment12Global.setVisible(false);
+    m_panelEquipment13Global.setVisible(false);
+    m_panelEquipment14Global.setVisible(false);
+    m_panelEquipment15Global.setVisible(false);
+    m_panelEquipment16Global.setVisible(false);
+    m_panelEquipment17Global.setVisible(false);
+    m_panelEquipment18Global.setVisible(false);
+    m_panelEquipment19Global.setVisible(false);
+    m_panelEquipment20Global.setVisible(false);
 
     if (getLabo()->getM_LaboPieceVector().at(0)->getPrice() > getLabo()->getMoney()) {
         m_buttonEquipment1.setEnabled(false);

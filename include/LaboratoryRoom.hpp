@@ -40,6 +40,7 @@ private:
 	NPanel m_equipment18;
 	NPanel m_equipment19;
 	AnimatableObject m_equipment20;
+
 	NPanel m_tabScientistPanel;
 	NPanel m_tabEquipmentPanel;
 	NPanel m_tabStatsPanel;
@@ -47,6 +48,12 @@ private:
 	NPanel m_subTabEquipmentPanel2;
 	NPanel m_scientistJeannePanel;
 	NPanel m_scientistSergePanel;
+	NLabel m_scientistJeanneCost;
+	NLabel m_scientistSergeCost;
+	NPanel m_reputationPanel1;
+	NPanel m_reputationPanel2;
+
+
 	NPanel m_bannerPanel;
 	sf::Font m_fontLabel;
 
@@ -78,6 +85,7 @@ private:
 	NPanel m_panelReputation;
 	NLabel m_reputation;
 	NLabel m_labelLevel;
+	NLabel m_suppReputation;
 
 	NPanel m_panelGoldEquipment1;
 	NPanel m_panelGoldEquipment2;
