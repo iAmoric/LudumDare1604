@@ -196,6 +196,8 @@ private:
     NPanel m_iconResearch;
     NLabel m_labelTime;
     NPanel m_iconTime;
+	NLabel m_labelSlash;
+	NLabel m_labelMonsterYears;
 
     AnimatableObject m_loading;
     AnimatableObject m_bulle;

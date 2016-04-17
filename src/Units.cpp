@@ -55,7 +55,7 @@ std::wstring Units::toWString(){
         string = cast::toString(m_tab_nom_unite.at(position-1));
     }
     else if(m_tab_nom_unite.at(position-1) > 100){
-        string = cast::toString(m_tab_nom_unite.at(position-1)) + m_tableauLettre[position-1];
+        string = cast::toString(m_tab_nom_unite.at(position-1)) + m_tableauLettre[position];
     }
     else{
         if(m_tab_nom_unite.at(position-2) < 100) nb = " 0";
