@@ -19,27 +19,27 @@ class LaboratoryRoom : public BasicInterface
 {
 private:
 	NPanel m_background;
-	NPanel m_equipment1;
-	NPanel m_equipment2;
+	AnimatableObject m_equipment1;
+	AnimatableObject m_equipment2;
 	NPanel m_equipment3Panel;
 	NPanel m_equipment3;
-	NPanel m_equipment4;
-	NPanel m_equipment5;
-	NPanel m_equipment6;
-	NPanel m_equipment7;
-	NPanel m_equipment8;
-	NPanel m_equipment9;
-	NPanel m_equipment10;
-	NPanel m_equipment11;
-	NPanel m_equipment12;
-	NPanel m_equipment13;
-	NPanel m_equipment14;
-	NPanel m_equipment15;
-	NPanel m_equipment16;
-	NPanel m_equipment17;
+	AnimatableObject m_equipment4;
+	AnimatableObject m_equipment5;
+	AnimatableObject m_equipment6;
+	AnimatableObject m_equipment7;
+	AnimatableObject m_equipment8;
+	AnimatableObject m_equipment9;
+	AnimatableObject m_equipment10;
+	AnimatableObject m_equipment11;
+	AnimatableObject m_equipment12;
+	AnimatableObject m_equipment13;
+	AnimatableObject m_equipment14;
+	AnimatableObject m_equipment15;
+	AnimatableObject m_equipment16;
+	AnimatableObject m_equipment17;
 	NPanel m_equipment18;
 	NPanel m_equipment19;
-	NPanel m_equipment20;
+	AnimatableObject m_equipment20;
 	NPanel m_tabScientistPanel;
 	NPanel m_tabEquipmentPanel;
 	NPanel m_tabStatsPanel;
@@ -206,6 +206,7 @@ private:
 	AnimatableObject m_clickAnimation1;
 	AnimatableObject m_clickAnimation2;
 	AnimatableObject m_clickAnimation3;
+	AnimatableObject m_whiteBoardAnimation;
 
 	int m_NbMonster;
     double m_timeElapsed;
@@ -213,6 +214,7 @@ private:
     bool m_bool;
 	Labo* getLabo();
 
+	std::string m_targetPanel;
 
 public:
     // Constructor
@@ -234,7 +236,7 @@ public:
 
     void displayScientistPanel();
 
-
+	void checkStateWhiteBoardAnimation();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP

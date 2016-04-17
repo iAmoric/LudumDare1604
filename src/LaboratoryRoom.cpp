@@ -77,9 +77,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_timeElapsed = 0;
 
     /* Monster */
+    m_NbMonster = 1;
     m_monster.create("monster", 140, 140,
-                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"),
-                     ptr_managerGroup->ptr_textureManager->getTexture("monster_1"));
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
+                     ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
     getContentPane()->addComponent(&m_monster);
 
     /* Background */
@@ -738,13 +739,18 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_clickAnimation3);
     m_clickAnimation3.setVisible(false);
 
+    m_whiteBoardAnimation.create("whiteBoardAnimation", 494, 82,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("whiteBoardAnimation"),false, 0.04, 336, 448, 21);
+    getContentPane()->addComponent(&m_whiteBoardAnimation);
+    m_whiteBoardAnimation.setVisible(false);
+
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment1"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment1"), true, 0.2, 79, 120, 3);
     getContentPane()->addComponent(&m_equipment1);
 
     m_equipment2.create("equipement_2", 25, 470,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment2"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment2"), true, 0.2, 79, 120, 2);
     getContentPane()->addComponent(&m_equipment2);
 
     m_equipment3.create("equipement_3", 170, 520,
@@ -754,59 +760,59 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_equipment3Panel);
 
     m_equipment4.create("equipement_4", 25, 470,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment4"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment4"), true, 0.2, 79, 120, 2);
     getContentPane()->addComponent(&m_equipment4);
 
     m_equipment5.create("equipement_5", 25, 470,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment5"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment5"), true, 0.2, 79, 120, 3);
     getContentPane()->addComponent(&m_equipment5);
 
     m_equipment6.create("equipement_6", 860, 440,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment6"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment6"), true, 0.2, 109, 80, 2);
     getContentPane()->addComponent(&m_equipment6);
 
     m_equipment7.create("equipement_7", 860, 440,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment7"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment7"), true, 0.2, 100, 90, 2);
     getContentPane()->addComponent(&m_equipment7);
 
     m_equipment8.create("equipement_8", 490, 440,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment8"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment8"), true, 0.2, 89, 120, 3);
     getContentPane()->addComponent(&m_equipment8);
 
     m_equipment9.create("equipement_9", 490, 440,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment9"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment9"), true, 0.2, 89, 120, 3);
     getContentPane()->addComponent(&m_equipment9);
 
     m_equipment10.create("equipement_10", 760, 490,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment10"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment10"), true, 0.2, 84, 95, 2);
     getContentPane()->addComponent(&m_equipment10);
 
     m_equipment11.create("equipement_11", 520, 492,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment11"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment11"), true, 0.2, 85, 70, 2);
     getContentPane()->addComponent(&m_equipment11);
 
     m_equipment12.create("equipement_12", 760, 490,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment12"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment12"), true, 0.2, 84, 95, 3);
     getContentPane()->addComponent(&m_equipment12);
 
     m_equipment13.create("equipement_13", 25, 470,
-                        ptr_managerGroup->ptr_textureManager->getTexture("equipment13"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("equipment13"), true, 0.2, 79, 120, 2);
     getContentPane()->addComponent(&m_equipment13);
 
     m_equipment14.create("equipement_14", 25, 470,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment14"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment14"), true, 0.2, 79, 120, 2);
     getContentPane()->addComponent(&m_equipment14);
 
     m_equipment15.create("equipement_15", 25, 470,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment15"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment15"), true, 0.2, 79, 120, 2);
     getContentPane()->addComponent(&m_equipment15);
 
     m_equipment16.create("equipement_16", 25, 470,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment16"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment16"), true, 0.2, 79, 120, 3);
     getContentPane()->addComponent(&m_equipment16);
 
     m_equipment17.create("equipement_17", 690, 435,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment17"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment17"), true, 0.2, 115, 50, 3);
     getContentPane()->addComponent(&m_equipment17);
 
     m_equipment18.create("equipement_18", 510, 10,
@@ -818,7 +824,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_equipment19);
 
     m_equipment20.create("equipement_20", 170, 507,
-                         ptr_managerGroup->ptr_textureManager->getTexture("equipment20"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("equipment20"), true, 0.1, 83, 70, 3);
     getContentPane()->addComponent(&m_equipment20);
 
 
@@ -852,6 +858,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_flamme2.setVisible(false);    //
     m_bulle.setVisible(false);  //
 
+    m_targetPanel = "tabEquipmentPanel";
+
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -869,6 +877,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
     }
+    checkStateWhiteBoardAnimation();
+
 
 
     Units unit = Units();
@@ -893,22 +903,42 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "monster"){
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
+
     if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
         m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
         m_NbMonster++;
-        m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"),
-                            m_ptr_managerGroup->ptr_textureManager->getTexture("monster_2"));
+        if (m_NbMonster<=25) {
+            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
+                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
+        }
     }
-    if (m_inputHandler.getComponentId() == "tabStatsButton") {
-        displayStatsPanel();
+
+    if (m_inputHandler.getComponentId() == "tabStatsButton"){
+        if (m_targetPanel!="tabStatsPanel") {
+            m_targetPanel = "tabStatsPanel";
+            m_whiteBoardAnimation.setVisible(true);
+            m_whiteBoardAnimation.play();
+        }
+        //displayStatsPanel();
     }
 
     if (m_inputHandler.getComponentId() == "tabEquipmentButton"){
-        displayEquipmentPanel();
+        if (m_targetPanel!="tabEquipmentPanel") {
+            m_targetPanel = "tabEquipmentPanel";
+            m_whiteBoardAnimation.setVisible(true);
+            m_whiteBoardAnimation.play();
+        }
+        //displayEquipmentPanel();
     }
 
     if (m_inputHandler.getComponentId() == "tabScientistButton"){
-        displayScientistPanel();
+        if (m_targetPanel!="tabScientistPanel") {
+            m_targetPanel = "tabScientistPanel";
+            m_whiteBoardAnimation.setVisible(true);
+            m_whiteBoardAnimation.play();
+        }
+
+        //displayScientistPanel();
     }
 
     if (m_inputHandler.getComponentId() == "arrowLeftButton"){
@@ -1051,6 +1081,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->lvlUpLaboPiece(5);
             if (!m_equipment7.isVisible()) {
                 m_equipment6.setVisible(true);
+                m_flamme1.setVisible(true);
             }
 
             m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
@@ -1141,6 +1172,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->lvlUpLaboPiece(9);
             if (!m_equipment12.isVisible()) {
                 m_equipment10.setVisible(true);
+                m_flamme2.setVisible(true);
             }
 
             m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
@@ -1363,7 +1395,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         if(getLabo()->getMoney() >= getLabo()->getM_LaboPieceVector().at(19)->getPrice()) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(19)->getPrice());
             getLabo()->lvlUpLaboPiece(19);
-            m_equipment3.setVisible(false);
+            m_equipment3Panel.setVisible(false);
             m_equipment20.setVisible(true);
 
             m_ptr_managerGroup->ptr_gameManager->getUnits()->setNumber(
@@ -1410,6 +1442,18 @@ void LaboratoryRoom::displayScientistPanel(){
     m_tabScientistPanel.setVisible(true);
 }
 
+void LaboratoryRoom::checkStateWhiteBoardAnimation(){
+    if(m_whiteBoardAnimation.isStopped()){
+        m_whiteBoardAnimation.setVisible(false);
+
+        if (m_targetPanel == "tabScientistPanel")
+            displayScientistPanel();
+        if (m_targetPanel == "tabEquipmentPanel")
+            displayEquipmentPanel();
+        if (m_targetPanel == "tabStatsPanel")
+            displayStatsPanel();
+    }
+}
 
 
 
