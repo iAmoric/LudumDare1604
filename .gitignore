@@ -45,3 +45,6 @@ openssl/
 *.msm
 *.msp
 *.lnk
+
+# Music
+music/
