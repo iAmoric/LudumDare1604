@@ -170,7 +170,7 @@ void Labo::grant(){
     updateCPS();
     m_ptr_stats->incrementSpentTime();
     m_ptr_stats->setActualMoney(m_money);
-    m_ptr_stats->setTotalMoney(m_money);
+    m_ptr_stats->incrementTotalMoney(m_money);
 }
 
 void Labo::click() {

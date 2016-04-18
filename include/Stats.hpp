@@ -61,8 +61,6 @@ public:
     long getM_totalReputation();
     long getM_spentReputation();
 
-    void setTotalMoney(unsigned long long int money);
-
     void incrementNbEvoMax();
 };
 #endif //CLIENT_STATS_HPP
