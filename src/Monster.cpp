@@ -15,6 +15,10 @@ Monster::~Monster() {
 void Monster::setAnnee(unsigned long long annee) {
     m_annee = m_annee + annee;
 }
+void Monster::resetAnnee(){
+    m_annee = 30;
+}
+
 unsigned long long Monster::getAnnee() {
     return m_annee;
 }

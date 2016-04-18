@@ -24,7 +24,7 @@ Labo::Labo() {
     m_reputationPointWaiting = 0;
     m_reputationPointOwned = 0;
     m_evolutionLevel = 1;
-    moneyGain = 1;
+    moneyGain = 0;
 
 
 }
@@ -67,12 +67,13 @@ void Labo::lvlUpLaboPiece(unsigned int id) {
 }
 
 void Labo::lvlUpScientific(unsigned int type) {
+    m_reputationPointOwned -= m_ScientificVector.at(type)->getPrice();
     m_ScientificVector.at(type)->nextLvl();
     if(type == 1){
         m_CPSBonus = m_CPSBonus + 0.15;
         updateCPS();
     }
-    else if(type == 2){
+    else if(type == 0){
         m_YPSBonus = m_YPSBonus + 0.15;
         updateYPS();
     }
@@ -110,7 +111,7 @@ void Labo::restart(){
     m_year = 0;
     moneyGain = 0;
     m_evolutionLevel = 0;
-    m_ptr_monster->setAnnee(30);
+    m_ptr_monster->resetAnnee();
     m_ptr_stats->incrementNbReset();
     m_restartBonus *= 1.1;
     m_reputationPointOwned += m_reputationPointWaiting;
@@ -129,7 +130,7 @@ void Labo::restart(){
 }
 
 void Labo::evolution() {
-    unsigned long long moneyGain = 0;
+    unsigned long long moneyGain2 = 0;
     if(m_evolutionLevel == 5 || m_evolutionLevel == 10 ||
             m_evolutionLevel == 15 || m_evolutionLevel == 20){
         m_reputationPointWaiting += 5 * m_evolutionLevel;
@@ -144,9 +145,10 @@ void Labo::evolution() {
     }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
-            moneyGain = m_LaboPieceVector.at(i)->getPrice();
+            moneyGain2 = m_LaboPieceVector.at(i)->getPrice();
     }
-    m_money += moneyGain * 3;
+    if(m_money == 0) m_money = 5;
+    else m_money +=  moneyGain2 * 5.5;
 
 }
 
@@ -155,12 +157,12 @@ void Labo::evolution() {
  * Upload also the time
  */
 void Labo::grant(){
-    for(unsigned int i = 1; i < m_LaboPieceVector.size()-2; i++ ){
-        if(m_LaboPieceVector.at(i)->isBought()){
-            moneyGain = m_LaboPieceVector.at(i)->getYPS() / 10;
-        }
-        if(moneyGain == 0) moneyGain += 1;
-    }
+
+
+    moneyGain = m_YPS / 10;
+
+    if(moneyGain == 0 && m_YPS > 0) moneyGain += 1;
+
     m_money = m_money + moneyGain;
     m_year += m_YPS;
     updateCPS();

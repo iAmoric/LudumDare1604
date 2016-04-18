@@ -14,6 +14,8 @@ public:
     ~Monster();
     void setAnnee(unsigned long long annee);
     unsigned long long getAnnee();
+
+    void resetAnnee();
 };
 
 
