@@ -13,8 +13,8 @@
  * \return None
  */
 NButton::NButton() :
-VisualObject(),
-m_surrounder()
+		VisualObject(),
+		m_surrounder()
 {
 	m_actionId = -1;
 	m_ptr_trggObject = nullptr;
@@ -35,8 +35,8 @@ NButton::~NButton() {
  * \param texture_1 The texture of the main sprite
  * \param texture_2 The texture of the second sprite
  */
-void NButton::create(std::string id, int x, int y, 
-sf::Texture * texture_1, sf::Texture * texture_2) {
+void NButton::create(std::string id, int x, int y,
+					 sf::Texture * texture_1, sf::Texture * texture_2) {
 
 	m_actionId = -1;
 	m_ptr_trggObject = nullptr;
@@ -49,7 +49,7 @@ sf::Texture * texture_1, sf::Texture * texture_2) {
 	m_secondSprite.setPosition(m_position);
 
 	m_surrounder.init(m_mainSprite.getPosition(),
-	m_mainSprite.getTexture()->getSize());
+					  m_mainSprite.getTexture()->getSize());
 }
 
 /*!
@@ -60,15 +60,38 @@ void NButton::draw(sf::RenderWindow * window) {
 
 	if(m_hidden) return;
 
+
 	if(m_isActive) {
 		window->draw(m_secondSprite);
 	} else if (m_isOver) {
+		if (m_isEnable) {
+
+			sf::Vector2f posTmp;
+			if(flag){
+				posTmp.x = (float) (m_mainSprite.getPosition().x +
+									(m_mainSprite.getTexture()->getSize().x - m_mainSprite.getTexture()->getSize().x * 1.04));
+				posTmp.y = (float) (m_mainSprite.getPosition().y +
+									(m_mainSprite.getTexture()->getSize().y - m_mainSprite.getTexture()->getSize().y * 1.04));
+				/*m_mainSprite.setOrigin(m_mainSprite.getTexture()->getSize().x/2,
+									   m_mainSprite.getTexture()->getSize().y/2);*/
+				m_mainSprite.setPosition(posTmp);
+				m_mainSprite.setScale(1.08, 1.08);
+				flag= false;
+			}
+
+
+
+		}
+
 		window->draw(m_mainSprite);
-		if(m_isEnable)
-			window->setMouseCursorVisible(false);
-		window->draw(*m_surrounder.getShape(m_pos));
+
+
 	} else {
-		window->setMouseCursorVisible(true);
+
+		flag = true;
+		m_mainSprite.setPosition(m_position);
+		//window->setMouseCursorVisible(true);
+		m_mainSprite.setScale(1, 1);
 		window->draw(m_mainSprite);
 	}
 }
@@ -84,14 +107,14 @@ std::string NButton::eventMousePressed(sf::Event * e) {
 	if(m_hidden) return id;
 	if(!m_isEnabled) return id;
 
-	sf::FloatRect mousePosition(e->mouseButton.x, 
-	e->mouseButton.y, 1, 1);
+	sf::FloatRect mousePosition(e->mouseButton.x,
+								e->mouseButton.y, 1, 1);
 
 	//std::cout << m_mainSprite.getGlobalBounds().top << std::endl;
 	//std::cout << m_mainSprite.getGlobalBounds().left << std::endl;
 
 	if(m_mainSprite.getGlobalBounds().
-	intersects(mousePosition)) {
+			intersects(mousePosition)) {
 
 		id = m_id;
 		m_isActive = true;
@@ -117,11 +140,11 @@ std::string NButton::eventMouseMoved(sf::Event * e) {
 	if(m_hidden) return id;
 	if(!m_isEnabled) return id;
 
-	sf::FloatRect mousePosition(e->mouseMove.x, 
-	e->mouseMove.y, 1, 1);
+	sf::FloatRect mousePosition(e->mouseMove.x,
+								e->mouseMove.y, 1, 1);
 
 	if(m_mainSprite.getGlobalBounds().
-	intersects(mousePosition)) {
+			intersects(mousePosition)) {
 		id = m_id;
 		m_isOver = true;
 		m_pos.x = e->mouseMove.x;
@@ -168,7 +191,7 @@ void NButton::bind(TriggerableObject * o) {
  * \param texture_2 The pointer on the second texture
  */
 void NButton::setSprite(sf::Texture * texture_1,
-sf::Texture * texture_2) {
+						sf::Texture * texture_2) {
 	m_mainSprite.setTexture(*texture_1);
 	m_secondSprite.setTexture(*texture_2);
 }

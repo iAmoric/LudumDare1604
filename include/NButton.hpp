@@ -25,6 +25,7 @@ class NButton : public VisualObject
 		Surrounder m_surrounder;
 		sf::Vector2f m_pos;
 		std::vector < std::string > m_textList;
+		bool flag;
 
 	public:
 		// Constructor

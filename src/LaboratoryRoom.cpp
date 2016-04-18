@@ -20,9 +20,13 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             createPlaylist("playlistMenu", true, 1.0);
     ptr_managerGroup->ptr_musicManager->
-            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Epipath.ogg");
+            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon1.wav");
     ptr_managerGroup->ptr_musicManager->
-            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Blue_Illusions.wav");
+            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon2.wav");
+    ptr_managerGroup->ptr_musicManager->
+            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon3.wav");
+    ptr_managerGroup->ptr_musicManager->
+            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon4.wav");
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
@@ -780,10 +784,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                             ptr_managerGroup->ptr_textureManager->getTexture("button4Press"));
     m_tabScientistPanel.addComponent(&m_buyButtonSerge);
 
-    m_scientistJeanneCost.create("JeanneCost", 565, 340, 35, &m_fontLabel, L"0", sf::Color::White);
+    m_scientistJeanneCost.create("JeanneCost", 565, 345, 25, &m_fontLabel, L"0", sf::Color::White);
     m_tabScientistPanel.addComponent(&m_scientistJeanneCost);
 
-    m_scientistSergeCost.create("SergeCost", 805, 340, 35, &m_fontLabel, L"0", sf::Color::White);
+    m_scientistSergeCost.create("SergeCost", 805, 345, 25, &m_fontLabel, L"0", sf::Color::White);
     m_tabScientistPanel.addComponent(&m_scientistSergeCost);
 
     m_reputationPanel1.create("reputationPanel1", 615, 353,
