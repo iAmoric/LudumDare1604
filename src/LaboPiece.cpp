@@ -3,6 +3,7 @@
 //
 
 #include "LaboPiece.hpp"
+#include <math.h>
 
 LaboPiece::LaboPiece(std::string name, int nbLaboPiece, unsigned long long price, bool isBuyable,bool isBought) {
     m_name = name;
@@ -11,7 +12,7 @@ LaboPiece::LaboPiece(std::string name, int nbLaboPiece, unsigned long long price
     m_isBuyable = false;
     m_price = price;
     m_YPS = (unsigned long long) (price * 0.2); //TODO To define
-    m_YPSNextLvl = (unsigned long long)(m_YPS + (price * 0.2));
+    m_YPSNextLvl = (unsigned long long)ceil((m_YPS + (price * 0.2)));
     m_level = 0;
 }
 

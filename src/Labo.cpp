@@ -230,3 +230,9 @@ std::vector<LaboPiece *> Labo::getM_LaboPieceVector() {
 void Labo::incrementEvolutionLevel(){
     m_evolutionLevel++;
 }
+double Labo::getM_CPSBonus(){
+    return m_CPSBonus;
+}
+double Labo::getM_YPSBonus(){
+    return m_YPSBonus;
+}
