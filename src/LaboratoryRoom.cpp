@@ -1095,7 +1095,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
-    m_equipment3Panel.setVisible(true);
+    m_equipment3Panel.setVisible(false);
     m_equipment4.setVisible(false);         //Remplace le 2
     m_equipment5.setVisible(false);         //Remplace le 4
     m_equipment6.setVisible(false);
