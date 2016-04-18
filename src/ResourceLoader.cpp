@@ -52,14 +52,12 @@ void ResourceLoader::load() {
 
 
 	/* Path */
-	const std::string pathLogin = "../res/texture/menu/login/";
 	const std::string pathAnimation = "../res/animation/";
 	const std::string pathView = "../res/vues/";
 	const std::string pathSprite = "../res/sprites/";
 	const std::string pathMonster = "../res/monstres/";
 	const std::string pathEquipment = "../res/equipment/";
 	const std::string pathButton = "../res/buttons/";
-	const std::string pathCharacter ="../res/buttons/";
     const std::string pathComputer ="../res/sprites/ordi/";
 
 	/* Buttons */
@@ -203,9 +201,6 @@ void ResourceLoader::load() {
 
 	/* credit */
 	a_tm.addTexture("credit", pathAnimation + "credit.png");
-
-	/* Money Gold */
-	a_tm.addTexture("gold", pathEquipment + "gold.png");
 
 	a_mm.setState(true);
 	a_tm.setState(true);

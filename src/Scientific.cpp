@@ -19,7 +19,7 @@ Scientific::~Scientific() {
 
 void Scientific::nextLvl() {
     m_level++;
-    m_price *= 1.5;
+    m_price *= 1.3;
 }
 
 unsigned long long Scientific::getPrice(){

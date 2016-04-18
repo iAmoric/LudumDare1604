@@ -69,6 +69,10 @@ public:
 
     void incrementEvolutionLevel();
     std::vector<Scientific *> getScientificVector();
+
+    double getM_CPSBonus();
+
+    double getM_YPSBonus();
 };
 
 #endif //CLIENT_LABO_HPP
