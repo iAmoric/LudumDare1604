@@ -783,7 +783,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabScientistPanel.addComponent(&m_scientistSergeCost);
 
     m_reputationPanel1.create("reputationPanel1", 615, 353,
-                            ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
+                              ptr_managerGroup->ptr_textureManager->getTexture("reputation-icon"));
     m_tabScientistPanel.addComponent(&m_reputationPanel1);
 
     m_reputationPanel2.create("reputationPanel2", 855, 353,
@@ -806,7 +806,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                        L"Time spent : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds()),
                        sf::Color::Black);
     m_actualMoney.create("actualMoney", 500, 140, 15, &m_fontLabel, L"Actual amount of money : " + cast::toWstring(
-                                 getLabo()->getM_ptr_stats()->getM_actualMoney()), sf::Color::Black);
+            getLabo()->getM_ptr_stats()->getM_actualMoney()), sf::Color::Black);
     m_totalMoney.create("totalMoney", 500, 155, 15, &m_fontLabel,
                         L"Total amount of money obtained in your whole life : " +
                         cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney()), sf::Color::Black);
@@ -815,7 +815,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                                                           getLabo()->getM_ptr_stats()->getM_spentMoney()),
                         sf::Color::Black);
     m_actualReputation.create("actualReputation", 500, 185, 15, &m_fontLabel, L"Actual reputation : " + cast::toWstring(
-                                      getLabo()->getM_ptr_stats()->getM_actualReputation()), sf::Color::Black);
+            getLabo()->getM_ptr_stats()->getM_actualReputation()), sf::Color::Black);
     m_totalReputation.create("totalReputation", 500, 200, 15, &m_fontLabel,
                              L"Total reputation earned in your whole life : " +
                              cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation()), sf::Color::Black);
@@ -894,11 +894,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
             "A new laboratory heard about your story and set-up a new machine.\n"
             "Good news in the disaster, the scientists that were wishing to join you can be hired this time.\n"
             "It will be faster with that! I recommend my twin brother, he’s doing a wonderful work!";
-    txtEndGame =L"Well, you did it!\n"
+    txtEndGame = L"Well, you did it!\n"
             "The apotheosis of evolution really look like that?\n"
             "Stupid developers…\n"
             "You still can try to evolve it thought!\n"
-            "\n"5
+            "\n"
             "Anyway, thanks for playing our game till the end, I hope you liked it!";
     txtFirstReputation = L"It looks like a mega-evolution!\n"
             "It happens for 3 steps (I think…): Cells to water, water to earth and earth to air.\n"
@@ -1050,12 +1050,12 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_labelLevel);
 
     m_popupOnAnimation.create("popUpOn", 0, 0,
-                              ptr_managerGroup->ptr_textureManager->getTexture("popUpOn"),false, 0.1, 640, 960, 5);
+                              ptr_managerGroup->ptr_textureManager->getTexture("popUpOn"), false, 0.1, 640, 960, 5);
     getContentPane()->addComponent(&m_popupOnAnimation);
     m_popupOnAnimation.setVisible(false);
 
     m_popupOffAnimation.create("popUpOff", 0, 0,
-                               ptr_managerGroup->ptr_textureManager->getTexture("popUpOff"),false, 0.1, 640, 960, 5);
+                               ptr_managerGroup->ptr_textureManager->getTexture("popUpOff"), false, 0.1, 640, 960, 5);
     getContentPane()->addComponent(&m_popupOffAnimation);
     m_popupOffAnimation.setVisible(false);
 
@@ -1114,9 +1114,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     if (firstConnect) {
         firstConnect = false;
-
-    if (firstConnect){
-        firstConnect=false;
         //TODO : setText sur le panel & afficher le panel
         m_popupOnAnimation.setVisible(true);
         m_popupOnAnimation.play();
@@ -1138,7 +1135,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
     m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
-    m_nbEvoMax.setText(L"Maximum level achieved : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbEvoMax()));
+    m_nbEvoMax.setText(
+            L"Maximum level achieved : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbEvoMax()));
     m_spentMoney.setText(L"Total amount of money spent in your whole life : " +
                          cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentMoney()));
     m_totalReputation.setText(L"Total reputation earned in your whole life : " +
@@ -1171,7 +1169,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_labelMoney.setText(unit.toWString());
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
-        m_labelReputation.setText(unit.toWString());
+    m_labelReputation.setText(unit.toWString());
 
     m_labelReputation.setText(unit.toWString());
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee());
@@ -1186,13 +1184,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (getLabo()->getM_year() >=
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel() < 25) {
-        if (getLabo()->getEvolutionLevel()<25) {
-            if (firstEvolution){
-                firstEvolution=false;
-                //TODO : setText sur le panel & afficher le panel
-                m_popupOnAnimation.setVisible(true);
-                m_popupOnAnimation.play();
-            }
             getLabo()->evolution();
             m_monster.setVisible(false);
             m_evolutionAnimation.setVisible(true);
@@ -1221,27 +1212,14 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
     }
 
-    if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
-        m_NbMonster++;
-        if (m_NbMonster <= 25) {
-            m_monster.setSprite(
-                    m_ptr_managerGroup->ptr_textureManager->getTexture("monster_" + cast::toString(m_NbMonster)),
-                    m_ptr_managerGroup->ptr_textureManager->getTexture("monster_" + cast::toString(m_NbMonster)));
-        }
-    }
-
-    if (m_inputHandler.getComponentId() == "buyButtonJeanne"){
+    if (m_inputHandler.getComponentId() == "buyButtonJeanne") {
         getLabo()->lvlUpScientific(1);
     }
 
-    if (m_inputHandler.getComponentId() == "buyButtonSerge"){
+    if (m_inputHandler.getComponentId() == "buyButtonSerge") {
 
     }
 
-
-    if (m_inputHandler.getComponentId() == "tabStatsButton"){
-        if (m_targetPanel!="tabStatsPanel") {
     if (m_inputHandler.getComponentId() == "tabStatsButton") {
         if (m_targetPanel != "tabStatsPanel") {
             m_targetPanel = "tabStatsPanel";
@@ -1275,8 +1253,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_subTabEquipmentPanel1.setVisible(true);
     }
 
-    if (m_inputHandler.getComponentId() == "arrowRightButton") {
-    if (m_inputHandler.getComponentId() == "closePopupButton"){
+    if (m_inputHandler.getComponentId() == "closePopupButton") {
         m_closePopupButton.setVisible(false);
         m_popupOnAnimation.setVisible(false);
         //TODO : setVisible(false) pour le panel contenant les explications
@@ -1287,7 +1264,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "resetButton")
         resetLabo();
 
-    if (m_inputHandler.getComponentId() == "arrowRightButton"){
+    if (m_inputHandler.getComponentId() == "arrowRightButton") {
         m_subTabEquipmentPanel1.setVisible(false);
         m_subTabEquipmentPanel2.setVisible(true);
     }
@@ -1441,7 +1418,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(0)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment1.setText(informationsEquipment);
         }
@@ -1468,7 +1446,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(1)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment2.setText(informationsEquipment);
         }
@@ -1492,7 +1471,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(2)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment3.setText(informationsEquipment);
         }
@@ -1518,7 +1498,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(3)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment4.setText(informationsEquipment);
         }
@@ -1543,7 +1524,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(4)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment5.setText(informationsEquipment);
         }
@@ -1568,7 +1550,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(5)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment6.setText(informationsEquipment);
         }
@@ -1591,7 +1574,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(6)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment7.setText(informationsEquipment);
         }
@@ -1615,7 +1599,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(7)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment8.setText(informationsEquipment);
         }
@@ -1638,7 +1623,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(8)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment9.setText(informationsEquipment);
         }
@@ -1663,7 +1649,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(9)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment10.setText(informationsEquipment);
         }
@@ -1685,7 +1672,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(10)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment11.setText(informationsEquipment);
         }
@@ -1708,7 +1696,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(11)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment12.setText(informationsEquipment);
         }
@@ -1785,7 +1774,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(14)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment15.setText(informationsEquipment);
         }
@@ -1808,7 +1798,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(15)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment16.setText(informationsEquipment);
         }
@@ -1830,7 +1821,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(16)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment17.setText(informationsEquipment);
         }
@@ -1852,7 +1844,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(17)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment18.setText(informationsEquipment);
         }
@@ -1874,7 +1867,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(18)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment19.setText(informationsEquipment);
         }
@@ -1897,7 +1891,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             std::wstring informationEquipmentYPS =
                     m_ptr_managerGroup->ptr_gameManager->getUnits()->toWString() + L" YPS";
             std::wstring informationsEquipment = L"level " + cast::toWstring(
-                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getLevel()) + L"   "
+                    m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_LaboPieceVector().at(19)->getLevel()) +
+                                                 L"   "
                                                  + informationEquipmentYPS;
             m_labelEquipment20.setText(informationsEquipment);
         }
@@ -1969,13 +1964,13 @@ void LaboratoryRoom::checkStateEvolutionAnimation() {
 }
 
 void LaboratoryRoom::checkStatePopupOnAnimation() {
-    if(m_popupOnAnimation.isStopped()){
+    if (m_popupOnAnimation.isStopped()) {
         m_closePopupButton.setVisible(true);
     }
 }
 
 void LaboratoryRoom::checkStatePopupOffAnimation() {
-    if(m_popupOffAnimation.isStopped()){
+    if (m_popupOffAnimation.isStopped()) {
         m_popupOffAnimation.setVisible(false);
         //m_closePopupButton.setVisible(false);
     }

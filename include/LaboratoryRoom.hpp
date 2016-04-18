@@ -310,6 +310,8 @@ public:
 	void checkStatePopupOffAnimation();
 
 	void resetLabo();
+
+
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP
