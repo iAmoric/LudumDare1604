@@ -11,6 +11,7 @@ class Stats{
 protected:
     //Other stats
     unsigned long long m_nbClick;
+    int m_nbClickSeconde;
     int m_nbReset;
     int m_nbEvoMax;
     sf::Time m_spentTime;
@@ -43,11 +44,13 @@ public:
     void incrementActualReputation(unsigned long long reputation);
     void incrementTotalReputation(unsigned long long reputation);
     void incrementSpentReputation(unsigned long long reputation);
+    void setNbClickSeconde(int click);
     /* Getter */
     //Money
     unsigned long long getM_actualMoney();
     unsigned long long getM_totalMoney();
     unsigned long long getM_spentMoney();
+    int getNbClickSeconde();
     //Other stats
     unsigned long long getM_nbClick();
     sf::Time getM_spentTime();

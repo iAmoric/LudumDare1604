@@ -61,6 +61,7 @@ private:
 
 	//Label for stats' panel
 	NLabel m_nbClick;
+	NLabel m_nbClickBySeconde;
 	NLabel m_nbReset;
 	NLabel m_nbEvoMax;
 	NLabel m_spentTime;
@@ -256,6 +257,8 @@ private:
 	AnimatableObject m_evolutionAnimation;
 
 	int m_NbMonster;
+	int m_ClickThisSeconde;
+	unsigned long long m_ClickUntilLastSeconde;
     double m_timeElapsed;
 	std::wstring txtFirstConnect;
 	std::wstring txtFirstEvolution;
