@@ -215,12 +215,14 @@ private:
     NPanel m_iconMoney;
     NLabel m_labelReputation;
     NPanel m_iconReputation;
+	NLabel m_labelReputationPlus;
     NLabel m_labelResearch;
     NPanel m_iconResearch;
     NLabel m_labelTime;
     NPanel m_iconTime;
 	NLabel m_labelSlash;
 	NLabel m_labelMonsterYears;
+
 	NPanel pictureTutoBank;
 	NPanel pictureTutoMPS;
 

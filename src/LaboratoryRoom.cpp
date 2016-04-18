@@ -69,6 +69,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_iconReputation);
     m_labelReputation.create("labelReputation", 310, 436, 20, &m_fontLabel, L"0", sf::Color::Black);
     getContentPane()->addComponent(&m_labelReputation);
+    m_labelReputationPlus.create("labelReputation", 300, 460, 20, &m_fontLabel, L"(+0)", sf::Color::Black);
+    getContentPane()->addComponent(&m_labelReputationPlus);
 
     m_labelSlash.create("labelSlash", 300, 379, 20, &m_fontLabel, L"/", sf::Color::Black);
     getContentPane()->addComponent(&m_labelSlash);
@@ -1177,6 +1179,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointOwned());
     m_labelReputation.setText(unit.toWString());
+
+    unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getReputationPointWaiting());
+    m_labelReputationPlus.setText(L"(+" + unit.toWString() + L")");
 
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee());
     m_labelMonsterYears.setText(unit.toWString());
