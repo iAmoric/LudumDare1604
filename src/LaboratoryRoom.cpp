@@ -827,7 +827,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                                                     cast::toWstring(
                                                                             getLabo()->getM_ptr_stats()->getM_spentReputation()),
                              sf::Color::Black);
-    m_nbClickBySeconde.create("nbClickBySeconde", 500, 230, 15, &m_fontLabel, L"Number of click maximum in one seconde : " +
+    m_nbClickBySeconde.create("nbClickBySecond", 500, 230, 15, &m_fontLabel, L"Number maximum of click in one second : " +
                                                                     cast::toWstring(
                                                                             getLabo()->getM_ptr_stats()->getNbClickSeconde()),
                              sf::Color::Black);
