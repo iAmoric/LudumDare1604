@@ -874,18 +874,18 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
 
     /* Tutorial */
-    txtFirstConnect = L"Hello there!\n"
+    txtFirstConnect = L"Hello there!\n\n"
             "We are experiencing something new here.\n"
             "Behind me there is a wonderful machine.\n"
-            "You will be able to see the shape shift of the life and even more!\n"
-            "Well, a possible interpretation of the evolution at least.\n"
+            "You will be able to see the shape shift of the life and\neven more!\n"
+            "Well, a possible interpretation of the evolution at least.\n\n"
             "Go on and give it a go, try to shake the cell behind me.";
-    txtFirstEvolution = L"The cell evolved! The machine can simulate years of evolution in a second!\n"
+    txtFirstEvolution = L"The cell evolved!\nThe machine can simulate years of evolution in a second!\n\n"
             "See that icon? *Insert bank icon here*.\n"
             "This is how much subvention you receive for your hard work.\n"
             "You can buy things for your laboratory.\n"
-            "They will help you for your researches, by helping you evolve always faster. \n"
-            "It also prove that you’re a respectable scientist and more subvention *insert MPS icon” will arrive.";
+            "They will help you for your researches, by helping you evolve\nalways faster. \n"
+            "It also prove that you’re a respectable scientist and more\nsubvention *insert MPS icon” will arrive.";
     txtFirstCanReset = L"Technicians finally repaired this red button.\n"
             "It should only be used only for an extreme emergency.\n"
             "Don’t press it! Like really.";
@@ -908,6 +908,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
             "I guess you should wait to change of laboratory, aha!";
     m_tutorial.create("labelTutorial", 400, 170, 15, &m_fontLabel, txtFirstConnect, sf::Color::Black);
     m_panelTutorial.addComponent(&m_tutorial);
+
 
 
 
@@ -1066,6 +1067,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_closePopupButton);
     m_closePopupButton.setVisible(true);
 
+    getContentPane()->addComponent(&m_panelTutorial);
+
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
@@ -1097,10 +1100,12 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_targetPanel = "tabEquipmentPanel";
 
     firstConnect = true;
-    firstEvolution = false;
-    firstCanReset = false;
-    firstReputation = false;
-    firstReset = false;
+    firstEvolution = true;
+    firstCanReset = true;
+    firstReputation = true;
+    firstReset = true;
+
+    panelDisplay=false;
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -1115,7 +1120,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
     if (firstConnect) {
         firstConnect = false;
-        //TODO : setText sur le panel & afficher le panel
+        m_tutorial.setText(txtFirstConnect);
         m_popupOnAnimation.setVisible(true);
         m_popupOnAnimation.play();
     }
@@ -1185,6 +1190,12 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (getLabo()->getM_year() >=
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel() < 25) {
+            if (firstEvolution){
+                firstEvolution=false;
+                m_tutorial.setText(txtFirstEvolution);
+                m_popupOnAnimation.setVisible(true);
+                m_popupOnAnimation.play();
+            }
             getLabo()->evolution();
             m_monster.setVisible(false);
             m_evolutionAnimation.setVisible(true);
@@ -1198,8 +1209,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             if (getLabo()->getEvolutionLevel()==7){
                 m_resetButton.setVisible(true);
                 if (firstCanReset){
-                    firstEvolution=false;
-                    //TODO : setText sur le panel & afficher le panel
+                    firstCanReset=false;
+                    m_tutorial.setText(txtFirstCanReset);
                     m_popupOnAnimation.setVisible(true);
                     m_popupOnAnimation.play();
                 }
@@ -1222,15 +1233,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                 break;
         }
         m_ptr_managerGroup->ptr_gameManager->getLabo()->click();
-    }
-
-    if (m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year() >=
-        m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_ptr_monster()->getAnnee()) {
-        m_NbMonster++;
-        if (m_NbMonster<=25) {
-            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)),
-                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(m_NbMonster)));
-        }
     }
 
     if (m_inputHandler.getComponentId() == "buyButtonJeanne"){
@@ -1275,9 +1277,10 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     }
 
     if (m_inputHandler.getComponentId() == "closePopupButton") {
+        panelDisplay=false;
         m_closePopupButton.setVisible(false);
+        m_panelTutorial.setVisible(false);
         m_popupOnAnimation.setVisible(false);
-        //TODO : setVisible(false) pour le panel contenant les explications
         m_popupOffAnimation.setVisible(true);
         m_popupOffAnimation.play();
     }
@@ -1746,6 +1749,7 @@ void LaboratoryRoom::checkStateEvolutionAnimation() {
 
 void LaboratoryRoom::checkStatePopupOnAnimation() {
     if (m_popupOnAnimation.isStopped()) {
+        m_panelTutorial.setVisible(true);
         m_closePopupButton.setVisible(true);
     }
 }
@@ -1758,6 +1762,12 @@ void LaboratoryRoom::checkStatePopupOffAnimation() {
 }
 
 void LaboratoryRoom::resetLabo() {
+    if (firstReset){
+        firstReset=false;
+        m_tutorial.setText(txtFirstReset);
+        m_popupOnAnimation.setVisible(true);
+        m_popupOnAnimation.play();
+    }
     getLabo()->restart();
     /* delete all equipments */
     m_equipment1.setVisible(false);

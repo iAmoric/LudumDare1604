@@ -277,6 +277,7 @@ private:
 	bool firstReputation;
 	bool endGame;
 
+	bool panelDisplay;
 public:
     // Constructor
     LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup);
