@@ -17,10 +17,7 @@ SplashScreen::SplashScreen(bool debug) : m_videoPlayer(debug) {
 	m_currentVideoIndex = 0;
 
 	m_videoList.push_back(new VideoParam(WINDOW_WIDTH, WINDOW_HEIGHT,
-		35, 190, "../res/animation/splash/splash_0/"));
-
-	m_videoList.push_back(new VideoParam(WINDOW_WIDTH, WINDOW_HEIGHT,
-		35, 200, "../res/animation/splash/splash_1/"));
+		35, 220, "../res/animation/splash/splash_0/"));
 
 	if(m_debug) {
 		std::cout << "- " << m_videoList.size() 
@@ -46,7 +43,7 @@ void SplashScreen::start(sf::RenderWindow * window) {
 	m_videoPlayer.setVideoState(videoState::PLAY);
 
 	sf::Music music;
-	if(!music.openFromFile("../res/music/splash/Opening.ogg")) {
+	if(!music.openFromFile("../res/music/intro.wav")) {
 		if(m_debug)
 			std::cerr << "Unable to open the file" << std::endl;
 		return;
