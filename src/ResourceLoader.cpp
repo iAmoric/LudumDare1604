@@ -137,6 +137,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("jeannePanel", pathButton + "jeanneButton.png");
 
 	a_tm.addTexture("resetButton", pathButton + "buttonReset.png");
+	a_tm.addTexture("resetButtonPress", pathButton + "buttonResetPress.png");
 
 	/* Monster */
 	//Cellule

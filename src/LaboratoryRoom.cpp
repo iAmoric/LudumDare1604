@@ -757,7 +757,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     m_resetButton.create("resetButton", 260, 535,
                          ptr_managerGroup->ptr_textureManager->getTexture("resetButton"),
-                         ptr_managerGroup->ptr_textureManager->getTexture("resetButton"));
+                         ptr_managerGroup->ptr_textureManager->getTexture("resetButtonPress"));
     getContentPane()->addComponent(&m_resetButton);
     m_resetButton.setVisible(false);
 
@@ -897,22 +897,22 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     txtFirstCanReset = L"Technicians finally repaired this red button.\n"
             "It should only be used only for an extreme emergency.\n"
             "Don’t press it! Like really.";
-    txtFirstReset = L"You didn’t listen to me…\n"
+    txtFirstReset = L"You didn’t listen to me...\n"
             "The laboratory exploded!\n"
             "Everything is loose and you’ll have to re-start aaaall over!\n"
-            "A new laboratory heard about your story and set-up a new machine.\n"
-            "Good news in the disaster, the scientists that were wishing to join you can be hired this time.\n"
-            "It will be faster with that! I recommend my twin brother, he’s doing a wonderful work!";
+            "A new laboratory heard about your story and set-up a\nnew machine.\n\n"
+            "Good news in the disaster, the scientists that were wishing\nto join you can be hired this time.\n"
+            "It will be faster with that!\nI recommend my twin brother, he’s doing a wonderful work!";
     txtEndGame = L"Well, you did it!\n"
             "The apotheosis of evolution really look like that?\n"
             "Stupid developers…\n"
             "You still can try to evolve it thought!\n"
             "\n"
-            "Anyway, thanks for playing our game till the end, I hope you liked it!";
-    txtFirstReputation = L"It looks like a mega-evolution!\n"
-            "It happens for 3 steps (I think…): Cells to water, water to earth and earth to air.\n"
-            "Each time, other scientists are so impressed by you that they want to join you.\n"
-            "But… Hum… The administration does not really agrees with that.\n"
+            "Anyway, thanks for playing our game till the end.\nI hope you liked it!";
+    txtFirstReputation = L"It looks like a mega-evolution!\n\n"
+            "It happens for 3 steps (I think…): Cells to water, water to\nearth and earth to air.\n\n"
+            "Each time, other scientists are so impressed by you that\nthey want to join you.\n"
+            "But… Hum… The administration does not really agrees with\nthat.\n\n"
             "I guess you should wait to change of laboratory, aha!";
     m_tutorial.create("labelTutorial", 400, 170, 15, &m_fontLabel, txtFirstConnect, sf::Color::Black);
     m_panelTutorial.addComponent(&m_tutorial);
@@ -1127,6 +1127,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         return;
 
     if (firstConnect) {
+        panelDisplay=true;
         firstConnect = false;
         m_tutorial.setText(txtFirstConnect);
         m_popupOnAnimation.setVisible(true);
@@ -1225,12 +1226,36 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             if (getLabo()->getEvolutionLevel()==7){
                 m_resetButton.setVisible(true);
                 if (firstCanReset){
+                    panelDisplay=true;
                     firstCanReset=false;
                     m_tutorial.setText(txtFirstCanReset);
                     m_popupOnAnimation.setVisible(true);
                     m_popupOnAnimation.play();
                 }
             }
+
+            if (getLabo()->getEvolutionLevel()==25){
+                m_resetButton.setVisible(true);
+                if (endGame){
+                    panelDisplay=true;
+                    endGame=false;
+                    m_tutorial.setText(txtEndGame);
+                    m_popupOnAnimation.setVisible(true);
+                    m_popupOnAnimation.play();
+                }
+            }
+
+            if (getLabo()->getEvolutionLevel()==6){
+                m_resetButton.setVisible(true);
+                if (firstReputation){
+                    panelDisplay=true;
+                    endGame=false;
+                    m_tutorial.setText(txtFirstReputation);
+                    m_popupOnAnimation.setVisible(true);
+                    m_popupOnAnimation.play();
+                }
+            }
+
 
         }
     }
@@ -1782,6 +1807,7 @@ void LaboratoryRoom::checkStatePopupOffAnimation() {
 
 void LaboratoryRoom::resetLabo() {
     if (firstReset){
+        panelDisplay=true;
         firstReset=false;
         m_tutorial.setText(txtFirstReset);
         m_popupOnAnimation.setVisible(true);
