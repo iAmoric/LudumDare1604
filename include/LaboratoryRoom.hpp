@@ -241,6 +241,8 @@ private:
     NPanel m_iconTime;
 	NLabel m_labelSlash;
 	NLabel m_labelMonsterYears;
+	NPanel pictureTutoBank;
+	NPanel pictureTutoMPS;
 
     AnimatableObject m_loading;
     AnimatableObject m_bulle;
