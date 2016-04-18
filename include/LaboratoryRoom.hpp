@@ -258,6 +258,9 @@ private:
 	AnimatableObject m_popupOnAnimation;
 	AnimatableObject m_popupOffAnimation;
 	AnimatableObject m_evolutionAnimation;
+	AnimatableObject m_blueScreenAnimation;
+	AnimatableObject m_explosionLoopAnimation;
+	AnimatableObject m_finalExplosionAnimation;
 
 	int m_NbMonster;
 	int m_ClickThisSeconde;
@@ -279,6 +282,7 @@ private:
 
 	NLabel m_closePopupLabel;
     bool m_bool;
+	bool m_bool2 = false;
 	Labo* getLabo();
 
 	std::string m_targetPanel;
@@ -290,7 +294,13 @@ private:
 	bool firstReputation;
 	bool endGame;
 
+	bool m_blueScreenOn;
+	int m_secondBlueScren;
+	bool m_secondExplosionOn;
+	int m_secondExplosionLoop;
 	bool panelDisplay;
+
+
 public:
     // Constructor
     LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup);
@@ -323,6 +333,7 @@ public:
 
 	void checkStatePopupOffAnimation();
 
+
 	void resetLabo();
 
 	void updateEquipment1();
@@ -345,6 +356,15 @@ public:
 	void updateEquipment18();
 	void updateEquipment19();
 	void updateEquipment20();
+
+	void checkStateBlueScreenAnimation();
+	void checkStateExplosionLoopAnimation();
+
+	void checkStateFinalExplosionAnimation();
+	bool resetOn;
+
+	void unableButton();
+	void enableButton();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP

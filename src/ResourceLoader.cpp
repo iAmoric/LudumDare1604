@@ -194,6 +194,9 @@ void ResourceLoader::load() {
 	a_tm.addTexture("popUpOn", pathAnimation + "popUpShow.png");
 	a_tm.addTexture("popUpOff", pathAnimation + "popUpHide.png");
 	a_tm.addTexture("evolvAnimation", pathAnimation + "evolution.png");
+	a_tm.addTexture("blueScreenAnimation", pathAnimation + "blueScreenAnimation.png");
+	a_tm.addTexture("explosionLoopAnimation", pathAnimation + "explosionAnimationLoop.png");
+	a_tm.addTexture("finalExplosion", pathAnimation + "finalExplosion.png");
 
 	/* Mouse */
 	a_tm.addTexture("mouse", pathSprite + "mouse_pointer.png");

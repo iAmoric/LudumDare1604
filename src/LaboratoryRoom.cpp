@@ -993,6 +993,15 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_evolutionAnimation.setVisible(false);
     getContentPane()->addComponent(&m_evolutionAnimation);
 
+
+    m_blueScreenAnimation.create("blueScreenAnimation", 185, 378,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("blueScreenAnimation"),
+                                 true, 0.5, 137, 285, 2);
+    getContentPane()->addComponent(&m_blueScreenAnimation);
+    m_blueScreenAnimation.setVisible(false);
+    m_blueScreenOn = false;
+
+
     /* Equipment */
     m_equipment1.create("equipement_1", 25, 470,
                         ptr_managerGroup->ptr_textureManager->getTexture("equipment1"), true, 0.2, 79, 120, 3);
@@ -1104,6 +1113,22 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_closePopupLabel.create("closePopupLabel", 560, 497, 22,
                              &m_fontLabel, L"Close", sf::Color::White);
     m_closePopupLabel.setVisible(false);
+
+    m_explosionLoopAnimation.create("explosionLoopAnimation", -180, -330,
+                                    ptr_managerGroup->ptr_textureManager->getTexture("explosionLoopAnimation"),
+                                    true, 0.1, 1300, 1300, 2);
+    getContentPane()->addComponent(&m_explosionLoopAnimation);
+    m_explosionLoopAnimation.setVisible(false);
+    m_secondExplosionOn=false;
+
+    m_finalExplosionAnimation.create("finalExplosionAnimation", -180, -330,
+                                    ptr_managerGroup->ptr_textureManager->getTexture("finalExplosion"),
+                                    false, 0.1, 1300, 1300, 8);
+    getContentPane()->addComponent(&m_finalExplosionAnimation);
+    m_finalExplosionAnimation.setVisible(false);
+
+
+
     getContentPane()->addComponent(&m_closePopupLabel);
 
     getContentPane()->addComponent(&m_panelTutorial);
@@ -1144,11 +1169,14 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     firstReputation = true;
     firstReset = true;
 
+    resetOn=false;
     panelDisplay=false;
     m_musicSound.create("volumeButton", 895,5,
                         ptr_managerGroup->ptr_textureManager->getTexture("volumeOff_1"),
                         ptr_managerGroup->ptr_textureManager->getTexture("volumeOff_2"));
     getContentPane()->addComponent(&m_musicSound);
+
+    m_secondBlueScren = 0;
 
 
 }
@@ -1169,16 +1197,20 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_tutorial.setText(txtFirstConnect);
         m_popupOnAnimation.setVisible(true);
         m_popupOnAnimation.play();
+        unableButton();
         if(m_ptr_managerGroup->ptr_musicManager->getMusicVolume()>0) {
             m_musicSound.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("volume_1"),
                                    m_ptr_managerGroup->ptr_textureManager->getTexture("volume_2"));
-
         }
     }
 
 
     m_timeElapsed += frameTime;
     if (m_timeElapsed >= 1) {
+        if(m_blueScreenOn)
+            m_secondBlueScren++;
+        if (m_secondExplosionOn)
+            m_secondExplosionLoop++;
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
         m_spentTime.setText(
@@ -1195,6 +1227,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     checkStateEvolutionAnimation();
     checkStatePopupOnAnimation();
     checkStatePopupOffAnimation();
+    checkStateBlueScreenAnimation();
+    checkStateExplosionLoopAnimation();
+    checkStateFinalExplosionAnimation();
 
     m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
     m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
@@ -1255,6 +1290,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                 pictureTutoBank.setVisible(true);
                 pictureTutoMPS.setVisible(true);
                 m_popupOnAnimation.play();
+                unableButton();
             }
             getLabo()->evolution();
             m_monster.setVisible(false);
@@ -1266,7 +1302,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                                 m_ptr_managerGroup->ptr_textureManager->getTexture(
                                         "monster_"+cast::toString(getLabo()->getEvolutionLevel())));
 
-            if (getLabo()->getEvolutionLevel()==8){
+            if (getLabo()->getEvolutionLevel()==3){
                 m_resetButton.setVisible(true);
                 if (firstCanReset){
                     panelDisplay=true;
@@ -1274,6 +1310,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                     m_tutorial.setText(txtFirstCanReset);
                     m_popupOnAnimation.setVisible(true);
                     m_popupOnAnimation.play();
+                    unableButton();
                 }
             }
 
@@ -1284,6 +1321,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                     m_tutorial.setText(txtEndGame);
                     m_popupOnAnimation.setVisible(true);
                     m_popupOnAnimation.play();
+                    unableButton();
                 }
             }
 
@@ -1294,6 +1332,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                     m_tutorial.setText(txtFirstReputation);
                     m_popupOnAnimation.setVisible(true);
                     m_popupOnAnimation.play();
+                    unableButton();
                 }
             }
 
@@ -1373,6 +1412,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_popupOnAnimation.setVisible(false);
         m_popupOffAnimation.setVisible(true);
         m_popupOffAnimation.play();
+        enableButton();
     }
 
     if (m_inputHandler.getComponentId() == "resetButton")
@@ -1865,18 +1905,16 @@ void LaboratoryRoom::checkStatePopupOnAnimation() {
 
 void LaboratoryRoom::checkStatePopupOffAnimation() {
     if (m_popupOffAnimation.isStopped()) {
+        //enableButton();
         m_popupOffAnimation.setVisible(false);
     }
 }
 
 void LaboratoryRoom::resetLabo() {
-    if (firstReset){
-        panelDisplay=true;
-        firstReset=false;
-        m_tutorial.setText(txtFirstReset);
-        m_popupOnAnimation.setVisible(true);
-        m_popupOnAnimation.play();
-    }
+
+    m_blueScreenAnimation.setVisible(true);
+    m_blueScreenOn=true;
+    resetOn=true;
     getLabo()->restart();
     m_labelLevel.setText(L"Evolution " + cast::toWstring(getLabo()->getEvolutionLevel()));
     m_subTabEquipmentPanel2.setVisible(false);
@@ -2237,3 +2275,107 @@ void LaboratoryRoom::updateEquipment20() {
     m_labelEquipment20.setText(informationsEquipment);
 }
 
+void LaboratoryRoom::checkStateBlueScreenAnimation() {
+    if(m_secondBlueScren==7){
+        m_secondBlueScren=0;
+        m_blueScreenOn=false;
+        //m_blueScreenAnimation.setVisible(false);
+        m_explosionLoopAnimation.setVisible(true);
+        m_secondExplosionOn=true;
+    }
+}
+
+void LaboratoryRoom::checkStateExplosionLoopAnimation(){
+    if (m_secondExplosionLoop==7){
+        m_secondExplosionLoop=0;
+        m_secondExplosionOn=false;
+        m_blueScreenAnimation.setVisible(false);
+        m_explosionLoopAnimation.setVisible(false);
+        m_finalExplosionAnimation.setVisible(true);
+        m_finalExplosionAnimation.play();
+        m_bool2 = true;
+    }
+}
+
+void LaboratoryRoom::checkStateFinalExplosionAnimation() {
+    if (m_finalExplosionAnimation.isStopped()){
+        m_finalExplosionAnimation.setVisible(false);
+        if (firstReset && resetOn && m_bool2 ){
+            resetOn=false;
+            panelDisplay=true;
+            std::cout << "Fin animation, popup On" << std::endl;
+            firstReset=false;
+            m_tutorial.setText(txtFirstReset);
+            m_popupOnAnimation.setVisible(true);
+            m_popupOnAnimation.play();
+        }
+
+    }
+}
+
+void LaboratoryRoom::unableButton() {
+
+     std::cout << "bouton desactive" << std::endl;
+     m_resetButton.setEnabled(false);
+     m_monster.setEnabled(false);
+     m_tabStatsButton.setEnabled(false);
+     m_tabScientistButton.setEnabled(false);
+     m_tabEquipmentButton.setEnabled(false);
+     m_arrowLeftButton.setEnabled(false);
+     m_arrowRightButton.setEnabled(false);
+     m_buttonEquipment1.setEnabled(false);
+     m_buttonEquipment2.setEnabled(false);
+     m_buttonEquipment3.setEnabled(false);
+     m_buttonEquipment4.setEnabled(false);
+     m_buttonEquipment5.setEnabled(false);
+     m_buttonEquipment6.setEnabled(false);
+     m_buttonEquipment7.setEnabled(false);
+     m_buttonEquipment8.setEnabled(false);
+     m_buttonEquipment9.setEnabled(false);
+     m_buttonEquipment10.setEnabled(false);
+     m_buttonEquipment11.setEnabled(false);
+     m_buttonEquipment12.setEnabled(false);
+     m_buttonEquipment13.setEnabled(false);
+     m_buttonEquipment14.setEnabled(false);
+     m_buttonEquipment15.setEnabled(false);
+     m_buttonEquipment16.setEnabled(false);
+     m_buttonEquipment17.setEnabled(false);
+     m_buttonEquipment18.setEnabled(false);
+     m_buttonEquipment19.setEnabled(false);
+     m_buttonEquipment20.setEnabled(false);
+     m_buyButtonJeanne.setEnabled(false);
+     m_buyButtonSerge.setEnabled(false);
+}
+
+void LaboratoryRoom::enableButton() {
+    std::cout << "bouton reactive" << std::endl;
+    m_resetButton.setEnabled(true);
+    m_monster.setEnabled(true);
+    m_tabStatsButton.setEnabled(true);
+    m_tabScientistButton.setEnabled(true);
+    m_tabEquipmentButton.setEnabled(true);
+    m_arrowLeftButton.setEnabled(true);
+    m_arrowRightButton.setEnabled(true);
+    m_buttonEquipment1.setEnabled(true);
+    m_buttonEquipment2.setEnabled(true);
+    m_buttonEquipment3.setEnabled(true);
+    m_buttonEquipment4.setEnabled(true);
+    m_buttonEquipment5.setEnabled(true);
+    m_buttonEquipment6.setEnabled(true);
+    m_buttonEquipment7.setEnabled(true);
+    m_buttonEquipment8.setEnabled(true);
+    m_buttonEquipment9.setEnabled(true);
+    m_buttonEquipment10.setEnabled(true);
+    m_buttonEquipment11.setEnabled(true);
+    m_buttonEquipment12.setEnabled(true);
+    m_buttonEquipment13.setEnabled(true);
+    m_buttonEquipment14.setEnabled(true);
+    m_buttonEquipment15.setEnabled(true);
+    m_buttonEquipment16.setEnabled(true);
+    m_buttonEquipment17.setEnabled(true);
+    m_buttonEquipment18.setEnabled(true);
+    m_buttonEquipment19.setEnabled(true);
+    m_buttonEquipment20.setEnabled(true);
+    m_buyButtonJeanne.setEnabled(true);
+    m_buyButtonSerge.setEnabled(true);
+}
