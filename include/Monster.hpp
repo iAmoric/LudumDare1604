@@ -15,7 +15,7 @@ public:
     void setAnnee(unsigned long long annee);
     unsigned long long getAnnee();
 
-    void resetAnnee();
+    void setEvolution(unsigned long long int nb);
 };
 
 

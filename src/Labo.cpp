@@ -71,11 +71,11 @@ void Labo::lvlUpScientific(unsigned int type) {
     m_ptr_stats->incrementSpentReputation(m_ScientificVector.at(type)->getPrice());
     m_ScientificVector.at(type)->nextLvl();
     if(type == 1){
-        m_CPSBonus = m_CPSBonus + 0.15;
+        m_CPSBonus = m_CPSBonus + 0.25;
         updateCPS();
     }
     else if(type == 0){
-        m_YPSBonus = m_YPSBonus + 0.15;
+        m_YPSBonus = m_YPSBonus + 0.25;
         updateYPS();
     }
 }
@@ -85,7 +85,7 @@ void Labo::updateYPS() {
     m_YPS = 0;
     for(unsigned int i = 0; i < m_LaboPieceVector.size() -1; i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
-            m_YPS = m_YPS + m_LaboPieceVector.at(i)->getYPS();
+            m_YPS = m_YPS + m_LaboPieceVector.at(i)->getYPS() * 3;
     }
     m_YPS *= m_YPSBonus;
     m_YPS *= m_restartBonus;
@@ -111,10 +111,10 @@ void Labo::restart(){
     m_money = 0;
     m_year = 0;
     moneyGain = 0;
-    m_evolutionLevel = 0;
-    m_ptr_monster->resetAnnee();
+    m_evolutionLevel = 1;
+    m_ptr_monster->setEvolution(m_evolutionLevel);
     m_ptr_stats->incrementNbReset();
-    m_restartBonus *= 1.1;
+    m_restartBonus *= 2;
     m_reputationPointOwned += m_reputationPointWaiting;
     m_reputationPointWaiting = 0;
     m_ptr_stats->incrementActualReputation(m_reputationPointOwned);
@@ -127,7 +127,6 @@ void Labo::restart(){
     if(m_evolutionLevel > m_ptr_stats->getM_nbEvoMax()){
         m_ptr_stats->setNbEvoMax(m_evolutionLevel);
     }
-    m_evolutionLevel = 1;
 }
 
 void Labo::evolution() {
@@ -142,7 +141,7 @@ void Labo::evolution() {
         if(m_evolutionLevel > m_ptr_stats->getM_nbEvoMax()){
             m_ptr_stats->incrementNbEvoMax();
         }
-        m_ptr_monster->setAnnee(m_year + 10 * m_YPS * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
+        m_ptr_monster->setEvolution(m_evolutionLevel);
     }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
@@ -163,6 +162,7 @@ void Labo::grant(){
     moneyGain = m_YPS / 10;
 
     if(moneyGain == 0 && m_YPS > 0) moneyGain += 1;
+    moneyGain *= m_restartBonus;
 
     m_money = m_money + moneyGain;
     m_year += m_YPS;

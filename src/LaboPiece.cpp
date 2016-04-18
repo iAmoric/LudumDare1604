@@ -27,7 +27,7 @@ void LaboPiece::nextLvl() {
         m_level++;
         m_price = (unsigned long long) (1.3 * m_price);
         m_YPS = (unsigned long long) (0.2 * m_price);
-        m_YPSNextLvl = (unsigned long long) (0.2 * 1.3 * m_price) - m_YPS;
+        m_YPSNextLvl = (unsigned long long) (0.3 * 1.3 * m_price) - m_YPS;
     }
 }
 
