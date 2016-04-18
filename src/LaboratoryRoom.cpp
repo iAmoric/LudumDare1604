@@ -20,13 +20,13 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             createPlaylist("playlistMenu", true, 1.0);
     ptr_managerGroup->ptr_musicManager->
-            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon1.wav");
+            getPlaylist("playlistMenu")->addMusic("../res/music/saloon1.wav");
     ptr_managerGroup->ptr_musicManager->
-            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon2.wav");
+            getPlaylist("playlistMenu")->addMusic("../res/music/saloon2.wav");
     ptr_managerGroup->ptr_musicManager->
-            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon3.wav");
+            getPlaylist("playlistMenu")->addMusic("../res/music/saloon3.wav");
     ptr_managerGroup->ptr_musicManager->
-            getPlaylist("playlistMenu")->addMusic("../res/music/menu/Saloon4.wav");
+            getPlaylist("playlistMenu")->addMusic("../res/music/saloon4.wav");
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
