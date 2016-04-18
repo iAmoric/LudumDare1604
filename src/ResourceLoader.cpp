@@ -201,9 +201,6 @@ void ResourceLoader::load() {
 	/* credit */
 	a_tm.addTexture("credit", pathAnimation + "credit.png");
 
-	/* Money Gold */
-	a_tm.addTexture("gold", pathEquipment + "gold.png");
-
 	a_mm.setState(true);
 	a_tm.setState(true);
 	a_tarm.setState(true);
