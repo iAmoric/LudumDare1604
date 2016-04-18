@@ -62,7 +62,7 @@ void Stats::incrementNbEvoMax(){
 }
 
 void Stats::setNbClickSeconde(int click) {
-    m_nbClickSeconde += click;
+    m_nbClickSeconde = click;
 }
 
 //Reputation
