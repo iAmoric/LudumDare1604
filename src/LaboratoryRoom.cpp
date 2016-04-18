@@ -1129,6 +1129,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     firstReset = true;
 
     panelDisplay=false;
+
+    m_musicSound.create("volumeButton", 895,5,
+                                 ptr_managerGroup->ptr_textureManager->getTexture("volume_1"),
+                                 ptr_managerGroup->ptr_textureManager->getTexture("volume_2"));
+    getContentPane()->addComponent(&m_musicSound);
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -1742,7 +1747,24 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             updateEquipment20();
         }
     }
+    else if(m_inputHandler.getComponentId() == "volumeButton"){
+        TextureManager& a_tm = *m_ptr_managerGroup->ptr_textureManager;
 
+        if(m_ptr_managerGroup->ptr_musicManager->getMusicVolume()>0) {
+            m_ptr_managerGroup->ptr_musicManager->setMusicVolume(0);
+            m_musicSound.setSprite(a_tm.getTexture("volumeOff_1"),
+                                    a_tm.getTexture("volumeOff_2"));
+
+            std::cout << "Sound volume : Off" << std::endl;
+        } else {
+            m_ptr_managerGroup->ptr_musicManager->setMusicVolume(50);
+            m_musicSound.setSprite(a_tm.getTexture("volume_1"),
+                                   a_tm.getTexture("volume_2"));
+
+            std::cout << "Sound volume : On" << std::endl;
+        }
+
+    }
     basicInput(e, frameTime);
     basicDraw(window);
 }

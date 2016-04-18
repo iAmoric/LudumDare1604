@@ -72,6 +72,10 @@ void ResourceLoader::load() {
 	a_tm.addTexture("playButtonPress", pathButton + "arrowIsNotSelected.png");
 	a_tm.addTexture("helpButton", pathButton + "helpButton.png");
 	a_tm.addTexture("helpButtonPress", pathButton + "helpButtonPress.png");
+	a_tm.addTexture("volume_1", pathButton + "volume_1.png");
+	a_tm.addTexture("volume_2", pathButton + "volume_2.png");
+	a_tm.addTexture("volumeOff_1", pathButton + "volumeOff_1.png");
+	a_tm.addTexture("volumeOff_2", pathButton + "volumeOff_2.png");
 
     /* Computer */
 	a_tm.addTexture("HomePagebackground", pathView + "HomePagebackground.png");

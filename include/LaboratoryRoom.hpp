@@ -141,6 +141,7 @@ private:
 	NButton m_buyButtonJeanne;
 	NButton m_buyButtonSerge;
 	NButton m_closePopupButton;
+	NButton m_musicSound;
 
 	NLabel m_labelEquipment1;
 	NLabel m_labelEquipment2;
