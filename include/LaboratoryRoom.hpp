@@ -311,7 +311,26 @@ public:
 
 	void resetLabo();
 
-
+	void updateEquipment1();
+	void updateEquipment2();
+	void updateEquipment3();
+	void updateEquipment4();
+	void updateEquipment5();
+	void updateEquipment6();
+	void updateEquipment7();
+	void updateEquipment8();
+	void updateEquipment9();
+	void updateEquipment10();
+	void updateEquipment11();
+	void updateEquipment12();
+	void updateEquipment13();
+	void updateEquipment14();
+	void updateEquipment15();
+	void updateEquipment16();
+	void updateEquipment17();
+	void updateEquipment18();
+	void updateEquipment19();
+	void updateEquipment20();
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP
