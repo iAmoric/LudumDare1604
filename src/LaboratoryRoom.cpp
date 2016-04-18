@@ -696,6 +696,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                          ptr_managerGroup->ptr_textureManager->getTexture("resetButton"),
                          ptr_managerGroup->ptr_textureManager->getTexture("resetButton"));
     getContentPane()->addComponent(&m_resetButton);
+    m_resetButton.setVisible(false);
 
     //Boutons scientists
     m_scientistJeannePanel.create("jeannePanel", 500, 83,
@@ -1086,8 +1087,21 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             m_evolutionAnimation.setVisible(true);
             m_evolutionAnimation.play();
             m_labelLevel.setText(L"Evolution " + cast::toWstring(getLabo()->getEvolutionLevel()));
-            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())),
-                                m_ptr_managerGroup->ptr_textureManager->getTexture("monster_"+cast::toString(getLabo()->getEvolutionLevel())));
+            m_monster.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture(
+                                        "monster_"+cast::toString(getLabo()->getEvolutionLevel())),
+                                m_ptr_managerGroup->ptr_textureManager->getTexture(
+                                        "monster_"+cast::toString(getLabo()->getEvolutionLevel())));
+
+            if (getLabo()->getEvolutionLevel()==7){
+                m_resetButton.setVisible(true);
+                if (firstCanReset){
+                    firstEvolution=false;
+                    //TODO : setText sur le panel & afficher le panel
+                    m_popupOnAnimation.setVisible(true);
+                    m_popupOnAnimation.play();
+                }
+            }
+
         }
     }
     if (m_inputHandler.getComponentId() == "monster"){
