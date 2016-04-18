@@ -1075,6 +1075,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_closePopupButton);
     m_closePopupButton.setVisible(true);
 
+    m_closePopupLabel.create("closePopupLabel", 560, 497, 22,
+                             &m_fontLabel, L"Close", sf::Color::White);
+    m_closePopupLabel.setVisible(false);
+    getContentPane()->addComponent(&m_closePopupLabel);
+
     getContentPane()->addComponent(&m_panelTutorial);
 
     /* Init visible*/
@@ -1320,6 +1325,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "closePopupButton") {
         panelDisplay=false;
         m_closePopupButton.setVisible(false);
+        m_closePopupLabel.setVisible(false);
         m_panelTutorial.setVisible(false);
         m_popupOnAnimation.setVisible(false);
         m_popupOffAnimation.setVisible(true);
@@ -1793,6 +1799,7 @@ void LaboratoryRoom::checkStatePopupOnAnimation() {
         if(panelDisplay){
             m_panelTutorial.setVisible(true);
             m_closePopupButton.setVisible(true);
+            m_closePopupLabel.setVisible(true);
         }
 
     }
@@ -1801,7 +1808,6 @@ void LaboratoryRoom::checkStatePopupOnAnimation() {
 void LaboratoryRoom::checkStatePopupOffAnimation() {
     if (m_popupOffAnimation.isStopped()) {
         m_popupOffAnimation.setVisible(false);
-        //m_closePopupButton.setVisible(false);
     }
 }
 

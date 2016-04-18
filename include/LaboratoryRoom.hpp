@@ -267,7 +267,7 @@ private:
 	std::wstring txtFirstReputation;
 	std::wstring txtEndGame;
 
-
+	NLabel m_closePopupLabel;
     bool m_bool;
 	Labo* getLabo();
 
