@@ -1192,7 +1192,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_totalMoney.setText(L"Total amount of money obtained in your whole life : " +
                          cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney()));
     m_actualReputation.setText(L"Actual reputation : " +
-                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
+                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualReputation())
                                + L" (+" + cast::toWstring(getLabo()->getReputationPointWaiting()) +
                                L" if you quit the lab now)");
     m_nbClickBySeconde.setText(L"Number of click by seconde maximum : " + cast::toWstring(getLabo()->getM_ptr_stats()->getNbClickSeconde()));

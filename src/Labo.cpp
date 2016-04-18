@@ -69,6 +69,7 @@ void Labo::lvlUpLaboPiece(unsigned int id) {
 void Labo::lvlUpScientific(unsigned int type) {
     m_reputationPointOwned -= m_ScientificVector.at(type)->getPrice();
     m_ptr_stats->incrementSpentReputation(m_ScientificVector.at(type)->getPrice());
+    m_ptr_stats->setActualReputation(m_reputationPointOwned);
     m_ScientificVector.at(type)->nextLvl();
     if(type == 1){
         m_CPSBonus = m_CPSBonus + 0.25;
@@ -147,8 +148,14 @@ void Labo::evolution() {
         if(m_LaboPieceVector.at(i)->isBought())
             moneyGain2 = m_LaboPieceVector.at(i)->getPrice();
     }
-    if(m_money == 0) m_money = 5;
-    else m_money +=  moneyGain2 * 5.5;
+    if(m_money == 0){
+        m_money = 5;
+        m_ptr_stats->incrementTotalMoney(5);
+    }
+    else{
+        m_money +=  moneyGain2 * 5.5;
+        m_ptr_stats->incrementTotalMoney(moneyGain2 * 5.5);
+    }
 
 }
 
@@ -163,13 +170,12 @@ void Labo::grant(){
 
     if(moneyGain == 0 && m_YPS > 0) moneyGain += 1;
     moneyGain *= m_restartBonus;
-
     m_money = m_money + moneyGain;
     m_year += m_YPS;
     updateCPS();
     m_ptr_stats->incrementSpentTime();
     m_ptr_stats->setActualMoney(m_money);
-    m_ptr_stats->setTotalMoney(m_money);
+    m_ptr_stats->incrementTotalMoney(moneyGain);
 }
 
 void Labo::click() {
