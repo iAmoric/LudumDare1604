@@ -17,6 +17,7 @@ private:
     AnimatableObject m_credit;
     NButton m_buttonPlay;
     NButton m_helpButton;
+    NButton m_musicSound;
     AnimatableObject m_searchBar;
     AnimatableObject m_searchBarLoop;
     AnimatableObject m_animationTransition;

@@ -38,6 +38,10 @@ HomePage::HomePage(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_searchBarLoop);
     m_searchBarLoop.setVisible(false);
 
+    m_musicSound.create("volumeButton", 895,5,
+                        ptr_managerGroup->ptr_textureManager->getTexture("volume_1"),
+                        ptr_managerGroup->ptr_textureManager->getTexture("volume_2"));
+    getContentPane()->addComponent(&m_musicSound);
     //m_animationTransition.setVisible(false);
 }
 
@@ -69,7 +73,24 @@ void HomePage::update(sf::RenderWindow *window,
                         true, 1, 216, 189, 5);
         getContentPane()->addComponent(&m_credit);
     }
+    if(m_inputHandler.getComponentId() == "volumeButton"){
+        TextureManager& a_tm = *m_ptr_managerGroup->ptr_textureManager;
 
+        if(m_ptr_managerGroup->ptr_musicManager->getMusicVolume()>0) {
+            m_ptr_managerGroup->ptr_musicManager->setMusicVolume(0);
+            m_musicSound.setSprite(a_tm.getTexture("volumeOff_1"),
+                                   a_tm.getTexture("volumeOff_2"));
+
+            std::cout << "Sound volume : Off" << std::endl;
+        } else {
+            m_ptr_managerGroup->ptr_musicManager->setMusicVolume(50);
+            m_musicSound.setSprite(a_tm.getTexture("volume_1"),
+                                   a_tm.getTexture("volume_2"));
+
+            std::cout << "Sound volume : On" << std::endl;
+        }
+
+    }
     // Basic Interface updating
     basicInput(e, frameTime);
 

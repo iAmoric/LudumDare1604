@@ -1129,11 +1129,12 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     firstReset = true;
 
     panelDisplay=false;
-
     m_musicSound.create("volumeButton", 895,5,
-                                 ptr_managerGroup->ptr_textureManager->getTexture("volume_1"),
-                                 ptr_managerGroup->ptr_textureManager->getTexture("volume_2"));
+                        ptr_managerGroup->ptr_textureManager->getTexture("volumeOff_1"),
+                        ptr_managerGroup->ptr_textureManager->getTexture("volumeOff_2"));
     getContentPane()->addComponent(&m_musicSound);
+
+
 }
 
 LaboratoryRoom::~LaboratoryRoom() {
@@ -1152,6 +1153,11 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_tutorial.setText(txtFirstConnect);
         m_popupOnAnimation.setVisible(true);
         m_popupOnAnimation.play();
+        if(m_ptr_managerGroup->ptr_musicManager->getMusicVolume()>0) {
+            m_musicSound.setSprite(m_ptr_managerGroup->ptr_textureManager->getTexture("volume_1"),
+                                   m_ptr_managerGroup->ptr_textureManager->getTexture("volume_2"));
+
+        }
     }
 
 
