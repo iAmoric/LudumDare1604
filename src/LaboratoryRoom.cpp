@@ -844,16 +844,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabStatsPanel.addComponent(&m_nbClickBySeconde);
 
     //Second part of the stats
-    m_panelYear.create("imgYear", 500, 250, ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
-    m_year.create("labelYear", 525, 250, 15, &m_fontLabel, cast::toWstring("Actual year / years to evolve"),
+    m_panelYear.create("imgYear", 500, 260, ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
+    m_year.create("labelYear", 525, 260, 15, &m_fontLabel, cast::toWstring("Actual year / years to evolve"),
                   sf::Color::Black);
     m_panelMoney.create("imgMoney", 730, 350, ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
     m_money.create("labelMoney", 755, 350, 15, &m_fontLabel, cast::toWstring("Money you have"), sf::Color::Black);
     m_panelMoneyPS.create("imgMoneyPS", 500, 350, ptr_managerGroup->ptr_textureManager->getTexture("money-icon"));
     m_moneyPS.create("labelMoneyPS", 525, 350, 15, &m_fontLabel, cast::toWstring("Money earned per second"),
                      sf::Color::Black);
-    m_panelClickPS.create("imgClickPS", 730, 250, ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
-    m_clickPS.create("labelClickPS", 755, 250, 15, &m_fontLabel, cast::toWstring("Years earned by a click"),
+    m_panelClickPS.create("imgClickPS", 730, 260, ptr_managerGroup->ptr_textureManager->getTexture("click-icon"));
+    m_clickPS.create("labelClickPS", 755, 260, 15, &m_fontLabel, cast::toWstring("Years earned by a click"),
                      sf::Color::Black);
     m_panelYearPS.create("imgYearPS", 730, 300, ptr_managerGroup->ptr_textureManager->getTexture("research-icon"));
     m_yearPS.create("labelYearPS", 755, 300, 15, &m_fontLabel, cast::toWstring("Years earned per second"),
@@ -879,7 +879,19 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabStatsPanel.addComponent(&m_reputation);
     m_tabStatsPanel.addComponent(&m_suppReputation);
 
+    m_jeanneLabel.create("labelJeanne",550,255,30,&m_fontLabel,L"Jeanne",sf::Color::Black);
+    m_jeanneLabelDescriptif1.create("labelJeanneDescriptif1",525,290,25,&m_fontLabel,L"Increases 15%",sf::Color::Black);
+    m_jeanneLabelDescriptif.create("labelJeanneDescriptif",525,317,25,&m_fontLabel,L"of the total YPS",sf::Color::Black);
+    m_sergeLabel.create("labelSerge",800,255,30,&m_fontLabel,L"Serge",sf::Color::Black);
+    m_sergeLabelDescriptif1.create("labelSergeDescriptif1",750,290,25,&m_fontLabel,L"Increases 15%",sf::Color::Black);
+    m_sergeLabelDescriptif.create("labelSergeDescriptif",750,317,25,&m_fontLabel,L"of the total CPS",sf::Color::Black);
 
+    m_tabScientistPanel.addComponent(&m_jeanneLabel);
+    m_tabScientistPanel.addComponent(&m_jeanneLabelDescriptif);
+    m_tabScientistPanel.addComponent(&m_jeanneLabelDescriptif1);
+    m_tabScientistPanel.addComponent(&m_sergeLabel);
+    m_tabScientistPanel.addComponent(&m_sergeLabelDescriptif);
+    m_tabScientistPanel.addComponent(&m_sergeLabelDescriptif1);
 
     /* Tutorial */
     txtFirstConnect = L"Hello there!\n\n"

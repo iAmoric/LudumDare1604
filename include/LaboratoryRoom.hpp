@@ -270,6 +270,13 @@ private:
 	std::wstring txtFirstReputation;
 	std::wstring txtEndGame;
 
+	NLabel m_jeanneLabel;
+	NLabel m_jeanneLabelDescriptif;
+	NLabel m_jeanneLabelDescriptif1;
+	NLabel m_sergeLabel;
+	NLabel m_sergeLabelDescriptif;
+	NLabel m_sergeLabelDescriptif1;
+
 	NLabel m_closePopupLabel;
     bool m_bool;
 	Labo* getLabo();
