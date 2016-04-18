@@ -1191,6 +1191,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         getLabo()->getM_ptr_monster()->getAnnee()) {
         if (getLabo()->getEvolutionLevel() < 25) {
             if (firstEvolution){
+                panelDisplay=true;
                 firstEvolution=false;
                 m_tutorial.setText(txtFirstEvolution);
                 m_popupOnAnimation.setVisible(true);
@@ -1749,8 +1750,11 @@ void LaboratoryRoom::checkStateEvolutionAnimation() {
 
 void LaboratoryRoom::checkStatePopupOnAnimation() {
     if (m_popupOnAnimation.isStopped()) {
-        m_panelTutorial.setVisible(true);
-        m_closePopupButton.setVisible(true);
+        if(panelDisplay){
+            m_panelTutorial.setVisible(true);
+            m_closePopupButton.setVisible(true);
+        }
+
     }
 }
 
