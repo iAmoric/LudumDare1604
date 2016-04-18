@@ -72,10 +72,12 @@ void Labo::lvlUpScientific(unsigned int type) {
     m_ScientificVector.at(type)->nextLvl();
     if(type == 1){
         m_CPSBonus = m_CPSBonus + 0.15;
+        std::cout << m_CPSBonus << std::endl;
         updateCPS();
     }
     else if(type == 0){
         m_YPSBonus = m_YPSBonus + 0.15;
+        std::cout << m_YPSBonus << std::endl;
         updateYPS();
     }
 }
@@ -142,7 +144,7 @@ void Labo::evolution() {
         if(m_evolutionLevel > m_ptr_stats->getM_nbEvoMax()){
             m_ptr_stats->incrementNbEvoMax();
         }
-        m_ptr_monster->setAnnee(m_year + 10 * m_YPS * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
+       m_ptr_monster->setAnnee(m_year + 10 * m_YPS * m_YPS + 50 * m_evolutionLevel * m_evolutionLevel);
     }
     for(unsigned int i = 1; i < m_LaboPieceVector.size(); i++ ){
         if(m_LaboPieceVector.at(i)->isBought())
@@ -229,4 +231,10 @@ std::vector<LaboPiece *> Labo::getM_LaboPieceVector() {
 }
 void Labo::incrementEvolutionLevel(){
     m_evolutionLevel++;
+}
+double Labo::getM_CPSBonus(){
+    return m_CPSBonus;
+}
+double Labo::getM_YPSBonus(){
+    return m_YPSBonus;
 }

@@ -884,10 +884,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabStatsPanel.addComponent(&m_suppReputation);
 
     m_jeanneLabel.create("labelJeanne",550,255,30,&m_fontLabel,L"Jeanne",sf::Color::Black);
-    m_jeanneLabelDescriptif1.create("labelJeanneDescriptif1",525,290,25,&m_fontLabel,L"Increases 15%",sf::Color::Black);
+    m_jeanneLabelDescriptif1.create("labelJeanneDescriptif1",525,290,25,&m_fontLabel,L"Increases "+cast::toWstring(getLabo()->getM_YPSBonus()+0.15)+L"x",sf::Color::Black);
     m_jeanneLabelDescriptif.create("labelJeanneDescriptif",525,317,25,&m_fontLabel,L"of the total YPS",sf::Color::Black);
     m_sergeLabel.create("labelSerge",800,255,30,&m_fontLabel,L"Serge",sf::Color::Black);
-    m_sergeLabelDescriptif1.create("labelSergeDescriptif1",750,290,25,&m_fontLabel,L"Increases 15%",sf::Color::Black);
+    m_sergeLabelDescriptif1.create("labelSergeDescriptif1",750,290,25,&m_fontLabel,L"Increases "+cast::toWstring(getLabo()->getM_CPSBonus()+0.15)+L"x",sf::Color::Black);
     m_sergeLabelDescriptif.create("labelSergeDescriptif",750,317,25,&m_fontLabel,L"of the total CPS",sf::Color::Black);
 
     m_tabScientistPanel.addComponent(&m_jeanneLabel);
@@ -1195,6 +1195,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     checkStateEvolutionAnimation();
     checkStatePopupOnAnimation();
     checkStatePopupOffAnimation();
+
+    m_jeanneLabelDescriptif1.setText(L"Increases "+cast::toWstring(getLabo()->getM_YPSBonus()+0.15)+L"x");
+    m_sergeLabelDescriptif1.setText(L"Increases "+cast::toWstring(getLabo()->getM_CPSBonus()+0.15)+L"x");
 
     m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
     m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
