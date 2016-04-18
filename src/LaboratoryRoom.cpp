@@ -889,11 +889,11 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
             "Well, a possible interpretation of the evolution at least.\n\n"
             "Go on and give it a go, try to shake the cell behind me.";
     txtFirstEvolution = L"The cell evolved!\nThe machine can simulate years of evolution in a second!\n\n"
-            "See that icon? *Insert bank icon here*.\n"
+            "See that icon?\n"
             "This is how much subvention you receive for your hard work.\n"
             "You can buy things for your laboratory.\n"
             "They will help you for your researches, by helping you evolve\nalways faster. \n"
-            "It also prove that you’re a respectable scientist and more\nsubvention *insert MPS icon” will arrive.";
+            "It also prove that you’re a respectable scientist and more\nsubvention      will arrive.";
     txtFirstCanReset = L"Technicians finally repaired this red button.\n"
             "It should only be used only for an extreme emergency.\n"
             "Don’t press it! Like really.";
@@ -917,7 +917,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tutorial.create("labelTutorial", 400, 170, 15, &m_fontLabel, txtFirstConnect, sf::Color::Black);
     m_panelTutorial.addComponent(&m_tutorial);
 
+    /* Icons tuto */
+    pictureTutoBank.create("BankIconTuto", 510, 230,
+                           ptr_managerGroup->ptr_textureManager->getTexture("bank-icon"));
+    m_panelTutorial.addComponent(&pictureTutoBank);
+    pictureTutoBank.setVisible(false);
 
+    pictureTutoMPS.create("MpsIconTuto", 482, 365,
+                           ptr_managerGroup->ptr_textureManager->getTexture("money-icon"));
+    m_panelTutorial.addComponent(&pictureTutoMPS);
+    pictureTutoMPS.setVisible(false);
 
 
 
@@ -939,6 +948,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_ordi.create("ordi", 377, 443,
                   ptr_managerGroup->ptr_textureManager->getTexture("ordi"), true, 0.5, 69, 92, 3);
     getContentPane()->addComponent(&m_ordi);
+
 
     m_coffeeSmoke.create("coffeeSmoke", 195, 475,
                          ptr_managerGroup->ptr_textureManager->getTexture("coffeeSmoke"), true, 0.27, 60, 50, 20);
@@ -1211,6 +1221,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                 firstEvolution=false;
                 m_tutorial.setText(txtFirstEvolution);
                 m_popupOnAnimation.setVisible(true);
+                pictureTutoBank.setVisible(true);
+                pictureTutoMPS.setVisible(true);
                 m_popupOnAnimation.play();
             }
             getLabo()->evolution();
@@ -1321,6 +1333,8 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         panelDisplay=false;
         m_closePopupButton.setVisible(false);
         m_panelTutorial.setVisible(false);
+        pictureTutoBank.setVisible(false);
+        pictureTutoMPS.setVisible(false);
         m_popupOnAnimation.setVisible(false);
         m_popupOffAnimation.setVisible(true);
         m_popupOffAnimation.play();
