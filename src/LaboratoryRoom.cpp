@@ -34,6 +34,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     /* background */
     m_contentPane.setSprite(ptr_managerGroup->ptr_textureManager->getTexture("background"));
 
+    /* Click by seconde */
+    m_ClickThisSeconde = 0;
+    m_ClickUntilLastSeconde = 0;
     /* Screen */
     m_screen.create("screen", 186, 378,
                     ptr_managerGroup->ptr_textureManager->getTexture("screen"));
@@ -824,6 +827,10 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
                                                                     cast::toWstring(
                                                                             getLabo()->getM_ptr_stats()->getM_spentReputation()),
                              sf::Color::Black);
+    m_nbClickBySeconde.create("nbClickBySeconde", 500, 230, 15, &m_fontLabel, L"Number of click maximum in one seconde : " +
+                                                                    cast::toWstring(
+                                                                            getLabo()->getM_ptr_stats()->getNbClickSeconde()),
+                             sf::Color::Black);
     m_tabStatsPanel.addComponent(&m_nbClick);
     m_tabStatsPanel.addComponent(&m_nbReset);
     m_tabStatsPanel.addComponent(&m_nbEvoMax);
@@ -834,6 +841,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     m_tabStatsPanel.addComponent(&m_actualReputation);
     m_tabStatsPanel.addComponent(&m_totalReputation);
     m_tabStatsPanel.addComponent(&m_spentReputation);
+    m_tabStatsPanel.addComponent(&m_nbClickBySeconde);
 
     //Second part of the stats
     m_panelYear.create("imgYear", 500, 250, ptr_managerGroup->ptr_textureManager->getTexture("time-icon"));
@@ -1132,6 +1140,12 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
         m_timeElapsed = 0;
         m_spentTime.setText(
                 L"Time spent : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds()));
+        
+        m_ClickThisSeconde = (int)(getLabo()->getM_ptr_stats()->getM_nbClick() - m_ClickUntilLastSeconde);
+        m_ClickUntilLastSeconde = getLabo()->getM_ptr_stats()->getM_nbClick();
+        if (m_ClickThisSeconde > getLabo()->getM_ptr_stats()->getNbClickSeconde())
+            getLabo()->getM_ptr_stats()->setNbClickSeconde(m_ClickThisSeconde);
+
     }
     checkStateWhiteBoardAnimation();
     checkStateClickAnimation();
@@ -1157,6 +1171,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                                cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
                                + L" (+" + cast::toWstring(getLabo()->getReputationPointWaiting()) +
                                L" if you quit the lab now)");
+    m_nbClickBySeconde.setText(L"Number of click by seconde maximum : " + cast::toWstring(getLabo()->getM_ptr_stats()->getNbClickSeconde()));
 
     Units unit = Units();
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());

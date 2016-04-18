@@ -6,6 +6,7 @@
 
 Stats::Stats() {
     m_nbClick = 0;
+    m_nbClickSeconde = 0;
     m_nbReset = 0;
     m_spentTime = sf::Time();
     m_actualMoney = 0;
@@ -59,6 +60,11 @@ void Stats::setNbEvoMax(int nbEvoMax) {
 void Stats::incrementNbEvoMax(){
     m_nbEvoMax++;
 }
+
+void Stats::setNbClickSeconde(int click) {
+    m_nbClickSeconde += click;
+}
+
 //Reputation
 void Stats::setActualReputation(long actualReputation) {
     m_actualReputation = actualReputation;
@@ -117,7 +123,9 @@ long Stats::getM_spentReputation() {
     return m_spentReputation;
 }
 
-
+int Stats::getNbClickSeconde() {
+    return m_nbClickSeconde;
+}
 
 
 
