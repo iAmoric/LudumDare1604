@@ -43,7 +43,7 @@ void SplashScreen::start(sf::RenderWindow * window) {
 	m_videoPlayer.setVideoState(videoState::PLAY);
 
 	sf::Music music;
-	if(!music.openFromFile("../res/music/intro.wav")) {
+	if(!music.openFromFile("../res/music/intro.ogg")) {
 		if(m_debug)
 			std::cerr << "Unable to open the file" << std::endl;
 		return;

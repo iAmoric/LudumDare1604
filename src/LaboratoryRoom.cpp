@@ -31,6 +31,21 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/alarme_explosion.ogg", "explosionSound", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/achat.ogg", "achat", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/brossage", "brossage", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/clic1.ogg", "clic", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/evolution.ogg", "evolution", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/feu_artifice.ogg", "feu_artifice", 1.0);
+
+
+
     /* Font */
     if (!m_fontLabel.loadFromFile("../res/font/IndieFlower.ttf")) {
         std::cerr << "Issue with font downloading" << std::endl;
@@ -1195,7 +1210,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_totalMoney.setText(L"Total amount of money obtained in your whole life : " +
                          cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney()));
     m_actualReputation.setText(L"Actual reputation : " +
-                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualReputation())
+                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
                                + L" (+" + cast::toWstring(getLabo()->getReputationPointWaiting()) +
                                L" if you quit the lab now)");
     m_nbClickBySeconde.setText(L"Number of click by seconde maximum : " + cast::toWstring(getLabo()->getM_ptr_stats()->getNbClickSeconde()));
@@ -1864,6 +1879,8 @@ void LaboratoryRoom::checkStatePopupOffAnimation() {
 
 void LaboratoryRoom::resetLabo() {
 
+    m_ptr_managerGroup->ptr_musicManager->playSound("explosionSound");
+
     m_blueScreenAnimation.setVisible(true);
     m_blueScreenOn=true;
     resetOn=true;
@@ -2238,7 +2255,7 @@ void LaboratoryRoom::checkStateBlueScreenAnimation() {
 }
 
 void LaboratoryRoom::checkStateExplosionLoopAnimation(){
-    if (m_secondExplosionLoop==7){
+    if (m_secondExplosionLoop==4){
         m_secondExplosionLoop=0;
         m_secondExplosionOn=false;
         m_blueScreenAnimation.setVisible(false);
