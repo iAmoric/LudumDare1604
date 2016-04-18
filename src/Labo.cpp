@@ -107,6 +107,10 @@ void Labo::updateCPS() {
 void Labo::restart(){
     m_ptr_stats->setActualMoney(0);
     m_money = 0;
+    m_year = 0;
+    moneyGain = 0;
+    m_evolutionLevel = 0;
+    m_ptr_monster->setAnnee(30);
     m_ptr_stats->incrementNbReset();
     m_restartBonus *= 1.1;
     m_reputationPointOwned += m_reputationPointWaiting;
