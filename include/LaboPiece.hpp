@@ -17,6 +17,7 @@ protected:
     bool m_isBuyable;
     unsigned long long m_price;
     unsigned long long m_YPS;
+    unsigned long long m_YPSNextLvl;
     int m_level;
 public:
     LaboPiece(std::string name, int nbLaboPiece,
@@ -25,6 +26,7 @@ public:
 
     void nextLvl();
     unsigned long long getYPS();
+    unsigned long long getYPSNextLvl();
     void setBuyable();
     void setBought();
     bool isBuyable();
