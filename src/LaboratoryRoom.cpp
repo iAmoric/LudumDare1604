@@ -905,9 +905,8 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
 
     /* Animation */
-    m_finalArtificeAnimation.create("finalArtificeAnimation", 28, 400,
-                   ptr_managerGroup->ptr_textureManager->getTexture("finalArtificeAnimation"), false, 0.1, 75, 60, 15);
-    getContentPane()->addComponent(&m_finalArtificeAnimation);
+
+
 
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"), true, 0.1, 75, 60, 15);
@@ -1090,10 +1089,31 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
 
 
+
+
     getContentPane()->addComponent(&m_closePopupLabel);
 
     getContentPane()->addComponent(&m_panelTutorial);
 
+    m_finalArtificeAnimation1.create("finalArtificeAnimation1", 28, 400,
+                                     ptr_managerGroup->ptr_textureManager->getTexture("finalArtificeAnimation1"), false, 0.1, 200, 200, 24);
+    getContentPane()->addComponent(&m_finalArtificeAnimation1);
+    m_finalArtificeAnimation1.setVisible(false);
+
+    m_finalArtificeAnimation2.create("finalArtificeAnimation2", 400, 400,
+                                     ptr_managerGroup->ptr_textureManager->getTexture("finalArtificeAnimation2"), false, 0.1, 200, 200, 24);
+    getContentPane()->addComponent(&m_finalArtificeAnimation2);
+    m_finalArtificeAnimation2.setVisible(false);
+
+    m_finalArtificeAnimation3.create("finalArtificeAnimation3", 400, 28,
+                                     ptr_managerGroup->ptr_textureManager->getTexture("finalArtificeAnimation3"), false, 0.1, 200, 200, 24);
+    getContentPane()->addComponent(&m_finalArtificeAnimation3);
+    m_finalArtificeAnimation3.setVisible(false);
+
+    m_finalArtificeAnimation4.create("finalArtificeAnimation4", 600, 600,
+                                     ptr_managerGroup->ptr_textureManager->getTexture("finalArtificeAnimation4"), false, 0.1, 200, 200, 24);
+    getContentPane()->addComponent(&m_finalArtificeAnimation4);
+    m_finalArtificeAnimation4.setVisible(false);
     /* Init visible*/
     m_equipment1.setVisible(false);
     m_equipment2.setVisible(false);         //Remplace le 1
@@ -1269,6 +1289,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                                 m_ptr_managerGroup->ptr_textureManager->getTexture(
                                         "monster_"+cast::toString(getLabo()->getEvolutionLevel())));
 
+            //TODO Evolution lvl 7
             if (getLabo()->getEvolutionLevel()==3){
                 m_resetButton.setVisible(true);
                 if (firstCanReset){
@@ -1281,15 +1302,24 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                 }
             }
 
-            if (getLabo()->getEvolutionLevel()==26){
-                if (endGame){
+
+            if (getLabo()->getEvolutionLevel()==2){
+                //if (endGame){
                     panelDisplay=true;
                     endGame=false;
                     m_tutorial.setText(txtEndGame);
                     m_popupOnAnimation.setVisible(true);
                     m_popupOnAnimation.play();
+                    m_finalArtificeAnimation1.setVisible(true);
+                    m_finalArtificeAnimation1.play();
+                    m_finalArtificeAnimation2.setVisible(true);
+                    m_finalArtificeAnimation2.play();
+                    m_finalArtificeAnimation3.setVisible(true);
+                    m_finalArtificeAnimation3.play();
+                    m_finalArtificeAnimation4.setVisible(true);
+                    m_finalArtificeAnimation4.play();
                     unableButton();
-                }
+                //}
             }
 
             if (getLabo()->getEvolutionLevel()==6){

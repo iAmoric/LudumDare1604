@@ -242,7 +242,10 @@ private:
 	AnimatableObject m_blueScreenAnimation;
 	AnimatableObject m_explosionLoopAnimation;
 	AnimatableObject m_finalExplosionAnimation;
-	AnimatableObject m_finalArtificeAnimation;
+	AnimatableObject m_finalArtificeAnimation1;
+	AnimatableObject m_finalArtificeAnimation2;
+	AnimatableObject m_finalArtificeAnimation3;
+	AnimatableObject m_finalArtificeAnimation4;
 
 	int m_NbMonster;
 	int m_ClickThisSeconde;
