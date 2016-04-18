@@ -1251,7 +1251,6 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             }
 
             if (getLabo()->getEvolutionLevel()==26){
-                m_resetButton.setVisible(true);
                 if (endGame){
                     panelDisplay=true;
                     endGame=false;
@@ -1262,10 +1261,9 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             }
 
             if (getLabo()->getEvolutionLevel()==6){
-                m_resetButton.setVisible(true);
                 if (firstReputation){
                     panelDisplay=true;
-                    endGame=false;
+                    firstReputation=false;
                     m_tutorial.setText(txtFirstReputation);
                     m_popupOnAnimation.setVisible(true);
                     m_popupOnAnimation.play();
