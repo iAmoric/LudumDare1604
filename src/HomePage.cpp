@@ -38,7 +38,6 @@ HomePage::HomePage(bool debug, ManagerGroup *ptr_managerGroup) :
     getContentPane()->addComponent(&m_searchBarLoop);
     m_searchBarLoop.setVisible(false);
 
-
     //m_animationTransition.setVisible(false);
 }
 
@@ -62,6 +61,13 @@ void HomePage::update(sf::RenderWindow *window,
                                      false, 0.05, 640, 960, 12);
         getContentPane()->addComponent(&m_animationTransition);
 
+    }
+
+    if (m_inputHandler.getComponentId() == "helpButton"){
+        m_credit.create("credit", 46, 163,
+                        m_ptr_managerGroup->ptr_textureManager->getTexture("credit"),
+                        true, 1, 216, 189, 5);
+        getContentPane()->addComponent(&m_credit);
     }
 
     // Basic Interface updating

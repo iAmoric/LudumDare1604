@@ -14,6 +14,7 @@ private:
     bool m_bool;
     NPanel m_background;
     AnimatableObject m_animatedPlay;
+    AnimatableObject m_credit;
     NButton m_buttonPlay;
     NButton m_helpButton;
     AnimatableObject m_searchBar;
