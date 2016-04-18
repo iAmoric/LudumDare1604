@@ -890,6 +890,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
 
     /* Animation */
+    m_finalArtificeAnimation.create("finalArtificeAnimation", 28, 400,
+                   ptr_managerGroup->ptr_textureManager->getTexture("finalArtificeAnimation"), false, 0.1, 75, 60, 15);
+    getContentPane()->addComponent(&m_finalArtificeAnimation);
 
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"), true, 0.1, 75, 60, 15);
