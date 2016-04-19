@@ -1989,6 +1989,8 @@ void LaboratoryRoom::resetLabo() {
     m_equipment18.setVisible(false);
     m_equipment19.setVisible(false);
     m_equipment20.setVisible(false);
+    m_flamme1.setVisible(false);
+    m_flamme2.setVisible(false);
 
     updateEquipment1();
     updateEquipment2();
