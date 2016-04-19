@@ -36,9 +36,7 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             createSound("../res/music/bruitage/achat.ogg", "achat", 1.0);
     ptr_managerGroup->ptr_musicManager->
-            createSound("../res/music/bruitage/brossage", "brossage", 1.0);
-    ptr_managerGroup->ptr_musicManager->
-            createSound("../res/music/bruitage/clic1.ogg", "clic", 1.0);
+            createSound("../res/music/bruitage/brossage.ogg", "brossage", 1.0);
     ptr_managerGroup->ptr_musicManager->
             createSound("../res/music/bruitage/evolution.ogg", "evolution", 1.0);
     ptr_managerGroup->ptr_musicManager->
@@ -1256,6 +1254,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
                 m_popupOnAnimation.play();
                 unableButton();
             }
+            m_ptr_managerGroup->ptr_musicManager->playSound("evolution");
             getLabo()->evolution();
             m_monster.setVisible(false);
             m_evolutionAnimation.setVisible(true);
@@ -1336,6 +1335,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "tabStatsButton") {
         if (m_targetPanel != "tabStatsPanel") {
             m_targetPanel = "tabStatsPanel";
+            m_ptr_managerGroup->ptr_musicManager->playSound("brossage");
             m_whiteBoardAnimation.setVisible(true);
             m_whiteBoardAnimation.play();
         }
@@ -1345,6 +1345,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "tabEquipmentButton") {
         if (m_targetPanel != "tabEquipmentPanel") {
             m_targetPanel = "tabEquipmentPanel";
+            m_ptr_managerGroup->ptr_musicManager->playSound("brossage");
             m_whiteBoardAnimation.setVisible(true);
             m_whiteBoardAnimation.play();
         }
@@ -1354,6 +1355,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     if (m_inputHandler.getComponentId() == "tabScientistButton") {
         if (m_targetPanel != "tabScientistPanel") {
             m_targetPanel = "tabScientistPanel";
+            m_ptr_managerGroup->ptr_musicManager->playSound("brossage");
             m_whiteBoardAnimation.setVisible(true);
             m_whiteBoardAnimation.play();
         }
@@ -1520,6 +1522,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(0)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(0)->getPrice());
             getLabo()->lvlUpLaboPiece(0);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment2.isVisible() || !m_equipment4.isVisible() ||
                 !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
                 !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
@@ -1536,6 +1539,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(1)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(1)->getPrice());
             getLabo()->lvlUpLaboPiece(1);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment4.isVisible() || !m_equipment5.isVisible() || !m_equipment13.isVisible() ||
                 !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
                 m_equipment1.setVisible(false);
@@ -1551,6 +1555,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(2)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(2)->getPrice());
             getLabo()->lvlUpLaboPiece(2);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment20.isVisible()) {
                 m_equipment3Panel.setVisible(true);
             }
@@ -1564,6 +1569,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(3)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(3)->getPrice());
             getLabo()->lvlUpLaboPiece(3);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment5.isVisible() || !m_equipment13.isVisible() ||
                 !m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
                 m_equipment2.setVisible(false);
@@ -1578,6 +1584,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(4)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(4)->getPrice());
             getLabo()->lvlUpLaboPiece(4);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment13.isVisible() || !m_equipment14.isVisible() ||
                 !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
                 m_equipment4.setVisible(false);
@@ -1593,6 +1600,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(5)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(5)->getPrice());
             getLabo()->lvlUpLaboPiece(5);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment7.isVisible()) {
                 m_equipment6.setVisible(true);
                 m_flamme1.setVisible(true);
@@ -1607,6 +1615,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(6)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(6)->getPrice());
             getLabo()->lvlUpLaboPiece(6);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment6.setVisible(false);
             m_equipment7.setVisible(true);
 
@@ -1619,6 +1628,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(7)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(7)->getPrice());
             getLabo()->lvlUpLaboPiece(7);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment9.isVisible()) {
                 m_equipment8.setVisible(true);
             }
@@ -1632,6 +1642,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(8)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(8)->getPrice());
             getLabo()->lvlUpLaboPiece(8);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment8.setVisible(false);
             m_equipment9.setVisible(true);
 
@@ -1644,6 +1655,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(9)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(9)->getPrice());
             getLabo()->lvlUpLaboPiece(9);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment12.isVisible()) {
                 m_equipment10.setVisible(true);
                 m_flamme2.setVisible(true);
@@ -1658,6 +1670,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(10)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(10)->getPrice());
             getLabo()->lvlUpLaboPiece(10);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment11.setVisible(true);
 
             updateEquipment11();
@@ -1669,6 +1682,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(11)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(11)->getPrice());
             getLabo()->lvlUpLaboPiece(11);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment10.setVisible(false);
             m_equipment12.setVisible(true);
 
@@ -1681,6 +1695,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(12)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(12)->getPrice());
             getLabo()->lvlUpLaboPiece(12);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment14.isVisible() || !m_equipment15.isVisible() || !m_equipment16.isVisible()) {
                 m_equipment4.setVisible(false);
                 m_equipment13.setVisible(true);
@@ -1695,6 +1710,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(13)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(13)->getPrice());
             getLabo()->lvlUpLaboPiece(13);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment15.isVisible() || !m_equipment16.isVisible()) {
                 m_equipment13.setVisible(false);
                 m_equipment14.setVisible(true);
@@ -1709,6 +1725,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(14)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(14)->getPrice());
             getLabo()->lvlUpLaboPiece(14);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             if (!m_equipment16.isVisible()) {
                 m_equipment14.setVisible(false);
                 m_equipment15.setVisible(true);
@@ -1723,6 +1740,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(15)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(15)->getPrice());
             getLabo()->lvlUpLaboPiece(15);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment15.setVisible(false);
             m_equipment16.setVisible(true);
 
@@ -1735,6 +1753,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(16)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(16)->getPrice());
             getLabo()->lvlUpLaboPiece(16);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment17.setVisible(true);
 
             updateEquipment17();
@@ -1746,6 +1765,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(17)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(17)->getPrice());
             getLabo()->lvlUpLaboPiece(17);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment18.setVisible(true);
 
             updateEquipment18();
@@ -1757,6 +1777,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(18)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(18)->getPrice());
             getLabo()->lvlUpLaboPiece(18);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment19.setVisible(true);
 
             updateEquipment19();
@@ -1768,6 +1789,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             getLabo()->getM_LaboPieceVector().at(19)->getLevel() < 21) {
             getLabo()->setMoney(getLabo()->getMoney() - getLabo()->getM_LaboPieceVector().at(19)->getPrice());
             getLabo()->lvlUpLaboPiece(19);
+            m_ptr_managerGroup->ptr_musicManager->playSound("achat");
             m_equipment3Panel.setVisible(false);
             m_equipment20.setVisible(true);
 
