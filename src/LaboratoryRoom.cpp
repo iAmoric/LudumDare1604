@@ -2353,6 +2353,7 @@ void LaboratoryRoom::checkStateFinalExplosionAnimation() {
             m_popupOnAnimation.setVisible(true);
             m_popupOnAnimation.play();
         }
+        enableButton();
 
     }
 }
