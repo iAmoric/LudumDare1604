@@ -903,6 +903,9 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
 
     /* Animation */
+    m_finalArtificeAnimation.create("finalArtificeAnimation", 28, 400,
+                   ptr_managerGroup->ptr_textureManager->getTexture("finalArtificeAnimation"), false, 0.1, 75, 60, 15);
+    getContentPane()->addComponent(&m_finalArtificeAnimation);
 
     m_bulle.create("bulle", 28, 400,
                    ptr_managerGroup->ptr_textureManager->getTexture("bulle"), true, 0.1, 75, 60, 15);
@@ -1205,7 +1208,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     m_totalMoney.setText(L"Total amount of money obtained in your whole life : " +
                          cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney()));
     m_actualReputation.setText(L"Actual reputation : " +
-                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation())
+                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualReputation())
                                + L" (+" + cast::toWstring(getLabo()->getReputationPointWaiting()) +
                                L" if you quit the lab now)");
     m_nbClickBySeconde.setText(L"Number of click by seconde maximum : " + cast::toWstring(getLabo()->getM_ptr_stats()->getNbClickSeconde()));
