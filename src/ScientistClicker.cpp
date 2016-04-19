@@ -4,6 +4,7 @@
 #include "SplashScreen.hpp"
 #include "LaboratoryRoom.hpp"
 #include "HomePage.hpp"
+#include <Windows.h>
 #include <SFML/OpenGL.hpp>
 
 static const struct {
@@ -200,6 +201,8 @@ static const struct {
 
 int main(int argc, char ** argv)
 {
+
+    FreeConsole();
     // Checking args
     if(argc > 1) return FAILURE;
     std::cout << "\nRunning program : " << argv[0] << "\n" << std::endl;
@@ -212,6 +215,7 @@ int main(int argc, char ** argv)
     // Creating window
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
     WINDOW_NAME, sf::Style::None);
+
 
     window.setIcon( gimp_image.width,  gimp_image.height,  gimp_image.pixel_data );
 
