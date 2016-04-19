@@ -13,6 +13,7 @@
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 #include "patch.hpp"
+#include "Units.hpp"
 
 //LoginMenu hérite de BasicInterface
 class LaboratoryRoom : public BasicInterface
@@ -284,6 +285,8 @@ private:
 	bool m_secondExplosionOn;
 	int m_secondExplosionLoop;
 	bool panelDisplay;
+
+	Units unit;
 public:
     // Constructor
     LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup);
@@ -347,6 +350,8 @@ public:
 
 	void unableButton();
 	void enableButton();
+
+	std::wstring convertTime(float seconds);
 };
 
 #endif // DEF_LABORATORY_ROOM_HPP

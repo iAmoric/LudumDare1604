@@ -1194,8 +1194,10 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
 
         m_ptr_managerGroup->ptr_gameManager->getLabo()->grant();
         m_timeElapsed = 0;
+
+        std::wstring tps = convertTime(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds());
         m_spentTime.setText(
-                L"Time spent : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentTime().asSeconds()));
+                L"Time spent : " + tps);
         
         m_ClickThisSeconde = (int)(getLabo()->getM_ptr_stats()->getM_nbClick() - m_ClickUntilLastSeconde);
         m_ClickUntilLastSeconde = getLabo()->getM_ptr_stats()->getM_nbClick();
@@ -1213,29 +1215,43 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
     checkStateFinalExplosionAnimation();
 
     m_jeanneLabelDescriptif1.setText(L"Increases "+cast::toWstring(getLabo()->getM_YPSBonus()+0.15)+L"x");
+
     m_sergeLabelDescriptif1.setText(L"Increases "+cast::toWstring(getLabo()->getM_CPSBonus()+0.15)+L"x");
 
-    m_nbClick.setText(L"Number of click : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbClick()));
+    unit.setNumber(getLabo()->getM_ptr_stats()->getM_nbClick());
+    m_nbClick.setText(L"Number of click : " + unit.toWString());
+
     m_nbReset.setText(L"Number of reset : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbReset()));
+
     m_nbEvoMax.setText(
             L"Maximum level achieved : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_nbEvoMax()));
-    m_spentMoney.setText(L"Total amount of money spent in your whole life : " +
-                         cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentMoney()));
+
+    unit.setNumber(getLabo()->getM_ptr_stats()->getM_spentMoney());
+    m_spentMoney.setText(L"Total amount of money spent in your whole life : " + unit.toWString());
+
     m_totalReputation.setText(L"Total reputation earned in your whole life : " +
                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalReputation()));
+
     m_spentReputation.setText(L"Total reputation spent in your whole life : " +
                               cast::toWstring(getLabo()->getM_ptr_stats()->getM_spentReputation()));
+
+    unit.setNumber(getLabo()->getM_ptr_stats()->getM_actualMoney());
     m_actualMoney.setText(
-            L"Actual amount of money : " + cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualMoney()));
-    m_totalMoney.setText(L"Total amount of money obtained in your whole life : " +
-                         cast::toWstring(getLabo()->getM_ptr_stats()->getM_totalMoney()));
+            L"Actual amount of money : " + unit.toWString());
+
+    unit.setNumber(getLabo()->getM_ptr_stats()->getM_totalMoney());
+    m_totalMoney.setText(L"Total amount of money obtained in your whole life : " + unit.toWString());
+
+
     m_actualReputation.setText(L"Actual reputation : " +
                                cast::toWstring(getLabo()->getM_ptr_stats()->getM_actualReputation())
                                + L" (+" + cast::toWstring(getLabo()->getReputationPointWaiting()) +
                                L" if you quit the lab now)");
-    m_nbClickBySeconde.setText(L"Number of click by seconde maximum : " + cast::toWstring(getLabo()->getM_ptr_stats()->getNbClickSeconde()));
 
-    Units unit = Units();
+
+    m_nbClickBySeconde.setText(L"Maximum clicks per second : " + cast::toWstring(getLabo()->getM_ptr_stats()->getNbClickSeconde()));
+
+
     unit.setNumber(m_ptr_managerGroup->ptr_gameManager->getLabo()->getM_year());
     m_labelTime.setText(unit.toWString());
 
@@ -2406,4 +2422,18 @@ void LaboratoryRoom::enableButton() {
     m_buttonEquipment20.setEnabled(true);
     m_buyButtonJeanne.setEnabled(true);
     m_buyButtonSerge.setEnabled(true);
+}
+
+std::wstring LaboratoryRoom::convertTime(float seconds) {
+    int h;
+    int m;
+    int s;
+    s = (int)seconds;
+    m = s/60;
+    s=s%60;
+
+    h=m/60;
+    m=m%60;
+
+    return  L"" + cast::toWstring(h) + L"h " + cast::toWstring(m) + L"m " + cast::toWstring(s) + L"s";
 }
