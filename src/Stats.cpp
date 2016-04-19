@@ -26,9 +26,6 @@ Stats::~Stats() {
 void Stats::setActualMoney(unsigned long long money) {
     m_actualMoney = money;
 }
-void Stats::setTotalMoney(unsigned long long money){
-    m_totalMoney = money;
-}
 void Stats::incrementActualMoney(unsigned long long money) {
     m_actualMoney += money;
 }
