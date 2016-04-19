@@ -195,6 +195,7 @@ void ResourceLoader::load() {
 	a_tm.addTexture("blueScreenAnimation", pathAnimation + "blueScreenAnimation.png");
 	a_tm.addTexture("explosionLoopAnimation", pathAnimation + "explosionAnimationLoop.png");
 	a_tm.addTexture("finalExplosion", pathAnimation + "finalExplosion.png");
+	a_tm.addTexture("finalArtificeAnimation", pathAnimation + "fireworksAnimation.png");
 
 	/* Mouse */
 	a_tm.addTexture("mouse", pathSprite + "mouse_pointer.png");
