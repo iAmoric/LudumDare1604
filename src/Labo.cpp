@@ -69,6 +69,7 @@ void Labo::lvlUpLaboPiece(unsigned int id) {
 void Labo::lvlUpScientific(unsigned int type) {
     m_reputationPointOwned -= m_ScientificVector.at(type)->getPrice();
     m_ptr_stats->incrementSpentReputation(m_ScientificVector.at(type)->getPrice());
+    m_ptr_stats->setActualReputation(m_reputationPointOwned);
     m_ScientificVector.at(type)->nextLvl();
     if(type == 1){
         m_CPSBonus = m_CPSBonus + 0.25;
