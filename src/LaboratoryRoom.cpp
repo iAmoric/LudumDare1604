@@ -31,6 +31,13 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
     ptr_managerGroup->ptr_musicManager->
             getPlaylist("playlistMenu")->play();
 
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/alarme_explosion.ogg", "explosionSound", 1.0);
+
+
+
+
+
     /* Font */
     if (!m_fontLabel.loadFromFile("../res/font/IndieFlower.ttf")) {
         std::cerr << "Issue with font downloading" << std::endl;
@@ -1861,6 +1868,8 @@ void LaboratoryRoom::checkStatePopupOffAnimation() {
 
 void LaboratoryRoom::resetLabo() {
 
+    m_ptr_managerGroup->ptr_musicManager->playSound("explosionSound");
+
     m_blueScreenAnimation.setVisible(true);
     m_blueScreenOn=true;
     resetOn=true;
@@ -2235,7 +2244,7 @@ void LaboratoryRoom::checkStateBlueScreenAnimation() {
 }
 
 void LaboratoryRoom::checkStateExplosionLoopAnimation(){
-    if (m_secondExplosionLoop==7){
+    if (m_secondExplosionLoop==4){
         m_secondExplosionLoop=0;
         m_secondExplosionOn=false;
         m_blueScreenAnimation.setVisible(false);
