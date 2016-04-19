@@ -33,8 +33,16 @@ LaboratoryRoom::LaboratoryRoom(bool debug, ManagerGroup *ptr_managerGroup) :
 
     ptr_managerGroup->ptr_musicManager->
             createSound("../res/music/bruitage/alarme_explosion.ogg", "explosionSound", 1.0);
-
-
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/achat.ogg", "achat", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/brossage", "brossage", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/clic1.ogg", "clic", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/evolution.ogg", "evolution", 1.0);
+    ptr_managerGroup->ptr_musicManager->
+            createSound("../res/music/bruitage/feu_artifice.ogg", "feu_artifice", 1.0);
 
 
 
