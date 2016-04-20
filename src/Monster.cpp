@@ -75,24 +75,6 @@ void Monster::setEvolution(unsigned long long nb){
         case 19:
             m_annee = 16350583012370000000;
             break;
-        case 20:
-            m_annee = (unsigned long long) 98100852964370000000;
-            break;
-        case 21:
-            m_annee = (unsigned long long) 588602472676370000000;
-            break;
-        case 22:
-            m_annee = (unsigned long long) 3531612190948370000000;
-            break;
-        case 23:
-            m_annee = (unsigned long long) 21189670500580400000000;
-            break;
-        case 24:
-            m_annee = (unsigned long long) 127138020358372000000000;
-            break;
-        case 25:
-            m_annee = (unsigned long long) 762828119505124000000000;
-            break;
         default:
             break;
     }

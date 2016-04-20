@@ -1319,7 +1319,7 @@ void LaboratoryRoom::update(sf::RenderWindow *window,
             }
 
 
-            if (getLabo()->getEvolutionLevel()==26){
+            if (getLabo()->getEvolutionLevel()==20){
                 if (endGame){
                     panelDisplay=true;
                     endGame=false;
